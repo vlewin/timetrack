@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %title Timestamps
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    .navbar
+      .navbar-inner
+        .container
+          =link_to 'TimeTrack',  timestamps_path, :class=>"brand"
+        
+    #main.container
+      = yield
+    
+      

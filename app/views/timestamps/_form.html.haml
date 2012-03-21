@@ -1,0 +1,18 @@
+= form_for @timestamp do |f|
+  = f.date_select :date, {}, {:class => "hidden"}
+  .row
+    .span4
+      %div#starttime.editable
+        = f.text_field :starttime, :class => "bigTextField auto"
+        %p
+          %small start time
+
+    .span4
+      %button#submit.btn{"data-new-record" => "#{@timestamp.new_record?}"}= (@timestamp.new_record?)? "CREATE" : "UPDATE"
+       
+    .span4
+      %div#endtime.editable
+        = f.text_field :endtime, :class => "bigTextField auto"
+        %p
+          %small end time
+

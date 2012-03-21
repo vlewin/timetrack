@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Timestamps</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="container">
+<%= yield %>
+
+</body>
+</html>
+
+%h1 Listing timestamps
+
+%table
+  %tr
+    %th Date
+    %th Start
+    %th End
+    %th Duration
+    %th
+    %th
+    %th
+
+  - @timestamps.each do |timestamp|
+    %tr
+      %td= timestamp.date
+      %td= timestamp.start
+      %td= timestamp.end
+      %td= timestamp.duration
+      %td= link_to 'Show', timestamp
+      %td= link_to 'Edit', edit_timestamp_path(timestamp)
+      %td= link_to 'Destroy', timestamp, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Timestamp', new_timestamp_path

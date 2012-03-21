@@ -1,0 +1,59 @@
+%div
+  #calendar
+    #calendar-header
+      %a#prev_month «
+      %a#yearSwitcher 
+        %span#currentMonth= @timestamp.date.strftime("%B")
+        %span#currentYear= @timestamp.date.strftime("%Y")
+      %a#next_month »
+      
+    #calendar-body
+      #calendar-dates
+        %ul
+          - (1..lastday(Date.today)).each do |t|
+            %li.day{:class => (("active") if t == @timestamp.date.strftime("%e").to_i)}
+              - if @timestamps[t]
+                =link_to t, edit_timestamp_path(@timestamps[t]), "data-content" => "#{@timestamps[t].starttime} - #{@timestamps[t].endtime} (#{@timestamps[t].duration})", "data-title" => @timestamps[t].date, :remote => false
+              - else
+                - if isWeekend?(t, Date.today)
+                  %span.weekend= t
+                - else 
+                  = link_to t, new_timestamp_path, :class=>"new", "data-date" => "#{Date.today.strftime("%Y")}-#{Date.today.strftime("%m")}-#{t}", :remote => true
+            
+      %div.clearfix
+
+      #calendar-today
+        %div#dayname.left
+          %span.d= @timestamp.date.strftime("%d")
+          %span.m= @timestamp.date.strftime("%B")
+          
+        %div#month
+          %span= @timestamp.date.strftime("%A")
+          %br
+          %span= @timestamp.date.strftime("%U")
+        .clearfix
+        
+    #calendar-error
+      -if @timestamp.errors.any?
+        .row#error_explanation
+          .span12
+            %h2= "#{pluralize(@timestamp.errors.count, "error")} prohibited this timestamp from being saved:"
+            %ul
+              - @timestamp.errors.full_messages.each do |msg|
+                %li= msg
+    
+    #calendar-footer
+      = render "form"
+    #calendar-info
+      .row
+        .span12.center
+          %p 
+            %b= Timestamp.balance
+          %p
+            %small current balance
+
+
+
+
+  
+
