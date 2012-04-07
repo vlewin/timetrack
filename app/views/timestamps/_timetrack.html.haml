@@ -1,11 +1,14 @@
 %div
   #calendar
-    #calendar-header
-      %a#prev_month «
-      %a#yearSwitcher 
-        %span#currentMonth= @timestamp.date.strftime("%B")
-        %span#currentYear= @timestamp.date.strftime("%Y")
-      %a#next_month »
+    #calendar-header.row-fluid
+      .span3.left
+        %a#prev_month «
+      .span6.center
+        %a#yearSwitcher 
+          %span#currentMonth= @timestamp.date.strftime("%B")
+          %span#currentYear= @timestamp.date.strftime("%Y")
+      .span3.right
+        %a#next_month »
       
     #calendar-body
       #calendar-dates
@@ -22,16 +25,17 @@
             
       %div.clearfix
 
-      #calendar-today
-        %div#dayname.left
-          %span.d= @timestamp.date.strftime("%d")
-          %span.m= @timestamp.date.strftime("%B")
-          
-        %div#month
-          %span= @timestamp.date.strftime("%A")
-          %br
-          %span= @timestamp.date.strftime("%U")
-        .clearfix
+      #calendar-today.row-fluid
+        .span6.left
+          %div#dayname
+            %span.d= @timestamp.date.strftime("%d")
+            %span.m= @timestamp.date.strftime("%B")
+        .span6.right  
+          %div#month.center
+            %span= @timestamp.date.strftime("%A")
+            %br
+            %span= @timestamp.date.strftime("%U")
+          .clearfix
         
     #calendar-error
       -if @timestamp.errors.any?
@@ -45,7 +49,7 @@
     #calendar-footer
       = render "form"
     #calendar-info
-      .row
+      .row-fluid
         .span12.center
           %p 
             %b= Timestamp.balance

@@ -1,6 +1,6 @@
 = form_for @timestamp do |f|
   = f.date_select :date, {}, {:class => "hidden"}
-  .row
+  .row-fluid
     .span4
       %div#starttime.editable
         = f.text_field :starttime, :class => "bigTextField auto"
