@@ -12,14 +12,19 @@ class Timestamp < ActiveRecord::Base
   
   # SCOPES
   scope :today, :conditions => ["date =?", Date.today]
-  scope :current_month, :conditions => ["strftime('%m', date) <=?", Date.today], :order => "date"
+ # scope :current_month, :conditions => ["strftime('%m', date) <=?", Date.today], :order => "date"
+
+  scope :current_month, lambda { |date| 
+    where('date > ? AND date < ?', DateTime.parse(date).beginning_of_month, DateTime.parse(date).end_of_month)
+  }
+  
   scope :find_by_month, lambda { |month|
     {
       :conditions => ["strftime('%m', date) =?", month.to_s.match('0')? month : "0#{month}"],
       :order => "date"
     }
   }
-
+  
   def self.balance
     balance =  self.sum(:duration) - self.count*8
     hours = balance.to_i;

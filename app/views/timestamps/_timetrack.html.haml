@@ -10,7 +10,7 @@
     #calendar-body
       #calendar-dates
         %ul
-          - (1..lastday(Date.today)).each do |t|
+          - (1..(Date.today.end_of_month).day).each do |t|
             %li.day{:class => (("active") if t == @timestamp.date.strftime("%e").to_i)}
               - if @timestamps[t]
                 =link_to t, edit_timestamp_path(@timestamps[t]), "data-content" => "#{@timestamps[t].starttime} - #{@timestamps[t].endtime} (#{@timestamps[t].duration})", "data-title" => @timestamps[t].date, :remote => false

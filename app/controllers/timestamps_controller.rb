@@ -3,7 +3,7 @@ class TimestampsController < ApplicationController
 
   def currentMonth()
     hash = Hash.new
-    Timestamp.current_month.select do |t|
+    Timestamp.current_month(Date.today.to_s).select do |t|
      hash[t.date.strftime('%d').to_i] = t
     end
     
@@ -12,6 +12,8 @@ class TimestampsController < ApplicationController
 
 
   def index
+
+    #@timestamps = Timestamp.month(Date.today.to_s).all
     @timestamps = currentMonth()
     @timestamp = (Timestamp.today.blank?)? Timestamp.new : Timestamp.today.first
     
