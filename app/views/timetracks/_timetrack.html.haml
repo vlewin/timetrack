@@ -1,31 +1,38 @@
-#clock.center
-  %h1 08:00
-  %h2= "#{@date.strftime("%A")}, #{@date.strftime("%e %B %Y")} (#{@date.strftime("%V")})"
-
-#calendar
-  #calendar-head
-    %h1
-      = link_to "<", :date => (@date.beginning_of_month-1).strftime("%Y-%m-%d")
-      = @date.strftime("%B %Y") 
-      = link_to ">", :date => (@date.end_of_month+1).strftime("%Y-%m-%d")
-
+#clock.clock-container.center
+  .clock
+    %ul
+      %li#hours= Time.now.strftime("%H")
+      %li#point :
+      %li#min= Time.now.strftime("%M")
+      %li#point :
+      %li#sec= Time.now.strftime("%S")
   
 
+  #calendar-head
+    %h2= "#{@date.strftime("%A")}, #{@date.strftime("%e %B  ")} (#{@date.strftime("%V")})"
+    %h2.month-switcher
+      = link_to "<", :date => (@date.beginning_of_month-1).strftime("%Y-%m-%d")
+      = @date.strftime("%B %Y") 
+      = link_to ">", :date => (@date.end_of_month+1).strftime("%Y-%m-%d") 
+
+#calendar
   #calendar-body
     %table
       %tr
-      - ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].each do |weekday|
+      -WEEKDAYS.each do |weekday|
         %th= weekday
       -@days.to_a.in_groups_of(7).each do |week|
         %tr
           - week.each do |date|
             - if date
-              %td
-                %h1= date.day
+              %td{ :class => (("active") if date == Date.today) }
                 -if @timetracks.has_key?(date)
-                  %b= link_to date, :date => @timetracks[date].date
+                  %a.date-select{:href=>"", "data-date" => "date=#{date.strftime("%Y-%m-%d")}" }
+                    %h1= date.day
+                    = @timetrack[date].inspect
                 -else
-                  = link_to date, { :date => date.strftime("%Y-%m-%d") }, :class => "date-select", :format => :js, :remote => true
-
+                  %a.date-select{:href=>"", "data-date" => "date=#{date.strftime("%Y-%m-%d")}" }
+                    %h1= date.day
             - else 
               %td &nbsp;
+

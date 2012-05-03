@@ -3,7 +3,7 @@ $(document).ready(function() {
     event.preventDefault();
     console.log("Clicked");
 
-    var ajax = $.get("timetracks.js", "date="+$(this).html(), function() {})
+    var ajax = $.get("timetracks.js", "date="+$(this).data("date"), function() {})
     
     ajax.complete(function() {  $("#timetrack").html(ajax.responseText); });
     return false;

@@ -1,0 +1,20 @@
+#clock { margin:40px 0px; background: #fff; }
+#clock .clock { font-size:100px; line-height:100px; }
+
+ul { width:100%; margin:0 auto; padding:0px; list-style:none; text-align:center; }
+ul li { display:inline; font-size:125px; text-align:center; /* text-shadow:0 0 5px #00c6ff; */ }
+
+/*#sec { font-size:75px; }*/
+/*#point { position:relative; -moz-animation:mymove 1s ease infinite; -webkit-animation:mymove 1s ease infinite; padding-left:0px; padding-right:0px; }
+
+@-webkit-keyframes mymove {
+	0% {opacity:1.0; text-shadow:0 0 20px #00c6ff;}
+	50% {opacity:0; text-shadow:none; }
+	100% {opacity:1.0; text-shadow:0 0 20px #00c6ff; }
+}
+
+@-moz-keyframes mymove {
+	0% {opacity:1.0; text-shadow:0 0 20px #00c6ff;}
+	50% {opacity:0; text-shadow:none; }
+	100% {opacity:1.0; text-shadow:0 0 20px #00c6ff; }
+}*/
