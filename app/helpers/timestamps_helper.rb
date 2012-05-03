@@ -15,10 +15,5 @@ module TimestampsHelper
     
   end
   
-  def isWeekend?(day, date)
-    weekend = false
-    weekday = (Date.new(date.strftime("%Y").to_i, date.strftime("%m").to_i, day)).strftime("%A")
-    weekend = (weekday == "Sunday" || weekday ==  "Saturday")? true : false
-    return weekend
-  end
+
 end

@@ -26,13 +26,16 @@
           - week.each do |date|
             - if date
               %td{ :class => (("active") if date == Date.today) }
-                -if @timetracks.has_key?(date)
-                  %a.date-select{:href=>"", "data-date" => "date=#{date.strftime("%Y-%m-%d")}" }
-                    %h1= date.day
-                    = @timetrack[date].inspect
+                - if isWeekend?(date)
+                  %h1.weekend= date.day
                 -else
-                  %a.date-select{:href=>"", "data-date" => "date=#{date.strftime("%Y-%m-%d")}" }
-                    %h1= date.day
+                  -if @timetracks.has_key?(date)
+                    %a.date-select{:href=>"", "data-date" => "date=#{date.strftime("%Y-%m-%d")}" }
+                      %h1= date.day
+                      = @timetrack[date].inspect
+                  -else
+                    %a.date-select{:href=>"", "data-date" => "date=#{date.strftime("%Y-%m-%d")}" }
+                      %h1= date.day
             - else 
               %td &nbsp;
 

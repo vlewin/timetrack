@@ -69,6 +69,7 @@
   /*background: #DDD;*/
   color: #888;
   text-align: center;
+  padding:15px 0px;
   width: 14.2857142857143%;
   font-weight:bold;
   font-size:16px;
@@ -82,6 +83,8 @@
   padding:10px 0px;
 }
 
+#calendar td.active h1 { color:#336DA8;}
+#calendar td h1.weekend { color:#900000;}
 #calendar td h1 { font-size: 32px; }
 
 //#calendar .notmonth {
