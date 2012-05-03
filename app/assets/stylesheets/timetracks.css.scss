@@ -1,0 +1,124 @@
+// Place all the styles related to the timetracks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('/assets/Ubuntu-R-webfont.woff') format('woff'),
+         url('/assets/Ubuntu-R-webfont.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('/assets/Ubuntu-B-webfont.woff') format('woff'),
+         url('/assets/Ubuntu-B-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: 700;
+
+}
+
+
+@font-face {
+    font-family: 'OpenSans';
+    src: url('/assets/OpenSans-Regular-webfont.woff') format('woff'),
+         url('/assets/OpenSans-Regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'OpenSans';
+    src: url('OpenSans-Bold-webfont.eot');
+    src: url('OpenSans-Bold-webfont.woff') format('woff'),
+         url('OpenSans-Bold-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-rendering: optimizelegibility;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.01);
+}
+
+//body { background-color: #fff; color: #444; background: url('/assets/lion-background.png') }
+body { background-color: #2B3E41; }
+
+.left { text-align:left;}
+.center { text-align:center;}
+.right { text-align:right;}
+
+#clock { margin:10px 0px; background: #fff; }
+#clock h1 { font-size:70px; line-height:70px; }
+
+#calendar { margin:10px 0px; background: #fff; }
+#calendar-head, #calendar-body { padding:10px; background: #fff; text-align:center; }
+#calendar-head h1 { font-size:50px; line-height:50px; }
+#calendar-head h1 a { vertical-align:top; color:#000;}
+
+#calendar table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#calendar td,
+#calendar th {
+  font-family: "Lucida Grande",arial,helvetica,sans-serif;
+  font-size: 10px;
+  padding: 6px;
+  border: 1px solid #999;
+}
+
+#calendar th {
+  background: #DDD;
+  color: #666;
+  text-align: center;
+  width: 14.2857142857143%;
+}
+
+#calendar td {
+  background: #FFF;
+  color: #777;
+  height: 80px;
+  vertical-align: top;
+  font-size: 16px;
+}
+
+//#calendar .notmonth {
+//  color: #CCC;
+//}
+
+//#calendar #month {
+//  margin: 0;
+//  padding-top: 10px;
+//  padding-bottom: 10px;
+//  text-align: center;
+//}
+
+//#calendar #month a, #calendar #month a:hover {
+//  text-decoration: none;
+//  padding: 0 10px;
+//  color: #999;
+//}
+
+//#calendar .today {
+//  background-color: #D7F2FF;
+//}
+
+//#calendar ul {
+//  margin: 0;
+//  margin-top: 5px;
+//  padding: 0;
+//  list-style: none;
+//}
+
+//#calendar li {
+//  margin: 0;
+//  padding: 0;
+//  font-size: 11px;
+//  text-align: center;
+//}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120319114824) do
+ActiveRecord::Schema.define(:version => 20120502075643) do
 
   create_table "timestamps", :force => true do |t|
     t.date     "date"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(:version => 20120319114824) do
     t.float    "duration"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "timetracks", :force => true do |t|
+    t.date     "date"
+    t.datetime "start"
+    t.datetime "finish"
+    t.float    "duration"
   end
 
 end
