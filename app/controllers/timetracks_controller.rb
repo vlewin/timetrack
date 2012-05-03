@@ -12,5 +12,12 @@ class TimetracksController < ApplicationController
     @@offset[@days.first.wday].times do |i|
       @days.insert(i, nil)
     end
+    
+    respond_to do |format|
+      format.html
+      format.json { render :json => @timetracks }
+      format.js { render :partial => "timetrack" }
+    end
+
   end
 end

@@ -1,0 +1,31 @@
+#clock.center
+  %h1 08:00
+  %h2= "#{@date.strftime("%A")}, #{@date.strftime("%e %B %Y")} (#{@date.strftime("%V")})"
+
+#calendar
+  #calendar-head
+    %h1
+      = link_to "<", :date => (@date.beginning_of_month-1).strftime("%Y-%m-%d")
+      = @date.strftime("%B %Y") 
+      = link_to ">", :date => (@date.end_of_month+1).strftime("%Y-%m-%d")
+
+  
+
+  #calendar-body
+    %table
+      %tr
+      - ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].each do |weekday|
+        %th= weekday
+      -@days.to_a.in_groups_of(7).each do |week|
+        %tr
+          - week.each do |date|
+            - if date
+              %td
+                %h1= date.day
+                -if @timetracks.has_key?(date)
+                  %b= link_to date, :date => @timetracks[date].date
+                -else
+                  = link_to date, { :date => date.strftime("%Y-%m-%d") }, :class => "date-select", :format => :js, :remote => true
+
+            - else 
+              %td &nbsp;

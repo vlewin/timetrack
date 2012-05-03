@@ -1,6 +1,10 @@
 Timestamps::Application.routes.draw do
   resources :timestamps
   resources :timetracks
+  
+  #match 'timetracks' => 'timetracks#index.js', :via => :get
+  #match 'custom' => 'timetracks#custom', :via => :get
+#    match 'suse_register' => 'legacy/suse_register#index', :via => :post
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
