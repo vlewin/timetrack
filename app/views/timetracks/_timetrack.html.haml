@@ -1,5 +1,7 @@
+#timetrack-form
+  = render "form"
 #clock.clock-container.center
-  .clock
+  %a.clock
     %ul
       %li#hours= Time.now.strftime("%H")
       %li#point :
@@ -30,11 +32,13 @@
                   %h1.weekend= date.day
                 -else
                   -if @timetracks.has_key?(date)
-                    %a.date-select{:href=>"", "data-date" => "date=#{date.strftime("%Y-%m-%d")}" }
+                    %a.date-select{:href=>"", "data-date" => "#{date.strftime("%Y-%m-%d")}" }
                       %h1= date.day
-                      = @timetrack[date].inspect
+                      = @timetracks[date].start
+                      = @timetracks[date].finish
+                      = @timetracks[date].duration
                   -else
-                    %a.date-select{:href=>"", "data-date" => "date=#{date.strftime("%Y-%m-%d")}" }
+                    %a.date-select{:href=>"", "data-date" => "#{date.strftime("%Y-%m-%d")}" }
                       %h1= date.day
             - else 
               %td &nbsp;
