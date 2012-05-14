@@ -23,7 +23,7 @@ class Timetrack < ActiveRecord::Base
 
     balance = Hash.new
     balance[:negative] = minutes.negative?
-    balance[:value] = "#{hours} hours #{minutes} minutes"
+    balance[:value] = "#{hours} hours #{minutes.abs} minutes"
 
     return balance
   end
