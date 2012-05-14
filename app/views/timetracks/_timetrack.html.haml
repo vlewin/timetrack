@@ -1,21 +1,22 @@
-#timetrack-form
-  = render "form"
-#clock.clock-container.center
-  %a.clock
+#clock.clock-container
+  %a.clock.center
     %ul
       %li#hours= Time.now.strftime("%H")
       %li#point :
       %li#min= Time.now.strftime("%M")
       %li#point :
       %li#sec= Time.now.strftime("%S")
-  
+.clearfix
 
-  #calendar-head
-    %h2= "#{@date.strftime("%A")}, #{@date.strftime("%e %B  ")} (#{@date.strftime("%V")})"
-    %h2.month-switcher
-      = link_to "<", :date => (@date.beginning_of_month-1).strftime("%Y-%m-%d")
-      = @date.strftime("%B %Y") 
-      = link_to ">", :date => (@date.end_of_month+1).strftime("%Y-%m-%d") 
+#timetrack-form.center{:hidden =>false}
+  = render "form"
+
+#calendar-head
+  %h2= "#{@date.strftime("%A")}, #{@date.strftime("%e %B  ")} (#{@date.strftime("%V")})"
+  %h2.month-switcher
+    = link_to "<", :date => (@date.beginning_of_month-1).strftime("%Y-%m-%d")
+    = @date.strftime("%B %Y")
+    = link_to ">", :date => (@date.end_of_month+1).strftime("%Y-%m-%d")
 
 #calendar
   #calendar-body
@@ -31,15 +32,10 @@
                 - if isWeekend?(date)
                   %h1.weekend= date.day
                 -else
-                  -if @timetracks.has_key?(date)
-                    %a.date-select{:href=>"", "data-date" => "#{date.strftime("%Y-%m-%d")}" }
+                  %a.date-select{:href=>"", "data-date" => "#{date.strftime("%Y-%m-%d")}" }
+                    -if @timetracks.has_key?(date)
+                      %h1.recorded= date.day
+                    -else
                       %h1= date.day
-                      = @timetracks[date].start
-                      = @timetracks[date].finish
-                      = @timetracks[date].duration
-                  -else
-                    %a.date-select{:href=>"", "data-date" => "#{date.strftime("%Y-%m-%d")}" }
-                      %h1= date.day
-            - else 
+            - else
               %td &nbsp;
-

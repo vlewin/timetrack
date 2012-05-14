@@ -1,4 +1,5 @@
 #timetrack
   = render "timetrack"
 
-
+#footer
+  %b{:class => (:red if Timetrack.balance[:negative])}= Timetrack.balance[:negative]? "- #{ Timetrack.balance[:value]}" : Timetrack.balance[:value]

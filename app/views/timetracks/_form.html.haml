@@ -1,13 +1,7 @@
-= @date.inspect
-= form_for @timetrack do |f|
+= form_for @timetrack, :html=> {:id=> "timetrack-form", :class=>"form-inline"} do |f|
   = f.date_select :date, {}, {:class => "hidden"}
-  .row-fluid
-    .span4
-      %p 
-        start time
-        = f.text_field :start
-      %p 
-        end time
-        = f.text_field :finish
-      %button.btn{"data-new-record" => "#{@timetrack.new_record?}"}= (@timetrack.new_record?)? "CREATE" : "UPDATE"
-       
+  = f.text_field :start, :class => "input-medium", :placeholder => "start"
+  = f.text_field :finish, :class => "input-medium", :placeholder => "finish"
+  = f.text_field :duration, :class => "input-small", :placeholder => "hh:mm", :readonly=>true
+  %button.btn.btn-primary{"data-new-record" => "#{@timetrack.new_record?}"}= (@timetrack.new_record?)? "CREATE" : "UPDATE"
+//  %p.help-block= @timetrack.inspect
