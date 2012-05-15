@@ -1,7 +1,4 @@
-body {
- background-color: #EEEEEE;
- color: #555;
-}
+body { background-color: #EEEEEE; color: #555; }
 
 .left { text-align:left;}
 .center { text-align:center;}
@@ -11,7 +8,7 @@ body {
 
 #clock { border-bottom:0; padding:5px; background-color: #f5f5f5;  }
 #clock a.clock { color: #454545; font-size:100px; font-weight: bold; text-shadow: 0px 1px 1px #fff; line-height:100px; text-decoration:none;}
-#clock a.clock:hover { color: #0088CC;}
+/*#clock a.clock:hover { color: #0088CC;}*/
 
 ul { width:100%; margin:0 auto; padding:0px; list-style:none; text-align:center; }
 ul li { display:inline; font-size:100px;  text-align:center; /* text-shadow:0 0 5px #00c6ff; */ }
@@ -55,7 +52,12 @@ ul li { display:inline; font-size:100px;  text-align:center; /* text-shadow:0 0 
 #calendar td h1.recorded {  color: #0088CC; text-decoration:underline;}
 
 
-#timetrack-form form.form-inline { background-color: #f5f5f5; border-top:1px solid #ddd; padding:15px 0px 15px; }
+#timetrack-form form.form-inline {
+  background-color: #f5f5f5;
+  border-top:1px solid #ddd;
+  padding:15px 0px 15px;
+}
+
 #timetrack-form input[type="text"] {
   border: 1px solid #999999;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2) inset;
@@ -66,6 +68,14 @@ ul li { display:inline; font-size:100px;  text-align:center; /* text-shadow:0 0 
   padding: 6px;
   text-align:center;
 }
+
+#timetrack-form button.now {
+  margin-left:-5px;
+  padding:6px;
+  border:1px solid #999;
+}
+
+#timetrack-form .btn-primary { padding: 6px; font-weight:bold;}
 
 #timetrack-form select.hidden { height:1px; overflow:hidden; visibility: hidden; display:none; }
 

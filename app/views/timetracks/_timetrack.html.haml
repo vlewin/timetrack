@@ -32,10 +32,15 @@
                 - if isWeekend?(date)
                   %h1.weekend= date.day
                 -else
-                  %a.date-select{:href=>"", "data-date" => "#{date.strftime("%Y-%m-%d")}" }
-                    -if @timetracks.has_key?(date)
+                  -if @timetracks.has_key?(date)
+                    %a.date-select{ :href=>"", "data-date" => "#{date.strftime("%Y-%m-%d")}",
+                      "data-title" => "#{date.strftime("%Y-%m-%d")}",
+                      "data-content" => "#{@timetracks[date].start.strftime("%H:%M")} - #{@timetracks[date].finish.strftime("%H:%M")} - #{@timetracks[date].duration_human_friendly}" }
                       %h1.recorded= date.day
-                    -else
+                  -else
+                    %a.date-select{:href=>"", "data-date" => "#{date.strftime("%Y-%m-%d")}" }
                       %h1= date.day
+
+
             - else
               %td &nbsp;
