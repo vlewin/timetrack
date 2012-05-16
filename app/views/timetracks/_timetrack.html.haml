@@ -35,7 +35,7 @@
                     %h1.weekend= date.day
                   - elsif date.holiday?
                     %h1.holiday= date.day
-                    %span.small=date.holidays.first[:name] if date.holidays
+                    %span.small=date.holidays.first[:name] if date.holidays #TODO: fix regions issue date.holidays(:de)!!!
                   -else
                     -if @timetracks.has_key?(date)
                       %a.date-select{ :href=>"#", "data-date" => "#{date.strftime("%Y-%m-%d")}",
