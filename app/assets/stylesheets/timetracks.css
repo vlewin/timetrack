@@ -47,7 +47,8 @@ body {
 #calendar td a { color:#555; }
 #calendar td h1 { font-size: 32px; }
 #calendar td.active h1 { color:#AA55AA !important;}
-#calendar td h1.weekend, #calendar td h1.holiday { color:#900000;}
+#calendar td h1.weekend { color:#ccc; }
+#calendar td h1.holiday { color:#900000;}
 #calendar td h1.recorded {  color: #0088CC; text-decoration:underline;}
 
 #timetrack-form form.form-inline { background-color: #fff; border-top:1px solid #ddd; padding:15px 0px 15px; margin:0; }
