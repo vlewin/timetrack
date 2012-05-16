@@ -1,7 +1,8 @@
 WEEKDAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
 class TimetracksController < ApplicationController
-  @@offset = {0=>6, 1=>0, 2=>1, 3=>2, 4=>3, 5=>4 }
+  # TODO: show days of previous month instead of nil
+  @@offset = {0=>6, 1=>0, 2=>1, 3=>2, 4=>3, 5=>4, 6=>5 }
 
   def index
     @date = params[:date].nil? ? Date.today : params[:date].to_date # show current date
