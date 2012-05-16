@@ -1,25 +1,24 @@
 #clock.clock-container
-  %a.clock.center
+  %a.clock.center.date-select{ :href=>"#", "data-date" => "#{Date.today.strftime("%Y-%m-%d")}"}
     %ul
       %li#hours= Time.now.strftime("%H")
       %li#point :
       %li#min= Time.now.strftime("%M")
       %li#point :
       %li#sec= Time.now.strftime("%S")
-.clearfix
+  %h2.date-info.center= "#{@date.strftime("%A")}, #{@date.strftime("%e %B  ")} (#{@date.strftime("%V")})"
+  .clearfix
 
-#timetrack-form.center{:hidden =>false}
-  = render "form"
-
-#calendar-head
-  %h2= "#{@date.strftime("%A")}, #{@date.strftime("%e %B  ")} (#{@date.strftime("%V")})"
-  %h2.month-switcher
-    = link_to "<", :date => (@date.beginning_of_month-1).strftime("%Y-%m-%d")
-    = @date.strftime("%B %Y")
-    = link_to ">", :date => (@date.end_of_month+1).strftime("%Y-%m-%d")
+  #timetrack-form.center{:hidden =>false}
+    = render "form"
 
 #calendar
-  #calendar-body
+  #calendar-head.center
+    %h2.month-switcher
+      = link_to "<", :date => (@date.beginning_of_month-1).strftime("%Y-%m-%d")
+      = @date.strftime("%B %Y")
+      = link_to ">", :date => (@date.end_of_month+1).strftime("%Y-%m-%d")
+  #calendar-body.center
     %table
       %tr
       -WEEKDAYS.each do |weekday|
@@ -33,12 +32,12 @@
                   %h1.weekend= date.day
                 -else
                   -if @timetracks.has_key?(date)
-                    %a.date-select{ :href=>"", "data-date" => "#{date.strftime("%Y-%m-%d")}",
+                    %a.date-select{ :href=>"#", "data-date" => "#{date.strftime("%Y-%m-%d")}",
                       "data-title" => "#{date.strftime("%Y-%m-%d")}",
                       "data-content" => "#{@timetracks[date].start.strftime("%H:%M")} - #{@timetracks[date].finish.strftime("%H:%M")} - #{@timetracks[date].duration_human_friendly}" }
                       %h1.recorded= date.day
                   -else
-                    %a.date-select{:href=>"", "data-date" => "#{date.strftime("%Y-%m-%d")}" }
+                    %a.date-select{:href=>"#", "data-date" => "#{date.strftime("%Y-%m-%d")}" }
                       %h1= date.day
 
 

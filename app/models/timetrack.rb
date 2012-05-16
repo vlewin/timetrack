@@ -3,7 +3,7 @@ class Timetrack < ActiveRecord::Base
   after_find :to_timestring, :duration_human_friendly
 
   # VALIDATORS
-  #validates :date, :presence => true, :uniqueness => true
+  validates :date, :presence => true, :uniqueness => true
   #validates :start, :presence => true, :format => {:with => /^(([0-9])|([0-1][0-9])|([2][0-3])):(([0-9])|([0-5][0-9]))$/i}
   #validates :finish, :presence => true, :format => {:with => /^(([0-9])|([0-1][0-9])|([2][0-3])):(([0-9])|([0-5][0-9]))$/i}
 

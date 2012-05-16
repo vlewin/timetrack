@@ -3,12 +3,18 @@
 
   .input-append
     = f.text_field :start, :class => "input-medium", :placeholder => "start"
-    %button.btn.now now
+    %button.btn.now
+      %i.icon-time
 
   .input-append
     = f.text_field :finish, :class => "input-medium", :placeholder => "finish"
-    %button.btn.now now
+    %button.btn.now
+      %i.icon-time
 
   = f.text_field :duration, :class => "input-small", :placeholder => "hh:mm", :readonly=>true
-  %button.btn.btn-primary{"data-new-record" => "#{@timetrack.new_record?}"}= (@timetrack.new_record?)? "CREATE" : "UPDATE"
-//  %p.help-block= @timetrack.inspect
+  %button.btn.btn-success{"data-new-record" => "#{@timetrack.new_record?}"}
+    %i.icon-ok
+    = (@timetrack.new_record?)? "CREATE" : "UPDATE"
+
+  %button.btn.btn-danger.destroy{"data-id"=> @timetrack.id }
+    %i.icon-remove

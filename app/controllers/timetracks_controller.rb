@@ -42,4 +42,13 @@ class TimetracksController < ApplicationController
     end
   end
 
+  def destroy
+    @timetrack = Timetrack.find(params[:id])
+    @timetrack.destroy
+
+    respond_to do |format|
+      format.html { render :nothing => true, :status => 200, :content_type => 'text/html' }
+    end
+  end
+
 end
