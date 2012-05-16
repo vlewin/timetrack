@@ -17,6 +17,7 @@ body {
 }
 
 
+.small {font-size: 11px; color:#aaa;}
 .left { text-align:left;}
 .center { text-align:center;}
 .right { text-align:right;}
@@ -41,12 +42,12 @@ body {
 #calendar td, #calendar th { font-size: 10px; }
 
 #calendar th { width: 14.2857142857143%; font-weight:bold; font-size:16px; padding:2px 0px; background:#fafafa; color:#bbb; border-bottom:1px solid #ddd; }
-#calendar td { background: #FFF; vertical-align: middle; font-size: 20px; padding:0px 0px; height:80px; }
+#calendar td { background: #FFF; vertical-align: top; font-size: 20px; padding:0px 0px; height:80px; }
 
 #calendar td a { color:#555; }
 #calendar td h1 { font-size: 32px; }
 #calendar td.active h1 { color:#AA55AA !important;}
-#calendar td h1.weekend { color:#900000;}
+#calendar td h1.weekend, #calendar td h1.holiday { color:#900000;}
 #calendar td h1.recorded {  color: #0088CC; text-decoration:underline;}
 
 #timetrack-form form.form-inline { background-color: #fff; border-top:1px solid #ddd; padding:15px 0px 15px; margin:0; }
