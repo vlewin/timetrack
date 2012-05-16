@@ -14,10 +14,11 @@
 
 #calendar
   #calendar-head.center
-    %h2.month-switcher
-      = link_to "<", :date => (@date.beginning_of_month-1).strftime("%Y-%m-%d")
-      = @date.strftime("%B %Y")
-      = link_to ">", :date => (@date.end_of_month+1).strftime("%Y-%m-%d")
+    %h2.month-switcher.row-fluid
+      .span2.left= link_to "<<", :date => (@date.beginning_of_month-1).strftime("%Y-%m-%d")
+      .span8
+        .uppercase= @date.strftime("%B %Y")
+      .span2.right= link_to ">>", :date => (@date.end_of_month+1).strftime("%Y-%m-%d")
   #calendar-body.center
     %table
       %tr

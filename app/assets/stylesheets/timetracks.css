@@ -21,6 +21,7 @@ body {
 .center { text-align:center;}
 .right { text-align:right;}
 .negative {color: #900000; }
+.uppercase { text-transform:uppercase; }
 
 #clock { background-color: #F1F1F1; border:1px solid #ddd; margin:15px 0px; }
 
@@ -30,18 +31,19 @@ body {
 
 #calendar { border:1px solid #ddd; }
 
-#calendar-head { background-color:#F1F1F1; }
-#calendar-head h2 a { vertical-align:text-bottom; padding:0px 15px; color:#454545; }
+#calendar-head { background-color:#F1F1F1; border-bottom:1px solid #ddd; }
+#calendar-head h2 a { vertical-align:middle; padding:0px 10px; color:#454545; font-family:Arial}
+#calendar-head h2 a:hover { text-decoration: none; }
 
 #calendar-body {  }
 
 #calendar table { border-collapse: collapse; width: 100%; text-align: center; }
 #calendar td, #calendar th { font-size: 10px; }
 
-#calendar th { padding:15px 0px; width: 14.2857142857143%; font-weight:bold; font-size:16px; background:#F1F1F1; border-bottom:1px solid #ddd; }
+#calendar th { width: 14.2857142857143%; font-weight:bold; font-size:16px; padding:2px 0px; background:#fafafa; color:#bbb; border-bottom:1px solid #ddd; }
 #calendar td { background: #FFF; vertical-align: middle; font-size: 20px; padding:0px 0px; height:80px; }
 
-#calendar td a { color:#454545; }
+#calendar td a { color:#555; }
 #calendar td h1 { font-size: 32px; }
 #calendar td.active h1 { color:#AA55AA !important;}
 #calendar td h1.weekend { color:#900000;}
