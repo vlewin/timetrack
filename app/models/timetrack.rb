@@ -16,43 +16,39 @@ class Timetrack < ActiveRecord::Base
   end
 
   def self.balance
-    balance =  (self.sum(:duration)/3600) - (self.count*8)
-    hours = balance.to_i;
-    minutes = (balance - balance.to_i)
+    time =  (self.sum(:duration)/3600) - (self.count*8)
+    hours = time.to_i;
+    minutes = (time - time.to_i)
     minutes = (minutes * 60).to_i
 
     balance = Hash.new
     balance[:negative] = minutes.negative?
     balance[:value] = "#{hours} hours #{minutes.abs} minutes"
 
-    return balance
+    balance
   end
 
   def to_timestamp
-    #ruby-1.9.2-p0 :003 > Time.new(2008,6,21, 13,30,0, "+09:00").utc
-    # convert time timestamp to time string e.g. 139999999 => "08:00"
     self.start = self.start.to_i
-    self.finish = self.finish.to_i
+    self.finish = (self.finish.nil?)? 0 : self.finish.to_i
   end
 
   def to_timestring
     # convert time timestamp to time string e.g. 139999999 => "08:00"
     self.start = Time.at(self.start).strftime("%H:%M")
-    self.finish = Time.at(self.finish).strftime("%H:%M")
+    self.finish = (self.finish == 0)? self.finish : Time.at(self.finish).strftime("%H:%M")
   end
 
-  # TODO: is not triggered ???
   def duration
-    self.duration = (self.finish - self.start) - (PAUSE*60)
+    self.duration =  self.finish == 0? nil : (self.finish - self.start) - (PAUSE*60)
   end
 
   def duration_human_friendly
-    self.duration = (self.duration/3600).round(2)
+    self.duration = (self.duration.nil?)? "N/A" : (self.duration/3600).round(2)
   end
 
   def self.month(date)
     timestamps = Hash.new
-    Rails.logger.error "BM #{date.beginning_of_month} EM #{date.end_of_month}"
     self.where('date >= ? AND date <= ?', date.beginning_of_month, date.end_of_month).select{|t| timestamps[t.date] = t}
     timestamps
   end
@@ -73,8 +69,7 @@ class String
       return "#{hh+1}:00"
     end
 
-    Rails.logger.error "HH #{hh} MM #{mm} TIME #{time}"
-    return time
+    time
   end
 end
 

@@ -26,7 +26,9 @@
         -WEEKDAYS.each do |weekday|
           %th= weekday
       %tbody
-        -@days.to_a.in_groups_of(7).each do |week|
+        %tr
+          %td.spacer{:colspan => 7} &nbsp;
+        -@days.to_a.in_groups_of(7).each_with_index do |week, index|
           %tr
             - week.each do |date|
               - if date
@@ -40,7 +42,7 @@
                     -if @timetracks.has_key?(date)
                       %a.date-select{ :href=>"#", "data-date" => "#{date.strftime("%Y-%m-%d")}",
                         "data-title" => "#{date.strftime("%Y-%m-%d")}",
-                        "data-content" => "#{@timetracks[date].start.strftime("%H:%M")} - #{@timetracks[date].finish.strftime("%H:%M")} - #{@timetracks[date].duration_human_friendly}" }
+                        "data-content" => "#{@timetracks[date].start.strftime("%H:%M")} - #{@timetracks[date].finish.strftime("%H:%M") unless @timetracks[date].finish == 0} - #{@timetracks[date].duration_human_friendly}" }
                         %h1.recorded= date.day
                     -else
                       %a.date-select{:href=>"#", "data-date" => "#{date.strftime("%Y-%m-%d")}" }

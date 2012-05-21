@@ -44,6 +44,8 @@ body {
 #calendar th { width: 14.2857142857143%; font-weight:bold; font-size:16px; padding:2px 0px; background:#fafafa; color:#bbb; border-bottom:1px solid #ddd; }
 #calendar td { background: #FFF; vertical-align: top; font-size: 20px; padding:0px 0px; height:80px; }
 
+#calendar td.spacer { height:40px; }
+
 #calendar td a { color:#555; }
 #calendar td h1 { font-size: 32px; }
 #calendar td.active h1 { color:#AA55AA !important;}
