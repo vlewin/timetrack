@@ -1,7 +1,7 @@
 Web based time tracking application
+This project is also a playground for development, testing and deployment
 
 # INSTALL SECTION
-
 git clone git://github.com/vlewin/timetrack.git
 rake db:migrate
 rails s
