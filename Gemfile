@@ -11,8 +11,10 @@ gem 'json'
 
 gem 'holidays'
 
-gem 'vlad'
-gem 'vlad-git'
+group :production do
+  gem 'extjs'
+  gem 'therubyracer'
+end
 
 group :assets do
   gem 'sass-rails'
