@@ -16,5 +16,6 @@
     %i.icon-ok
     = (@timetrack.new_record?)? "CREATE" : "UPDATE"
 
-  %button.btn.btn-danger.destroy{"data-id"=> @timetrack.id }
-    %i.icon-remove
+  - unless  @timetrack.new_record?
+    %button.btn.btn-danger.destroy{"data-id"=> @timetrack.id }
+      %i.icon-remove
