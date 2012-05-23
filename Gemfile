@@ -13,6 +13,11 @@ gem 'holidays'
 
 gem 'capistrano'
 
+group :production do
+ gem 'therubyracer'
+ gem 'execjs'
+end
+
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
