@@ -11,8 +11,7 @@ gem 'json'
 
 gem 'holidays'
 
-gem 'vlad'
-gem 'vlad-git'
+gem 'capistrano'
 
 group :assets do
   gem 'sass-rails'
