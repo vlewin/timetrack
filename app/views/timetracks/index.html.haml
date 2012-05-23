@@ -3,3 +3,5 @@
 
 #footer
   %b{:class => (:negative if Timetrack.balance[:negative])}= Timetrack.balance[:negative]? "- #{ Timetrack.balance[:value]}" : Timetrack.balance[:value]
+
+  %p= "rails env is set to: #{Rails.env.inspect}"

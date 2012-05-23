@@ -11,6 +11,9 @@ gem 'json'
 
 gem 'holidays'
 
+gem 'vlad'
+gem 'vlad-git'
+
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
