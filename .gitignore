@@ -7,9 +7,6 @@
 # Ignore bundler config
 /.bundle
 
-# Ingnore capistrano deployment config
-/config/deploy.rb
-
 # Ignore the default SQLite database.
 /db/*.sqlite3
 
