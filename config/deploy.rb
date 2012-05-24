@@ -8,6 +8,9 @@ set :repository,  "git@github.com:vlewin/timetrack.git"
 set :branch, "capistrano"
 set :scm_verbose, true
 
+ssh_options[:forward_agent] = true
+default_run_options[:pty] = true
+
 set :deploy_to, "/srv/www/htdocs/#{application}"
 
 server "stealth.suse.de", :app, :web, :db, :primary => true
