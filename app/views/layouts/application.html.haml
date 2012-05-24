@@ -6,13 +6,21 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    //.navbar
-    //  .navbar-inner
-    //.container-fluid
-    //  =link_to 'TimeTrack',  timestamps_path, :class=>"brand"
 
-    %p.notice= notice
-    %p.alert= alert
+    .container
+      .right
+        - if user_signed_in?
+          %i.icon-user
+          = current_user.email
+          = link_to 'logout',  sign_out_path, :class=>"brand" 
+
 
     #main.container
+      .flash.center
+        -if notice
+          %span.alert.alert-success= notice 
+        - if alert
+          %span.alert
+            %i.icon-warning-sign
+            = alert
       = yield
