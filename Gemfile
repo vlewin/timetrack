@@ -10,8 +10,9 @@ gem 'sqlite3'
 gem 'json'
 
 gem 'holidays'
-
 gem 'capistrano'
+
+gem 'devise'
 
 group :production do
  gem 'therubyracer'
