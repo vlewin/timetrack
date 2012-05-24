@@ -1,3 +1,6 @@
+require 'holidays'
+require 'holidays/de'
+
 WEEKDAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
 class TimetracksController < ApplicationController
