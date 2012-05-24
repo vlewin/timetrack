@@ -1,39 +1,33 @@
-set :user, "vlewin"
 set :application, "timetrack"
 set :domain, "stealth.suse.de"
+set :user, 'vlewin'
+set :use_sudo, false
+
+set :scm, :git
+set :repository,  "git@github.com:vlewin/timetrack.git"
+set :branch, "capistrano"
+set :scm_verbose, true
 
 set :deploy_to, "/srv/www/htdocs/#{application}"
-set :repository, "git://github.com/vlewin/timetrack.git"
 
-#task :beta do
-#  set :domain,    "beta.example.com"
-#  set :deploy_to, "/path/to/install-beta"
-#end
+server "stealth.suse.de", :app, :web, :db, :primary => true
 
-#task :dev do
-#  set :domain,    "dev.example.com"
-#  set :deploy_to, "/path/to/install-dev"
-#end
+namespace :deploy do
+  task :start do
+  end
 
-#task :prod do
-#  set :domain,    "example.com"
-#  set :deploy_to, "/path/to/install"
-#end
+  task :stop do
+  end
 
-namespace :vlad do
-  desc "Symlinks the configuration files"
-  remote_task :symlink_config, :roles => :web do
-    %w(application.yml database.yml).each do |file|
-      run "ln -s #{shared_path}/config/#{file} #{current_path}/config/#{file}"
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+  end
+
+  namespace :assets do
+    task :precompile, :role => :app do
+      run "cd #{release_path}/ && rake assets:precompile"
     end
   end
 
-  desc "Full deployment cycle: Update, migrate, restart, cleanup"
-  remote_task :deploy, :roles => :app do
-    Rake::Task['vlad:update'].invoke
-    Rake::Task['vlad:symlink_config'].invoke
-    Rake::Task['vlad:migrate'].invoke
-    Rake::Task['vlad:start_app'].invoke
-    Rake::Task['vlad:cleanup'].invoke
-  end
+  after "deploy:finalize_update", "deploy:migrate", "deploy:assets:precompile"
 end

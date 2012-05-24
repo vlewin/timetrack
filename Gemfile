@@ -11,9 +11,11 @@ gem 'json'
 
 gem 'holidays'
 
+gem 'capistrano'
+
 group :production do
-  gem 'extjs'
-  gem 'therubyracer'
+ gem 'therubyracer'
+ gem 'execjs'
 end
 
 group :assets do
