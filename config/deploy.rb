@@ -1,22 +1,14 @@
 set :application, "timetrack"
-set :repository,  "git://github.com/vlewin/timetrack.git"
-set :scm, :git
-set :deploy_to, "/srv/www/htdocs/#{application}"
-
-set :user, "vlewin"
+set :domain, "stealth.suse.de"
+set :user, 'vlewin'
 set :use_sudo, false
 
+set :scm, :git
+set :repository,  "git@github.com:vlewin/timetrack.git"
 set :branch, "capistrano"
 set :scm_verbose, true
 
-set :deploy_via, :remote_cache
-set :git_enable_submodules, 1
-set :migrate_target, :current
-
-ssh_options[:forward_agent] = true
-set :normalize_asset_timestamps, false
-
-default_run_options[:pty] = true
+set :deploy_to, "/srv/www/htdocs/#{application}"
 
 server "stealth.suse.de", :app, :web, :db, :primary => true
 
