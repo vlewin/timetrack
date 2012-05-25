@@ -12,8 +12,8 @@ body {
     text-rendering: optimizelegibility;
     background: url("griddle.png") repeat scroll 0 0 transparent;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
-    padding-top:30px;
     color: #454545;
+	padding-top:20px;
 }
 
 
@@ -55,7 +55,7 @@ body {
 
 #timetrack-form form.form-inline { background-color: #fff; border-top:1px solid #ddd; padding:15px 0px 15px; margin:0; }
 #timetrack-form input[type="text"], #timetrack-form button.now { padding:6px; border: 1px solid #ccc; }
-#timetrack-form input[type="text"] { font-size: 24px; line-height: 1.4em; text-align:center; }
+#timetrack-form input[type="text"] { font-size: 24px; line-height: 1.4em; text-align:center; width:100px;}
 #timetrack-form button.now { margin-left:-5px; }
 #timetrack-form button.btn-primary { padding: 6px; font-weight:bold;}
 #timetrack-form select.hidden { height:1px; overflow:hidden; visibility: hidden; display:none; }

@@ -5,3 +5,5 @@ This project is a playground for development, testing and deployment
 git clone git://github.com/vlewin/timetrack.git
 rake db:migrate
 rails s
+
+
