@@ -5,7 +5,7 @@ set :use_sudo, false
 
 set :scm, :git
 set :repository,  "git@github.com:vlewin/timetrack.git"
-set :branch, "capistrano"
+set :branch, "master"
 set :scm_verbose, true
 
 ssh_options[:forward_agent] = true
