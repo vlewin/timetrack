@@ -9,7 +9,7 @@
 .text-bottom { vertical-align:text-bottom!important; }
 .middle { vertical-align:middle; }
 
-.alert { text-align:center; background-color:transparent!important; border:none!important; font-weight:bold; }
+.alert { padding:0!important; text-align:center; background-color:transparent!important; border:none!important; font-weight:bold; }
 .alert-success { background-color:transparent!important; }
 
 .devisebox {

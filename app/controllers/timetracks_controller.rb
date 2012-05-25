@@ -13,8 +13,8 @@ class TimetracksController < ApplicationController
 
     @@offset[@days.first.wday].times{|i| @days.insert(i, nil)} # empty cells if first day of month is not monday
 
-    @timetrack = Timetrack.find_by_date(@date)? Timetrack.find_by_date(@date) : Timetrack.new(:date => @date, :start => Time.now.strftime("%H:%M"))
-    @timetracks = Timetrack.month(Date.today) # TODO: find by params[:month]
+    @timetrack = Timetrack.by_date(@date, current_user)? Timetrack.by_date(@date, current_user) : Timetrack.new(:date => @date, :start => Time.now.strftime("%H:%M"), :user_id => current_user)
+    @timetracks = Timetrack.by_month(@date, current_user)
 
     respond_to do |format|
       format.html
@@ -24,6 +24,8 @@ class TimetracksController < ApplicationController
 
   def create
     @timetrack = Timetrack.new(params[:timetrack])
+    @timetrack.user_id = current_user.id
+
     respond_to do |format|
       if @timetrack.save
         # redirect to index or render "timetracks" ???
@@ -35,7 +37,7 @@ class TimetracksController < ApplicationController
   end
 
   def update
-    @timetrack = Timetrack.find(params[:id])
+    @timetrack = current_user.timetracks.find(params[:id])
 
     respond_to do |format|
       if @timetrack.update_attributes(params[:timetrack])

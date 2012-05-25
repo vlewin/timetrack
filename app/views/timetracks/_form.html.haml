@@ -14,8 +14,9 @@
   = f.text_field :duration, :class => "input-small", :placeholder => "hh:mm", :readonly=>true
   %button.btn.btn-success{"data-new-record" => "#{@timetrack.new_record?}"}
     %i.icon-ok
-    = (@timetrack.new_record?)? "CREATE" : "UPDATE"
+    = (@timetrack.new_record?)? "Create" : "Update"
 
   - unless  @timetrack.new_record?
     %button.btn.btn-danger.destroy{"data-id"=> @timetrack.id }
-      %i.icon-remove
+      %i.icon-trash.icon-white
+      Delete

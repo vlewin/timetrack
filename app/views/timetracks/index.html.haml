@@ -1,7 +1,33 @@
+.row.header
+  .span4.left
+    %h1
+      %i.icon-time
+      TimeTrack
+
+  .span4.center
+    - if user_signed_in?
+      -if notice
+        %span.alert.alert-success
+          %i.icon-ok-sign
+          = notice
+      - if alert
+        %span.alert
+          %i.icon-warning-sign
+          = alert
+      -unless notice || alert
+        &nbsp;
+
+  .span4.right
+    - if user_signed_in?
+      %i.icon-user
+      %b= current_user.username
+      %a{:href => "sign_out"}= "(logout)"
+
 #timetrack
   = render "timetrack"
 
 #footer
-  %b{:class => (:negative if Timetrack.balance[:negative])}= Timetrack.balance[:negative]? "- #{ Timetrack.balance[:value]}" : Timetrack.balance[:value]
+  //TODO: refactor
+  %b{:class => (:negative if Timetrack.balance(current_user)[:negative])}= Timetrack.balance(current_user)[:negative]? "- #{ Timetrack.balance(current_user)[:value]}" : Timetrack.balance(current_user)[:value]
 
   %p= "rails env is set to: #{Rails.env.inspect}"

@@ -3,11 +3,13 @@ class Timetrack < ActiveRecord::Base
   after_find :to_timestring, :duration_human_friendly
 
   # VALIDATORS
-  validates :date, :presence => true, :uniqueness => true
+  validates :date, :presence => true
   #validates :start, :presence => true, :format => {:with => /^(([0-9])|([0-1][0-9])|([2][0-3])):(([0-9])|([0-5][0-9]))$/i}
   #validates :finish, :presence => true, :format => {:with => /^(([0-9])|([0-1][0-9])|([2][0-3])):(([0-9])|([0-5][0-9]))$/i}
 
-  attr_accessible :date, :start, :finish, :duration
+  attr_accessible :date, :start, :finish, :duration, :user_id
+
+  belongs_to :user
 
   PAUSE = 30
 
@@ -15,15 +17,16 @@ class Timetrack < ActiveRecord::Base
     super(*params)
   end
 
-  def self.balance
-    time =  (self.sum(:duration)/3600) - (self.count*8)
+  def self.balance(user)
+    user_balanace = self.sum(:duration, :conditions => {:user_id => user})
+    time =  (user_balanace/3600) - (self.count(:conditions => {:user_id => user})*8)
     hours = time.to_i;
     minutes = (time - time.to_i)
     minutes = (minutes * 60).to_i
 
     balance = Hash.new
     balance[:negative] = minutes.negative?
-    balance[:value] = "#{hours} hours #{minutes.abs} minutes"
+    balance[:value] = "#{hours.abs} hours #{minutes.abs} minutes"
 
     balance
   end
@@ -47,9 +50,13 @@ class Timetrack < ActiveRecord::Base
     self.duration = (self.duration.nil?)? "N/A" : (self.duration/3600).round(2)
   end
 
-  def self.month(date)
+  def self.by_date(date, user)
+    self.where(:date => date, :user_id => user).first
+  end
+
+  def self.by_month(date, user)
     timestamps = Hash.new
-    self.where('date >= ? AND date <= ?', date.beginning_of_month, date.end_of_month).select{|t| timestamps[t.date] = t}
+    self.where("date >= ? AND date <= ? AND user_id =?", date.beginning_of_month, date.end_of_month, user.id).select{|t| timestamps[t.date] = t}
     timestamps
   end
 end

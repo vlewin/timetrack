@@ -24,6 +24,8 @@ body {
 .negative {color: #900000; }
 .uppercase { text-transform:uppercase; }
 
+#main .header { line-height: 30px; }
+
 #clock { background-color: #F1F1F1; border:1px solid #ddd; margin:15px 0px; }
 
 #clock a.clock { color: #454545; font-size:100px; font-weight: bold; line-height:100px; text-decoration:none;}
