@@ -14,6 +14,10 @@ gem 'capistrano'
 
 gem 'devise'
 
+group :development, :test do
+  gem 'debugger'
+end
+
 group :production do
  gem 'therubyracer'
  gem 'execjs'

@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :validatable, :registerable
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :username, :email, :password, :password_confirmation
   attr_accessible :login
   attr_accessor :login # Virtual attribute for authenticating by either username or email
 
@@ -14,4 +14,18 @@ class User < ActiveRecord::Base
       where(conditions).first
     end
   end
+
+  alias :devise_valid_password? :valid_password?
+
+  def valid_password?(password)
+    begin
+      devise_valid_password?(password)
+    rescue BCrypt::Errors::InvalidHash
+      return false unless Digest::SHA1.hexdigest(password) == encrypted_password
+      logger.info "User #{email} is using the old password hashing method, updating attribute."
+      self.password = password
+      true
+    end
+  end
+
 end

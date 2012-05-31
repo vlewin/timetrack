@@ -5,6 +5,7 @@ class CreateTimetracks < ActiveRecord::Migration
       t.datetime :start
       t.datetime :finish
       t.float :duration, :precision => 10, :scale => 3
+      t.integer :user_id
     end
   end
 end
