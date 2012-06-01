@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   attr_accessible :login
   attr_accessor :login # Virtual attribute for authenticating by either username or email
 
+  validates_uniqueness_of :username
+
   has_many :timetracks
 
   def self.find_first_by_auth_conditions(warden_conditions)

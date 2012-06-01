@@ -24,7 +24,7 @@ namespace :db do
   task :import => :environment do
     Rake::Task['db:migrate'].execute
 
-    files = (Dir.new(SEEDS).entries - ['.', '..'])
+    files = (Dir.new(SEEDS).entries - ['.', '..', '.gitkeep'])
 
     if files.empty?
       raise "*** [ERROR] No import files found!"
@@ -44,7 +44,11 @@ namespace :db do
           end
 
           begin
-            model.name == "User"? object.save!(:validate => false) : object.save!
+            if model.name == "User"
+              object.save!(:validate => false)
+            else
+              object.save!
+            end
           rescue Exception => e
             puts "*** [WARNING] #{model} import failed: #{e.inspect}"
           end

@@ -4,6 +4,7 @@ class Timetrack < ActiveRecord::Base
 
   # VALIDATORS
   validates :date, :presence => true
+  validates :date, :uniqueness => { :scope => :user_id }
   #validates :start, :presence => true, :format => {:with => /^(([0-9])|([0-1][0-9])|([2][0-3])):(([0-9])|([0-5][0-9]))$/i}
   #validates :finish, :presence => true, :format => {:with => /^(([0-9])|([0-1][0-9])|([2][0-3])):(([0-9])|([0-5][0-9]))$/i}
 
@@ -40,6 +41,11 @@ class Timetrack < ActiveRecord::Base
     # convert time timestamp to time string e.g. 139999999 => "08:00"
     self.start = Time.at(self.start).strftime("%H:%M")
     self.finish = (self.finish == 0)? self.finish : Time.at(self.finish).strftime("%H:%M")
+  end
+
+  def exists?
+#    self.where("date >= ? AND date <= ? AND user_id =?", self.date, self.user.id)
+    return (Timetrack.where(:date=>self.date, :user_id=>self.user_id).empty?)? false : true
   end
 
   def duration
