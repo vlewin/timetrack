@@ -29,8 +29,8 @@ $(document).ready(function() {
   $('#calendar a.date-select').live('hover', function() {
     $('#calendar a.date-select').popover({
       trigger : 'hover',
-      delay: 100,
-      placement : 'top'
+      delay: 250,
+      placement : 'bottom'
     })
   })
 
