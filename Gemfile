@@ -6,7 +6,8 @@ gem 'haml-rails'
 gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
 
-gem 'sqlite3'
+#gem 'sqlite3'
+gem 'pg'
 gem 'json'
 
 gem 'holidays'
