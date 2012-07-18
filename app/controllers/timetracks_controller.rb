@@ -14,8 +14,10 @@ class TimetracksController < ApplicationController
     @@offset[@days.first.wday].times{|i| @days.insert(i, nil)} # empty cells if first day of month is not monday
     @days = @days.to_a.in_groups_of(7)
 
-    @timetrack = Timetrack.by_date(@date, current_user)? Timetrack.by_date(@date, current_user) : Timetrack.new(:date => @date, :start => Time.now.strftime("%H:%M"), :user_id => current_user)
-    @timetracks = Timetrack.by_month(@date, current_user)
+    @timetrack = Timetrack.new
+
+#    @timetrack = Timetrack.by_date(@date, current_user)? Timetrack.by_date(@date, current_user) : Timetrack.new(:date => @date, :start => Time.now.strftime("%H:%M"), :user_id => current_user)
+#    @timetracks = Timetrack.by_month(@date, current_user)
 
     respond_to do |format|
       format.html

@@ -10,7 +10,7 @@
     = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
       %div
         %p
-          = f.text_field :login, :class => "center", :placeholder => "login or email"
+          = f.text_field :username, :class => "center", :placeholder => "login or email"
       %div
         %p
           = f.password_field :password, :class => "center", :placeholder => "password"

@@ -6,11 +6,12 @@ gem 'haml-rails'
 gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
 
-#gem 'sqlite3'
-gem 'pg'
+gem 'mongoid'
+gem 'bson_ext'
 gem 'json'
 
 gem 'holidays'
+
 gem 'capistrano'
 
 gem 'devise'
@@ -25,7 +26,5 @@ group :production do
 end
 
 group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
   gem 'uglifier', '>= 1.0.3'
 end

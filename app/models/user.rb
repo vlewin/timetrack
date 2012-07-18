@@ -1,33 +1,20 @@
-class User < ActiveRecord::Base
-  devise :database_authenticatable, :validatable, :registerable
+class User
+  include Mongoid::Document
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
+
+#  validates_presence_of :username
+#  validates_uniqueness_of :username, :email, :case_sensitive => false
   attr_accessible :username, :email, :password, :password_confirmation
-  attr_accessible :login
-  attr_accessor :login # Virtual attribute for authenticating by either username or email
 
-  validates_uniqueness_of :username
+  ## Database authenticatable
+  field :username, :type => String
+  field :email, :type => String
+  field :encrypted_password, :type => String
 
-  has_many :timetracks
+  ## Recoverable
+  field :reset_password_token,   :type => String
+  field :reset_password_sent_at, :type => Time
 
-  def self.find_first_by_auth_conditions(warden_conditions)
-    conditions = warden_conditions.dup
-    if login = conditions.delete(:login)
-      where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
-    else
-      where(conditions).first
-    end
-  end
-
-  alias :devise_valid_password? :valid_password?
-
-  def valid_password?(password)
-    begin
-      devise_valid_password?(password)
-    rescue BCrypt::Errors::InvalidHash
-      return false unless Digest::SHA1.hexdigest(password) == encrypted_password
-      logger.info "User #{email} is using the old password hashing method, updating attribute."
-      self.password = password
-      true
-    end
-  end
-
+  ## Rememberable
+  field :remember_created_at, :type => Time
 end
