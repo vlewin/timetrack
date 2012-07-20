@@ -1,11 +1,10 @@
 class Timetrack
   include Mongoid::Document
 
-  attr_accessible :username, :email, :password, :password_confirmation
-
+#  attr_accessible :date, :start, :finish, :duration, :user_id
   field :date, :type => Date
   field :start, :type => Time
   field :finish, :type => Time
   field :duration,   :type => Float
-  field :user_id, :type => Integer
+  embedded_in :user
 end

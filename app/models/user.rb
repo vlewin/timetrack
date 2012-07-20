@@ -1,9 +1,10 @@
 class User
   include Mongoid::Document
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :validatable
 
-#  validates_presence_of :username
-#  validates_uniqueness_of :username, :email, :case_sensitive => false
+  validates_presence_of :username
+  validates_uniqueness_of :username, :email, :case_sensitive => false
+
   attr_accessible :username, :email, :password, :password_confirmation
 
   ## Database authenticatable
@@ -15,6 +16,10 @@ class User
   field :reset_password_token,   :type => String
   field :reset_password_sent_at, :type => Time
 
-  ## Rememberable
-  field :remember_created_at, :type => Time
+  embeds_many :timetracks do
+
+#    def chinese
+#      @target.select { |address| address.country == "China"}
+#    end
+  end
 end

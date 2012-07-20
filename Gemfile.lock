@@ -162,9 +162,8 @@ DEPENDENCIES
   haml-rails
   holidays
   jquery-rails
-  json
   mongoid
   rails (= 3.2.3)
   therubyracer
   twitter-bootstrap-rails
-  uglifier (>= 1.0.3)
+  uglifier

@@ -8,10 +8,9 @@ gem 'twitter-bootstrap-rails'
 
 gem 'mongoid'
 gem 'bson_ext'
-gem 'json'
+#gem 'json'
 
 gem 'holidays'
-
 gem 'capistrano'
 
 gem 'devise'
@@ -26,5 +25,5 @@ group :production do
 end
 
 group :assets do
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier'
 end

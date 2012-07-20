@@ -27,7 +27,5 @@
   = render "timetrack"
 
 #footer
-  //TODO: refactor
-  %b{:class => (:negative if Timetrack.balance(current_user)[:negative])}= Timetrack.balance(current_user)[:negative]? "- #{ Timetrack.balance(current_user)[:value]}" : Timetrack.balance(current_user)[:value]
-
-  %p= "rails env is set to: #{Rails.env.inspect}"
+//  //TODO: refactor
+//  %b{:class => (:negative if Timetrack.balance(current_user)[:negative])}= Timetrack.balance(current_user)[:negative]? "- #{ Timetrack.balance(current_user)[:value]}" : Timetrack.balance(current_user)[:value]

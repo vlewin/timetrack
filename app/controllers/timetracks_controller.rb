@@ -4,20 +4,16 @@ require 'holidays/de'
 WEEKDAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
 class TimetracksController < ApplicationController
-  # TODO: show days of previous month instead of nil
-  @@offset = {0=>6, 1=>0, 2=>1, 3=>2, 4=>3, 5=>4, 6=>5 }
-
   def index
-    @date = params[:date].nil? ? Date.today : params[:date].to_date # show current date
-    @days = (@date.beginning_of_month..@date.end_of_month).to_a # all days in month e.g. 29, 30, 31
+    @today = Date.today
+    @date = params[:date].nil? ? @today : params[:date].to_date # show current date
 
-    @@offset[@days.first.wday].times{|i| @days.insert(i, nil)} # empty cells if first day of month is not monday
-    @days = @days.to_a.in_groups_of(7)
+#    @timetrack = Timetrack.new(:date => @date)
 
-    @timetrack = Timetrack.new
+    @timetrack = current_user.timetracks.find_by(:date => @date)
+    @timetrack = @timetrack? @timetrack : Timetrack.new(:date => @date)
 
-#    @timetrack = Timetrack.by_date(@date, current_user)? Timetrack.by_date(@date, current_user) : Timetrack.new(:date => @date, :start => Time.now.strftime("%H:%M"), :user_id => current_user)
-#    @timetracks = Timetrack.by_month(@date, current_user)
+    @timetracks = current_user.timetracks
 
     respond_to do |format|
       format.html
@@ -27,11 +23,10 @@ class TimetracksController < ApplicationController
 
   def create
     @timetrack = Timetrack.new(params[:timetrack])
-    @timetrack.user_id = current_user.id
+    current_user.timetracks << @timetrack
 
     respond_to do |format|
-      if @timetrack.save
-        # redirect to index or render "timetracks" ???
+      if current_user.save
         format.html { redirect_to timetracks_path({:date => @timetrack.date}) }
       else
         format.html { redirect_to timetracks_path({:date => @timetrack.date}), :error => 'Something went wrong.' }
@@ -41,6 +36,7 @@ class TimetracksController < ApplicationController
 
   def update
     @timetrack = current_user.timetracks.find(params[:id])
+    current_user.timetracks << @timetrack
 
     respond_to do |format|
       if @timetrack.update_attributes(params[:timetrack])
@@ -48,15 +44,6 @@ class TimetracksController < ApplicationController
       else
         format.html { redirect_to timetracks_path({:date => @timetrack.date}), :error => 'Something went wrong.'}
       end
-    end
-  end
-
-  def destroy
-    @timetrack = Timetrack.find(params[:id])
-    @timetrack.destroy
-
-    respond_to do |format|
-      format.html { render :nothing => true, :status => 200, :content_type => 'text/html' }
     end
   end
 

@@ -1,13 +1,15 @@
+= @timetrack.inspect
+= @timetrack.new_record?
 = form_for @timetrack, :html=> {:id=> "timetrack-form", :class=>"form-inline"} do |f|
-  = f.date_select :date, {}, {:class => "hidden"}
+  = f.text_field :date, {:class => "hidden"}
 
   .input-append
-    = f.text_field :start, :class => "", :placeholder => "start"
+    = f.text_field :start, :placeholder => "hh:mm"
     %button.btn.now
       %i.icon-time
 
   .input-append
-    = f.text_field :finish, :class => "", :placeholder => "finish"
+    = f.text_field :finish, :placeholder => "hh:mm"
     %button.btn.now
       %i.icon-time
 

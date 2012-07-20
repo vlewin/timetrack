@@ -13,7 +13,7 @@ end
 module Timestamps
   class Application < Rails::Application
     config.time_zone = 'Berlin'
-    config.i18n.default_locale = :de
+    #config.i18n.default_locale = :de
     config.encoding = "utf-8"
     config.filter_parameters += [:password, :password_confirmation]
 
