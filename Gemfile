@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.3'
+gem 'rails'
 
 gem 'haml-rails'
 gem 'jquery-rails'
@@ -8,7 +8,8 @@ gem 'twitter-bootstrap-rails'
 
 gem 'mongoid'
 gem 'bson_ext'
-#gem 'json'
+
+gem 'thin'
 
 gem 'holidays'
 gem 'capistrano'
