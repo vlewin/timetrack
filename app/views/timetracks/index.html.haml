@@ -19,6 +19,9 @@
 
   .span4.right
     - if user_signed_in?
+      %i.icon-time
+      %b= Time.zone
+
       %i.icon-user
       %b= current_user.username
       = link_to('(logout)', destroy_user_session_path, :method => :delete)
