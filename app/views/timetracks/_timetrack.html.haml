@@ -9,7 +9,7 @@
   %h2.date-info.center= "#{@date.strftime("%A")}, #{@date.strftime("%e %B  ")} (#{@date.strftime("%V")})"
   .clearfix
 
-  #timetrack-form.center{:hidden =>false}
+  #timetrack-form.center
     = render "form"
 
 #calendar

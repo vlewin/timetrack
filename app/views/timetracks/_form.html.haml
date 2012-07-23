@@ -1,22 +1,14 @@
 = form_for @timetrack, :html=> {:id=> "timetrack-form", :class=>"form-inline"} do |f|
-  = f.date_select :date, {}, {:class => "hidden"}
-
-  .input-append
-    = f.text_field :start, :class => "", :placeholder => "start"
-    %button.btn.now
-      %i.icon-time
-
-  .input-append
-    = f.text_field :finish, :class => "", :placeholder => "finish"
-    %button.btn.now
-      %i.icon-time
-
+  = f.text_field :date, {:class => "hidden"}
+  = f.time_field :start, :placeholder => "hh:mm"
+  = f.time_field :finish, :placeholder => "hh:mm"
   = f.text_field :duration, :class => "input-small", :placeholder => "hh:mm", :readonly=>true
+
   %button.btn.btn-success{"data-new-record" => "#{@timetrack.new_record?}"}
     %i.icon-ok
     = (@timetrack.new_record?)? "Create" : "Update"
 
   - unless  @timetrack.new_record?
-    %button.btn.btn-danger.destroy{"data-id"=> @timetrack.id }
+    = link_to @timetrack, :class => "btn btn-danger destroy", :data => {:confirm => 'Are you sure?'}, :method => :delete do
       %i.icon-trash.icon-white
       Delete

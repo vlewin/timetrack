@@ -21,7 +21,7 @@
     - if user_signed_in?
       %i.icon-user
       %b= current_user.username
-      %a{:href => "sign_out"}= "(logout)"
+      = link_to('(logout)', destroy_user_session_path, :method => :delete)
 
 #timetrack
   = render "timetrack"
@@ -29,5 +29,3 @@
 #footer
   //TODO: refactor
   %b{:class => (:negative if Timetrack.balance(current_user)[:negative])}= Timetrack.balance(current_user)[:negative]? "- #{ Timetrack.balance(current_user)[:value]}" : Timetrack.balance(current_user)[:value]
-
-  %p= "rails env is set to: #{Rails.env.inspect}"

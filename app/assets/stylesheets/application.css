@@ -6,6 +6,12 @@
  *= require_tree .
 */
 
+.small {font-size: 11px; color:#aaa;}
+.left { text-align:left;}
+.center { text-align:center;}
+.right { text-align:right;}
+.negative {color: #900000; }
+.uppercase { text-transform:uppercase; }
 .text-bottom { vertical-align:text-bottom!important; }
 .middle { vertical-align:middle; }
 
