@@ -1,5 +1,5 @@
 #clock.clock-container
-  %a.clock.center.date-select{ :href=>"#", "data-date" => "#{@today}"}
+  %a.clock.center.date-select{ :href=>"#", "data-date" => "#{Date.today}"}
     %ul
       %li#hours= Time.now.strftime("%H")
       %li#point :
@@ -9,43 +9,42 @@
   %h2.date-info.center= "#{@date.strftime("%A")}, #{@date.strftime("%e %B  ")} (#{@date.strftime("%V")})"
   .clearfix
 
-  #timetrack-form.center{:hidden =>false}
+  #timetrack-form.center
     = render "form"
 
-//#calendar
-//  #calendar-head.center
-//    %h2.month-switcher.row-fluid
-//      .span2.left= link_to "<<", :date => (@date.beginning_of_month-1).strftime("%Y-%m-%d")
-//      .span8
-//        .uppercase= @date.strftime("%B %Y")
-//      .span2.right= link_to ">>", :date => (@date.end_of_month+1).strftime("%Y-%m-%d")
-//  #calendar-body.center
-//    %table
-//      %thead
-//        %tr
-//        -WEEKDAYS.each do |weekday|
-//          %th= weekday
-//      %tbody
-//        -@days.each do |week|
-//          %tr
-//            - week.each do |date|
-//              - if date
-//                %td{:class => "#{'bl' if [0, 6].include? week.index(date)}#{'active' if date == @date}"}
-//                  - if date.weekend?
-//                    %h1.weekend= date.day
-//                  - elsif date.holiday?
-//                    %h1.holiday= date.day
-//                    %span.small=date.holidays.first[:name] if date.holidays #TODO: fix regions issue date.holidays(:de)!!!
-//                  -else
-//                    -if @timetracks.has_key?(date)
-//                      %a.date-select{ :href=>"#", "data-date" => "#{date.strftime("%Y-%m-%d")}",
-//                        "data-title" => "#{date.strftime("%Y-%m-%d")}",
-//                        "data-content" => "#{@timetracks[date].start.strftime("%H:%M")} - #{@timetracks[date].finish.strftime("%H:%M") unless @timetracks[date].finish == 0} - #{@timetracks[date].duration_human_friendly}" }
-//                        %h1.recorded= date.day
-//                    -else
-//                      %a.date-select{:href=>"#", "data-date" => "#{date.strftime("%Y-%m-%d")}" }
-//                        %h1= date.day
+#calendar
+  #calendar-head.center
+    %h2.month-switcher.row-fluid
+      .span2.left= link_to "<<", :date => (@date.beginning_of_month-1).strftime("%Y-%m-%d")
+      .span8
+        .uppercase= @date.strftime("%B %Y")
+      .span2.right= link_to ">>", :date => (@date.end_of_month+1).strftime("%Y-%m-%d")
+  #calendar-body.center
+    %table
+      %thead
+        %tr
+          - WEEKDAYS.each do |weekday|
+            %th= weekday
+        %tbody
+        -@days.each do |week|
+          %tr
+            - week.each do |date|
+              - if date
+                %td{:class => "#{'bl' if [0, 6].include? week.index(date)}#{'active' if date == @date}"}
+                  - if date.weekend?
+                    %h1.weekend= date.day
+                  - elsif date.holiday?
+                    %h1.holiday= date.day
+                    //TODO: fix regions issue date.holidays(:de)!!!
+                    %span.small=date.holidays.first[:name] if date.holidays
+                  - else
+                    - if current_user.timetracks.find_by(:date => date)
+                      %h1= date.day.inspect
+                      true
+                    -else
+                      %a.date-select{:href=>"#", "data-date" => "#{date.strftime("%Y-%m-%d")}" }
+                        %h1= date.day
 
-//              - else
-//                %td
-//                  &nbsp;
+              - else
+                %td
+                  &nbsp;

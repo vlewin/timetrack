@@ -19,6 +19,7 @@ module Timestamps
 
     # Enable the asset pipeline
     config.assets.enabled = true
+    config.assets.paths << "#{Rails.root}/app/models/*"
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
     config.assets.version = '1.0'
