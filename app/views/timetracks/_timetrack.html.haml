@@ -39,7 +39,8 @@
                     %span.small=date.holidays.first[:name] if date.holidays
                   - else
                     - if current_user.timetracks.find_by(:date => date)
-                      %h1.recorded= date.day
+                      %a.date-select{:href=>"#", "data-date" => "#{date.strftime("%Y-%m-%d")}" }
+                        %h1.recorded= date.day
                     -else
                       %a.date-select{:href=>"#", "data-date" => "#{date.strftime("%Y-%m-%d")}" }
                         %h1= date.day

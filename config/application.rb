@@ -17,11 +17,11 @@ module Timestamps
     config.encoding = "utf-8"
     config.filter_parameters += [:password, :password_confirmation]
 
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]  # include all subdirectories
+
     # Enable the asset pipeline
     config.assets.enabled = true
-    config.assets.paths << "#{Rails.root}/app/models/*"
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
-
     config.assets.version = '1.0'
 
     config.generators do |g|

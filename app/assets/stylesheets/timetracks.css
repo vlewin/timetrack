@@ -67,10 +67,10 @@ body {
 #calendar td h1.recorded {  color: #0088CC; text-decoration:underline;}
 
 #timetrack-form form.form-inline { background-color: #fff; border-top:1px solid #ddd; padding:15px 0px 15px; margin:0; }
-#timetrack-form input[type="text"], #timetrack-form button.now { padding:6px; border: 1px solid #ccc; }
-#timetrack-form input[type="text"] { text-align:center; width:100px;}
+#timetrack-form input[type="text"], #timetrack-form button.now { border: 1px solid #ccc; font-size:20px; }
+#timetrack-form input[type="text"] { text-align:center; width:100px; height:22px;}
 #timetrack-form input[type="text"].hidden { height:1px; overflow:hidden; visibility: hidden; display:none; }
-#timetrack-form button.now { margin-left:-5px; }
+#timetrack-form button.now i { vertical-align:middle; }
 #timetrack-form button.btn-primary { padding: 6px; font-weight:bold;}
 
 #timetrack-form span.duration { font-size: 24px; padding:6px; border: 1px solid #ccc; }
