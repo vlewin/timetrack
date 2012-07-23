@@ -1,6 +1,7 @@
 class Timetrack < ActiveRecord::Base
-  before_save :to_timestamp, :duration
-  after_find :to_timestring, :duration_human_friendly
+#  before_save :to_timestamp,
+  before_save :duration
+  after_find :duration_human_friendly
 
   # VALIDATORS
   validates :date, :presence => true
@@ -37,11 +38,11 @@ class Timetrack < ActiveRecord::Base
     self.finish = (self.finish.nil?)? 0 : self.finish.to_i
   end
 
-  def to_timestring
-    # convert time timestamp to time string e.g. 139999999 => "08:00"
-    self.start = Time.at(self.start).strftime("%H:%M")
-    self.finish = (self.finish == 0)? self.finish : Time.at(self.finish).strftime("%H:%M")
-  end
+#  def to_timestring
+#    # convert time timestamp to time string e.g. 139999999 => "08:00"
+#    self.start = Time.at(self.start).strftime("%H:%M")
+#    self.finish = (self.finish == 0)? self.finish : Time.at(self.finish).strftime("%H:%M")
+#  end
 
   def exists?
 #    self.where("date >= ? AND date <= ? AND user_id =?", self.date, self.user.id)
@@ -49,7 +50,7 @@ class Timetrack < ActiveRecord::Base
   end
 
   def duration
-    self.duration =  self.finish == 0? nil : (self.finish - self.start) - (PAUSE*60)
+    self.duration =  (self.finish.nil?) ? 0 : (self.finish - self.start) - (PAUSE*60)
   end
 
   def duration_human_friendly
@@ -65,6 +66,7 @@ class Timetrack < ActiveRecord::Base
     self.where("date >= ? AND date <= ? AND user_id =?", date.beginning_of_month, date.end_of_month, user.id).select{|t| timestamps[t.date] = t}
     timestamps
   end
+
 end
 
 class String
