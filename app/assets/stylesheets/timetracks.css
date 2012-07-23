@@ -33,7 +33,7 @@ body {
 
 #calendar-body {  }
 
-#calendar table { border-collapse: collapse; width: 100%; text-align: center; }
+#calendar table { width: 100%; text-align: center; }
 #calendar td, #calendar th { font-size: 10px; }
 
 #calendar th {
@@ -56,7 +56,7 @@ body {
   height:80px;
 }
 
-#calendar td.spacer { height:40px; border:0px solid #ddd;}
+#calendar td.spacer { height:40px; }
 #calendar td.bl { border-left:0; border-right:0;} /* bl = borderless */
 /*#calendar td.active {}*/
 #calendar td a { color:#555; }
@@ -68,7 +68,7 @@ body {
 
 #timetrack-form form.form-inline { background-color: #fff; border-top:1px solid #ddd; padding:15px 0px 15px; margin:0; }
 #timetrack-form input[type="text"], #timetrack-form button.now { padding:6px; border: 1px solid #ccc; }
-#timetrack-form input[type="text"] { font-size: 24px; line-height: 1.4em; text-align:center; width:100px;}
+#timetrack-form input[type="text"] { text-align:center; width:100px;}
 #timetrack-form input[type="text"].hidden { height:1px; overflow:hidden; visibility: hidden; display:none; }
 #timetrack-form button.now { margin-left:-5px; }
 #timetrack-form button.btn-primary { padding: 6px; font-weight:bold;}

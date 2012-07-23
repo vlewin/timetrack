@@ -30,7 +30,7 @@
           %tr
             - week.each do |date|
               - if date
-                %td{:class => "#{'bl' if [0, 6].include? week.index(date)}#{'active' if date == @date}"}
+                %td
                   - if date.weekend?
                     %h1.weekend= date.day
                   - elsif date.holiday?
@@ -39,8 +39,7 @@
                     %span.small=date.holidays.first[:name] if date.holidays
                   - else
                     - if current_user.timetracks.find_by(:date => date)
-                      %h1= date.day.inspect
-                      true
+                      %h1.recorded= date.day
                     -else
                       %a.date-select{:href=>"#", "data-date" => "#{date.strftime("%Y-%m-%d")}" }
                         %h1= date.day

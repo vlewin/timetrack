@@ -12,7 +12,12 @@ class TimetracksController < ApplicationController
     @days = (@date.beginning_of_month..@date.end_of_month).to_a # all days in month e.g. 29, 30, 31
 
     @@offset[@days.first.wday].times{|i| @days.insert(i, nil)} # empty cells if first day of month is not monday
+
+    Rails.logger.error "OFFSET #{@@offset.inspect}"
+    Rails.logger.error "DAYS #{@days.inspect}"
     @days = @days.to_a.in_groups_of(7)
+
+    Rails.logger.error "DAYS #{@days.inspect}"
 
     @timetrack = current_user.timetracks.find_by(:date => @date)
     @timetrack = @timetrack? @timetrack : Timetrack.new(:date => @date)
