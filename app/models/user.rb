@@ -16,10 +16,5 @@ class User
   field :reset_password_token,   :type => String
   field :reset_password_sent_at, :type => Time
 
-  embeds_many :timetracks do
-
-#    def chinese
-#      @target.select { |address| address.country == "China"}
-#    end
-  end
+  embeds_many :timetracks
 end

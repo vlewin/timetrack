@@ -19,8 +19,8 @@ $(document).ready(function() {
       url: "/timetracks/" + $(this).data("id"),
       type: "DELETE",
     }).done(function(xhr) {
-       console.log(xhr)
-       window.location.href = "/";
+      console.log("DONE")
+       //window.location.href = "/";
     });
 
     return false;
