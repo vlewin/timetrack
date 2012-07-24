@@ -8,9 +8,10 @@ $(document).ready(function() {
 
   $('#timetrack-form button.now').live('click', function(e) {
     e.preventDefault();
-    var $input = $(this).parent().find('input[type=text]');
     var time = new Date();
-    $input.val(time.getHours() + ':' + time.getMinutes())
+    var hh = (time.getHours() < 10)? "0" + time.getHours() : time.getHours()
+    var mm = (time.getMinutes() < 10)? "0" + time.getMinutes() : time.getMinutes()
+    $(this).parent().find('input[type=text]').val(hh + ':' + mm)
   })
 
   $('#timetrack-form button.destroy').live('click', function(e) {

@@ -6,7 +6,7 @@
  *= require_tree .
 */
 
-.small {font-size: 11px; color:#aaa;}
+.small {font-size: 11px; color:#aaa; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
 .left { text-align:left;}
 .center { text-align:center;}
 .right { text-align:right;}
