@@ -50,11 +50,14 @@ class TimetracksController < ApplicationController
   end
 
   def destroy
-    @timetrack = Timetrack.find(params[:id])
-    @timetrack.destroy
+    @timetrack = current_user.timetracks.find(params[:id])
 
     respond_to do |format|
-      format.html { render :nothing => true, :status => 200, :content_type => 'text/html' }
+      if @timetrack.delete
+        format.html { redirect_to timetracks_path({:date => @timetrack.date}) }
+      else
+        format.html { redirect_to timetracks_path({:date => @timetrack.date}), :error => 'Something went wrong.'}
+      end
     end
   end
 

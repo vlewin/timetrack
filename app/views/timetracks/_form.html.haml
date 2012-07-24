@@ -12,3 +12,5 @@
     = link_to @timetrack, :class => "btn btn-danger destroy", :data => {:confirm => 'Are you sure?'}, :method => :delete do
       %i.icon-trash.icon-white
       Delete
+
+= @timetrack.start
