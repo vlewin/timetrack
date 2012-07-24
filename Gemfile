@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.3'
+gem 'rails'
 
 gem 'haml-rails'
 gem 'jquery-rails'
@@ -20,7 +20,8 @@ group :development, :test do
 end
 
 group :production do
- gem 'therubyracer'
+ # gem 'therubyracer'
+ gem 'thin'
  gem 'execjs'
 end
 

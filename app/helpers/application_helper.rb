@@ -9,6 +9,18 @@ module ActionView
       def time_field(object_name, method, options = {})
         content_tag(:div, text_field(object_name, method, options) + content_tag(:button, content_tag(:i, '', :class=>"icon-time"), :class => "btn now"), :class=>"input-append")
       end
+
+      def duration
+        if Timetrack.balance(current_user)[:negative]
+          css_class = "negative"
+          value = "- #{Timetrack.balance(current_user)[:value]}"
+        else
+          css_class = ""
+          value = Timetrack.balance(current_user)[:value]
+        end
+
+        content_tag(:b, value, :class => css_class)
+      end
     end
   end
 end

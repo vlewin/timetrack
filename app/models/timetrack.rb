@@ -50,7 +50,7 @@ class Timetrack < ActiveRecord::Base
   def human_friendly
     self.start = self.start.strftime("%H:%M") if self.start
     self.finish = self.finish.strftime("%H:%M") if self.finish
-    self.duration = (self.duration.nil?)? "N/A" : (self.duration/3600).round(2)
+    self.duration = (self.duration == 0)? "N/A" : (self.duration/3600).round(2) if self.duration
   end
 
 end

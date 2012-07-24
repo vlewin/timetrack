@@ -1,10 +1,20 @@
 .row.header
-  .span4.left
+  .span6.left
     %h1
       %i.icon-time
       TimeTrack
+  .span6.right
+    - if user_signed_in?
+      %i.icon-time
+      %b= Time.zone
 
-  .span4.center
+      %i.icon-user
+      %b= current_user.username
+      = link_to('(logout)', destroy_user_session_path, :method => :delete)
+
+//# TODO: growl style for flash messages
+.row
+  .span12.center
     - if user_signed_in?
       -if notice
         %span.alert.alert-success
@@ -17,18 +27,8 @@
       -unless notice || alert
         &nbsp;
 
-  .span4.right
-    - if user_signed_in?
-      %i.icon-time
-      %b= Time.zone
-
-      %i.icon-user
-      %b= current_user.username
-      = link_to('(logout)', destroy_user_session_path, :method => :delete)
-
 #timetrack
   = render "timetrack"
 
 #footer
-  //TODO: refactor
-  %b{:class => (:negative if Timetrack.balance(current_user)[:negative])}= Timetrack.balance(current_user)[:negative]? "- #{ Timetrack.balance(current_user)[:value]}" : Timetrack.balance(current_user)[:value]
+  = duration
