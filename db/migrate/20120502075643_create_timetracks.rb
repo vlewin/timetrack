@@ -2,8 +2,8 @@ class CreateTimetracks < ActiveRecord::Migration
   def change
     create_table :timetracks do |t|
       t.date :date
-      t.datetime :start
-      t.datetime :finish
+      t.time :start
+      t.time :finish
       t.float :duration, :precision => 10, :scale => 3
       t.integer :user_id
     end
