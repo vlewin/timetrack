@@ -1,11 +1,11 @@
 #clock.clock-container
   %a.clock.center.date-select{ :href=>"#", "data-date" => "#{Date.today.strftime("%Y-%m-%d")}"}
     %ul
-      %li#hours= Time.now.strftime("%H")
+      %li#hours HH
       %li#point :
-      %li#min= Time.now.strftime("%M")
+      %li#min MM
       %li#point :
-      %li#sec= Time.now.strftime("%S")
+      %li#sec SS
   %h2.date-info.center= "#{@date.strftime("%A")}, #{@date.strftime("%e %B  ")} (#{@date.strftime("%V")})"
   .clearfix
 
