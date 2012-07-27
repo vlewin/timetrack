@@ -38,12 +38,12 @@ body {
 
 #calendar th {
   width: 14.2857142857143%;
-  font-weight:bold;
-  font-size:16px;
-  padding:2px 0px;
+/*  font-weight:bold;*/
+/*  font-size:16px;*/
+/*  padding:2px 0px;*/
   background:#fafafa;
   color:#bbb;
-  border-bottom:1px solid #ddd;
+/*  border-bottom:1px solid #ddd;*/
 }
 
 #calendar td {
@@ -58,11 +58,14 @@ body {
 
 #calendar td.spacer { height:40px; }
 #calendar td.bl { border-left:0; border-right:0;} /* bl = borderless */
-/*#calendar td.active {}*/
-#calendar td a { color:#555; }
-#calendar td h1 { font-size: 32px; }
-#calendar td.active h1 { color:#AA55AA !important;}
-#calendar td h1.weekend { color:#ccc; }
+
+#calendar td a { color:#555555; height:80px; }
+#calendar td h1 { color: #999999;}
+
+#calendar td.active { background: #F2F7FC; }
+#calendar td.active h1 { color:#000000; }
+
+#calendar td h1.weekend { color:#E4E4E4; }
 #calendar td h1.holiday { color:#900000;}
 #calendar td h1.recorded {  color: #0088CC; text-decoration:underline;}
 

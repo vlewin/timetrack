@@ -1,0 +1,10 @@
+.row
+  .span12
+    %h3 PLAYGROUND PARTIAL
+    = @playground.inspect
+
+%br
+
+%p
+  = link_to "back", playgrounds_path, :class => "cs_back"
+  = link_to "reload index", playgrounds_path(:anchor => "1")

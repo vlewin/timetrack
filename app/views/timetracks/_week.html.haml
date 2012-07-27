@@ -1,0 +1,69 @@
+#calendar
+  #calendar-head.center
+    .row-fluid.month-switcher
+      .span3.left
+        .btn-toolbar
+          %h2.m5.red= "#{Time.now.strftime("%e %B, %A")}"
+      .span6
+        .btn-toolbar.uppercase
+          .span2.left
+            %h2= link_to "<<", :date => (@date.beginning_of_month-1).strftime("%Y-%m-%d")
+          .span8
+            %h2.center= "xx.xx-xx.xx week (#{@date.strftime("%V")})"
+          .span2.right
+            %h2= link_to ">>", :date => (@date.end_of_month+1).strftime("%Y-%m-%d")
+      .span3.right
+        .btn-toolbar.m5
+          .btn-group
+            %a.btn
+              %i.icon-time
+                Today
+            %a.btn
+              %i.icon-list
+                Week
+            %a.btn
+              %i.icon-calendar
+              Month
+
+  #calendar-body.center
+    %table
+      %thead
+        %tr
+          -@month[2].each do |day|
+            - unless day.weekend?
+              %th
+                %h3.grey{:class => "#{'red' if day.today?}"}= day.strftime("%A (%d.%m)")
+      %tbody
+        - (8..18).each do |hour|
+          %tr
+            %td= hour
+            %td &nbsp;
+            %td &nbsp;
+            %td &nbsp;
+            %td &nbsp;
+        %tr
+          -@month[2].each do |day|
+            - unless day.weekend?
+              %td
+                %h3.grey 08:30 - 17:00
+                %h3 1:20
+
+
+  #calendar-head.center
+    .row-fluid
+      .span2.left
+        .btn-toolbar
+      .span8.center
+        .btn-toolbar
+          .btn-group
+            %a.btn
+              %i.icon-time
+                Today
+            %a.btn
+              %i.icon-list
+                Week
+            %a.btn
+              %i.icon-calendar
+              Month
+      .span2.left
+        .btn-toolbar

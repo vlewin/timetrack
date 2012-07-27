@@ -11,16 +11,15 @@ module ActionView
       end
 
       def duration
-        if Timetrack.balance(current_user)[:negative]
-          css_class = "negative"
-          value = "- #{Timetrack.balance(current_user)[:value]}"
-        else
-          css_class = ""
-          value = Timetrack.balance(current_user)[:value]
-        end
+        balance = Timetrack.balance(current_user).to_f
 
-        content_tag(:b, value, :class => css_class)
+        if balance.negative?
+          content_tag(:b, balance.ftime, :class => "red")
+        else
+          content_tag(:b, balance.ftime)
+        end
       end
+
     end
   end
 end
@@ -52,14 +51,36 @@ class String
 end
 
 class Numeric
+  def positive?
+    self >= 0
+  end
+
   def negative?
-    self.to_s.match('-').present?
-    #self.to_s =~ /^-/
+    self < 0
+  end
+end
+
+
+# FIXME: refactor
+class Float
+  def ftime
+    hh = (self/3600).to_i;
+    mm = ((self/3600 - hh) * 60).to_i
+
+    if hh.negative?
+      "- #{hh.abs} hour(s) #{mm.abs} minutes"
+    else
+      "#{hh} hour(s) #{mm} minutes"
+    end
   end
 end
 
 class Date
   def weekend?
     (self.strftime("%A") == "Sunday" || self.strftime("%A") ==  "Saturday")? true : false
+  end
+
+  def today?
+    (self == Date.today)? true : false
   end
 end

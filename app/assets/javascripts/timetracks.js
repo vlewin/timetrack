@@ -1,5 +1,6 @@
 $(document).ready(function() {
   $('a.date-select').live('click', function(e) {
+    console.log("ddd")
     e.preventDefault();
     $(this).popover('hide')
     var ajax = $.get("timetracks.js", "date="+$(this).data("date"), function() {})

@@ -7,21 +7,35 @@
     = csrf_meta_tags
   %body
 
-
-
-
     #main.container
-      - unless user_signed_in?
+      - if user_signed_in?
+        .row.header
+          .span6.left
+            %h1
+              %i.icon-time
+              TimeTrack
+          .span6.right
+            %i.icon-time
+            %b= Time.zone
+
+            %i.icon-user
+            %b= current_user.username
+            = link_to('(logout)', destroy_user_session_path, :method => :delete)
+      -else
         .center
           %h1
             %i.icon-time
             TimeTrack
 
-        .flash.center
-          -if notice
-            %span.alert.alert-success= notice
-          - if alert
-            %span.alert
-              %i.icon-warning-sign
-              = alert
+      .flash.center
+        - if flash[:success]
+          .alert.alert-success= flash[:success]
+        - if flash[:notice]
+          .alert.alert-info= flash[:notice]
+        - if flash[:warning]
+          .alert.alert-block= flash[:warning]
+        - if flash[:alert]
+          .alert.alert-error= flash[:alert]
+
       = yield
+      = link_to "PLAY", playgrounds_path

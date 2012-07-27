@@ -5,36 +5,35 @@ class Timetrack < ActiveRecord::Base
   # VALIDATORS
   validates :date, :presence => true
   validates :date, :uniqueness => { :scope => :user_id }
+  validate :start_and_end_time_cannot_be_equal
 
   attr_accessible :date, :start, :finish, :duration, :user_id
   belongs_to :user
 
-  PAUSE = 30
+  @@day = 28800
+  @@pause = 1800
 
   def initialize(*params)
     super(*params)
   end
 
+  def start_and_end_time_cannot_be_equal
+    if self.finish && self.finish.to_i <= self.start.to_i
+      errors.add(:timetrack, "End time can't be lower or equal to start time")
+    end
+  end
+
   def self.balance(user)
-    user_balanace = self.sum(:duration, :conditions => {:user_id => user})
-    time =  (user_balanace/3600) - (self.count(:conditions => {:user_id => user})*8)
-    hours = time.to_i;
-    minutes = (time - time.to_i)
-    minutes = (minutes * 60).to_i
-
-    balance = Hash.new
-    balance[:negative] = minutes.negative?
-    balance[:value] = "#{hours.abs} hours #{minutes.abs} minutes"
-
-    balance
+    number = self.count(:conditions => {:user_id => user})
+    self.sum(:duration, :conditions => {:user_id => user}) - (number*@@day)
   end
 
   def exists?
-    return (Timetrack.where(:date=>self.date, :user_id=>self.user_id).empty?)? false : true
+    (Timetrack.where(:date=>self.date, :user_id=>self.user_id).empty?)? false : true
   end
 
   def duration
-    self.duration =  (self.finish.nil?) ? 0 : (self.finish - self.start) - (PAUSE*60)
+    self.duration = (self.finish.nil?)? nil : self.finish - self.start
   end
 
   def self.by_date(date, user)
@@ -50,7 +49,7 @@ class Timetrack < ActiveRecord::Base
   def human_friendly
     self.start = self.start.strftime("%H:%M") if self.start
     self.finish = self.finish.strftime("%H:%M") if self.finish
-    self.duration = (self.duration == 0)? "N/A" : (self.duration/3600).round(2) if self.duration
+    self.duration = (self.duration.nil?)? "N/A" : (self.duration/3600).round(2) if self.duration
   end
 
 end
