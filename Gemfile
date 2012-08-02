@@ -20,13 +20,11 @@ group :development, :test do
 end
 
 group :production do
- # gem 'therubyracer'
+ gem 'therubyracer'
  gem 'thin'
  gem 'execjs'
 end
 
 group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
   gem 'uglifier', '>= 1.0.3'
 end

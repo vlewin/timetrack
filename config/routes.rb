@@ -6,9 +6,6 @@ Timestamps::Application.routes.draw do
     get "sign_out", :to => "devise/sessions#destroy"
   end
 
-  resources :playgrounds
-  resources :playground
   resources :timetracks
-
   root :to => 'timetracks#index'
 end
