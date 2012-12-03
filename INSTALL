@@ -1,0 +1,15 @@
+# PSQL DB setup
+psql -U postgres -d template1
+CREATE USER timetrack WITH PASSWORD 'timetrack';
+ALTER ROLE timetrack with CREATEDB;
+\q
+
+psql -U timetrack -d template1
+CREATE DATABASE timetrack_development;
+CREATE DATABASE timetrack_test;
+CREATE DATABASE timetrack_production;
+\q
+
+# Deployment
+capify .
+cap deploy

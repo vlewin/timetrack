@@ -1,5 +1,5 @@
 set :application, "timetrack"
-set :domain, "stealth.suse.de"
+set :domain, "localhost"
 set :user, 'vlewin'
 set :use_sudo, false
 
@@ -13,7 +13,7 @@ default_run_options[:pty] = true
 
 set :deploy_to, "/srv/www/htdocs/#{application}"
 
-server "stealth.suse.de", :app, :web, :db, :primary => true
+server "localhost", :app, :web, :db, :primary => true
 
 namespace :deploy do
   task :start do
