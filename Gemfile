@@ -2,8 +2,9 @@ source 'http://rubygems.org'
 
 gem 'rails'
 
-gem 'haml-rails'
 gem 'jquery-rails'
+gem 'less-rails'
+gem 'haml-rails'
 gem 'twitter-bootstrap-rails'
 
 #gem 'sqlite3'
@@ -26,7 +27,6 @@ group :production do
 end
 
 group :assets do
-  gem 'less-rails'
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier', '>= 1.0.3'
