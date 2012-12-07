@@ -10,6 +10,11 @@ CREATE DATABASE timetrack_test;
 CREATE DATABASE timetrack_production;
 \q
 
+# sudo gem install passenger
+# cd /usr/lib64/ruby/gems/1.9.1/gems/passenger-[version]
+# ./bin/passenger-install-nginx-module
+# cp config/nginx.conf /etc/nginx
+
 # Deployment
 capify .
 cap deploy
