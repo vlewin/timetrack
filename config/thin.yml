@@ -5,7 +5,7 @@ address: 0.0.0.0
 port: 80
 timeout: 10
 log: log/thin.log
-pid: tmp/pids/thin.pid
+pid: /var/run/thin.pid
 max_conns: 1024
 max_persistent_conns: 100
 require: []
