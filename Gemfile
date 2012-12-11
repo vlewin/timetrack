@@ -12,7 +12,7 @@ gem 'pg'
 gem 'json'
 
 gem 'holidays'
-gem 'capistrano'
+gem 'mina'
 
 gem 'devise'
 
