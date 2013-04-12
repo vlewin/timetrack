@@ -20,12 +20,4 @@ test: &test
   min_messages: warning
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  database: timetrack_production
-  pool: 5
-  username: timetrack
-  password: timetrack
-
-cucumber:
-  <<: *test
+  adapter: postgresq
