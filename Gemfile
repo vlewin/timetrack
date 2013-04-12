@@ -7,14 +7,17 @@ gem 'less-rails'
 gem 'haml-rails'
 gem 'twitter-bootstrap-rails'
 
-#gem 'sqlite3'
 gem 'pg'
 gem 'json'
 
 gem 'holidays'
-gem 'mina'
 
 gem 'devise'
+gem 'rufus-scheduler'
+
+# Appfog
+gem 'cloudfoundry-jquery-rails'
+gem 'cloudfoundry-devise', :require => 'devise'
 
 group :development, :test do
   gem 'debugger'
