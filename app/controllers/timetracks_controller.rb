@@ -24,6 +24,7 @@ class TimetracksController < ApplicationController
     @timetracks = Timetrack.by_month(@date, current_user)
 
     respond_to do |format|
+      puts format.inspect
       format.html
       format.js { render :partial => "timetrack" } # render partial if ajax call otherwise index.html
     end

@@ -58,7 +58,6 @@ body {
 
 #calendar td.spacer { height:40px; }
 #calendar td.bl { border-left:0; border-right:0;} /* bl = borderless */
-/*#calendar td.active {}*/
 #calendar td a { color:#555; }
 #calendar td h1 { font-size: 32px; }
 #calendar td.active h1 { color:#AA55AA !important;}

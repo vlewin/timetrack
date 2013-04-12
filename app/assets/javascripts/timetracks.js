@@ -1,12 +1,12 @@
 $(document).ready(function() {
-  $('a.date-select').live('click', function(e) {
+  $('body').on('click', 'a.date-select', function(e) {
     e.preventDefault();
     $(this).popover('hide')
     var ajax = $.get("timetracks.js", "date="+$(this).data("date"), function() {})
     ajax.complete(function() {  $("#timetrack").html(ajax.responseText); });
   })
 
-  $('#timetrack-form button.now').live('click', function(e) {
+  $('body').on('click', '#timetrack-form button.now', function(e) {
     e.preventDefault();
     var time = new Date();
     var hh = (time.getHours() < 10)? "0" + time.getHours() : time.getHours()
@@ -14,7 +14,7 @@ $(document).ready(function() {
     $(this).parent().find('input[type=text]').val(hh + ':' + mm)
   })
 
-  $('#timetrack-form button.destroy').live('click', function(e) {
+  $('body').on('click', '#timetrack-form button.destroy', function(e) {
     e.preventDefault();
     $.ajax({
       url: "/timetracks/" + $(this).data("id"),
@@ -24,12 +24,11 @@ $(document).ready(function() {
     return false;
   })
 
-  $('#calendar a.date-select').live('hover', function() {
+  $('body').on('mouseenter', 'a.date-select', function() {
     $('#calendar a.date-select').popover({
       trigger : 'hover',
       delay: 250,
       placement : 'bottom'
     })
   })
-
 })
