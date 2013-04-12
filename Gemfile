@@ -15,10 +15,6 @@ gem 'holidays'
 gem 'devise'
 gem 'rufus-scheduler'
 
-# Appfog
-gem 'cloudfoundry-jquery-rails'
-gem 'cloudfoundry-devise', :require => 'devise'
-
 group :development, :test do
   gem 'debugger'
 end
