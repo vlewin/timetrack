@@ -1,6 +1,9 @@
 Web based time tracking application
 This project is a playground for development, testing and deployment
 
+# DEMO
+http://timetrack.eu01.aws.af.cm/  
+
 # INSTALL SECTION
 git clone git://github.com/vlewin/timetrack.git
 rake db:migrate
