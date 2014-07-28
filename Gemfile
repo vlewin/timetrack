@@ -15,6 +15,7 @@ gem 'haml-rails'
 
 gem 'less-rails-bootstrap'
 gem 'font-awesome-less'
+gem 'combined_time_select', "~> 1.0.1"
 
 # gem 'twitter-bootstrap-rails'
 

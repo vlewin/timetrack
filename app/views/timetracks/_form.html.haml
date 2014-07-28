@@ -1,14 +1,35 @@
+/ = form_for @timetrack, :html=> {:id=> "timetrack-form", :class=>"form-inline"} do |f|
+/   = f.text_field :date, {:class => "hidden"}
+/   = f.time_field :start, :placeholder => "hh:mm"
+/   = f.time_field :finish, :placeholder => "hh:mm"
+/   = f.text_field :duration, :class => "input-small", :placeholder => "hh:mm", :readonly=>true
+
+/   %button.btn.btn-success{"data-new-record" => "#{@timetrack.new_record?}"}
+/     %i.icon-ok
+/     = (@timetrack.new_record?)? "Create" : "Update"
+
+/   - unless  @timetrack.new_record?
+/     = link_to @timetrack, :class => "btn btn-danger destroy", :data => {:confirm => 'Are you sure?'}, :method => :delete do
+/       %i.icon-trash.icon-white
+/       Delete
+
 = form_for @timetrack, :html=> {:id=> "timetrack-form", :class=>"form-inline"} do |f|
   = f.text_field :date, {:class => "hidden"}
-  = f.time_field :start, :placeholder => "hh:mm"
-  = f.time_field :finish, :placeholder => "hh:mm"
-  = f.text_field :duration, :class => "input-small", :placeholder => "hh:mm", :readonly=>true
 
-  %button.btn.btn-success{"data-new-record" => "#{@timetrack.new_record?}"}
-    %i.icon-ok
-    = (@timetrack.new_record?)? "Create" : "Update"
+  .row
+    .col-sm-4.col-md-3.left
+      = f.time_select(:start)
 
-  - unless  @timetrack.new_record?
-    = link_to @timetrack, :class => "btn btn-danger destroy", :data => {:confirm => 'Are you sure?'}, :method => :delete do
-      %i.icon-trash.icon-white
-      Delete
+    .col-sm-4.col-md-6
+      %button.btn{"data-new-record" => "#{@timetrack.new_record?}", class: 'col-md-12'}
+        %i.icon-ok
+        = (@timetrack.new_record?)? "Create" : "Update"
+
+    .col-sm-4.col-md-3.right
+      /= f.time_select(:finish, { start_hour: 6, end_hour: 20, minute_step: 5, prompt: {hour: 'hh', minute: 'mm'}})
+      = f.time_select(:finish)
+
+      / - unless  @timetrack.new_record?
+      /   = link_to @timetrack, :class => "btn btn-danger destroy", :data => {:confirm => 'Are you sure?'}, :method => :delete do
+      /     %i.icon-trash.icon-white
+      /     Delete

@@ -35,6 +35,7 @@ GEM
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
     columnize (0.8.9)
+    combined_time_select (1.0.1)
     commonjs (0.2.7)
     debugger-linecache (1.2.0)
     devise (3.2.4)
@@ -133,6 +134,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   byebug
+  combined_time_select (~> 1.0.1)
   devise
   font-awesome-less
   haml-rails

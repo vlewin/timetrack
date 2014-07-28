@@ -9,15 +9,15 @@ class TimetracksController < ApplicationController
 
   def index
     @date = params[:date].nil? ? Date.today : params[:date].to_date # show current date
-    @days = (@date.beginning_of_month..@date.end_of_month).to_a # all days in month e.g. 29, 30, 31
+    @month = (@date.beginning_of_month..@date.end_of_month).to_a # all days in month e.g. 29, 30, 31
 
-    @@offset[@days.first.wday].times{|i| @days.insert(i, nil)} # empty cells if first day of month is not monday
-    @days = @days.to_a.in_groups_of(7)
+    # @@offset[@days.first.wday].times{|i| @days.insert(i, nil)} # empty cells if first day of month is not monday
+    # @days = @days.to_a.in_groups_of(7)
 
     if Timetrack.find_by_date(@date, current_user)
       @timetrack = Timetrack.find_by_date(@date, current_user)
     else
-      @timetrack = Timetrack.new(:date => @date, :start => Time.zone.now.strftime("%H:%M"))
+      @timetrack = Timetrack.new(:date => @date, :start => Time.now)
       @timetrack.user = current_user
     end
 
