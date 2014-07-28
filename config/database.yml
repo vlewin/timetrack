@@ -1,23 +1,14 @@
 development:
-  adapter: postgresql
-  encoding: unicode
-  database: timetrack_development
+  adapter: sqlite3
   pool: 5
-  username: timetrack
-  password: timetrack
-  host: localhost
-  port: 5432
+  timeout: 5000
+  database: db/development.sqlite3
 
-test: &test
-  adapter: postgresql
-  encoding: unicode
-  database: timetrack_test
+test:
+  adapter: sqlite3
   pool: 5
-  username: timetrack
-  password: timetrack
-  host: localhost
-  port: 5432
-  min_messages: warning
+  timeout: 5000
+  database: db/test.sqlite3
 
 production:
-  adapter: postgresq
+  adapter: postgresql

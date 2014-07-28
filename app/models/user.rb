@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :validatable, :registerable
-  attr_accessible :username, :email, :password, :password_confirmation
-  attr_accessible :login
   attr_accessor :login # Virtual attribute for authenticating by either username or email
 
   validates_uniqueness_of :username

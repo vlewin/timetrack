@@ -1,32 +1,40 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
+ruby '2.0.0'
 
-gem 'rails'
-
-gem 'jquery-rails'
-gem 'less-rails'
-gem 'haml-rails'
-gem 'twitter-bootstrap-rails'
-
+gem 'rails', '~> 4.1.2.rc2'
+gem 'puma'
 gem 'pg'
 gem 'json'
 
 gem 'holidays'
-
 gem 'devise'
-gem 'rufus-scheduler'
+
+gem 'jquery-rails'
+gem 'less-rails'
+gem 'haml-rails'
+
+gem 'less-rails-bootstrap'
+gem 'font-awesome-less'
+
+# gem 'twitter-bootstrap-rails'
+
+#gem 'sass-rails'
+# gem 'coffee-rails'
+
 
 group :development, :test do
-  gem 'debugger'
+  gem 'sqlite3'
+  gem 'byebug'
+  gem 'awesome_print'
 end
 
 group :production do
  gem 'therubyracer'
- gem 'thin'
- gem 'execjs'
+ gem 'uglifier'
+
+ # gem 'thin'
+ # gem 'execjs'
 end
 
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier', '>= 1.0.3'
-end
+
+

@@ -14,14 +14,14 @@ class TimetracksController < ApplicationController
     @@offset[@days.first.wday].times{|i| @days.insert(i, nil)} # empty cells if first day of month is not monday
     @days = @days.to_a.in_groups_of(7)
 
-    if Timetrack.by_date(@date, current_user)
-      @timetrack = Timetrack.by_date(@date, current_user)
+    if Timetrack.find_by_date(@date, current_user)
+      @timetrack = Timetrack.find_by_date(@date, current_user)
     else
       @timetrack = Timetrack.new(:date => @date, :start => Time.zone.now.strftime("%H:%M"))
       @timetrack.user = current_user
     end
 
-    @timetracks = Timetrack.by_month(@date, current_user)
+    @timetracks = Timetrack.find_by_month(@date, current_user)
 
     respond_to do |format|
       puts format.inspect
@@ -31,12 +31,11 @@ class TimetracksController < ApplicationController
   end
 
   def create
-    @timetrack = Timetrack.new(params[:timetrack])
+    @timetrack = Timetrack.new(timetrack_params)
     @timetrack.user_id = current_user.id
 
     respond_to do |format|
       if @timetrack.save
-        # redirect to index or render "timetracks" ???
         format.html { redirect_to timetracks_path({:date => @timetrack.date}) }
       else
         format.html { redirect_to timetracks_path({:date => @timetrack.date}), :error => 'Something went wrong.' }
@@ -48,7 +47,7 @@ class TimetracksController < ApplicationController
     @timetrack = current_user.timetracks.find(params[:id])
 
     respond_to do |format|
-      if @timetrack.update_attributes(params[:timetrack])
+      if @timetrack.update_attributes(timetrack_params)
         format.html { redirect_to timetracks_path({:date => @timetrack.date}) }
       else
         format.html { redirect_to timetracks_path({:date => @timetrack.date}), :error => 'Something went wrong.'}
@@ -66,6 +65,10 @@ class TimetracksController < ApplicationController
         format.html { redirect_to timetracks_path({:date => @timetrack.date}), :error => 'Something went wrong.'}
       end
     end
+  end
+
+  def timetrack_params
+    params.require(:timetrack).permit(:date, :start, :finish, :duration)
   end
 
 end

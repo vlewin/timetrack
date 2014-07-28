@@ -7,7 +7,7 @@ module ActionView
   module Helpers
     module FormHelper
       def time_field(object_name, method, options = {})
-        content_tag(:div, text_field(object_name, method, options) + content_tag(:button, content_tag(:i, '', :class=>"icon-time"), :class => "btn now"), :class=>"input-append")
+        content_tag(:div, text_field(object_name, method, options) + content_tag(:button, content_tag(:i, '', :class=>"fa fa-clock-o"), :class => "btn now"), :class=>"input-append")
       end
 
       def duration
@@ -54,7 +54,6 @@ end
 class Numeric
   def negative?
     self.to_s.match('-').present?
-    #self.to_s =~ /^-/
   end
 end
 

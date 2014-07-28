@@ -1,28 +1,26 @@
-.row.header
-  .span6.left
-    %h1
-      %i.icon-time
-      TimeTrack
-  .span6.right
+.row
+  .col-md-6.left
+    %i.fa.fa-clock-o
+    TimeTrack
+  .col-md-6.right
     - if user_signed_in?
-      %i.icon-time
+      %i.fa.fa-clock-o
       %b= Time.zone
 
-      %i.icon-user
+      %i.fa.fa-user
       %b= current_user.username
       = link_to('(logout)', destroy_user_session_path, :method => :delete)
 
-//# TODO: growl style for flash messages
 .row
-  .span12.center
+  .col-md-12.center
     - if user_signed_in?
       -if notice
         %span.alert.alert-success
-          %i.icon-ok-sign
+          %i.fa.fa-check-circle-o
           = notice
       - if alert
         %span.alert
-          %i.icon-warning-sign
+          %i.fa.fa-warning
           = alert
       -unless notice || alert
         &nbsp;
