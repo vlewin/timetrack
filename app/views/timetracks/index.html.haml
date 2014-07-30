@@ -1,8 +1,8 @@
 .row
-  .col-md-6.left
+  .col-sm-6.col-md-6.left
     %i.fa.fa-clock-o
-    TimeTrack
-  .col-md-6.right
+    %b TimeTrack
+  .col-sm-6.col-md-6.right
     - if user_signed_in?
       %i.fa.fa-clock-o
       %b= Time.zone
@@ -28,5 +28,3 @@
 #timetrack
   = render "timetrack"
 
-#footer
-  = balance
