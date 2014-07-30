@@ -22,7 +22,7 @@
       - elsif date.holiday?
         .day.holiday{title: date.holidays.first[:name], data: { toggle: 'tooltip'}}= date.day
       - elsif date.today?
-        %a.day.today{href: '#', title: title, data: { toggle: 'tooltip'}}= date.day
+        %a.day.today{href: "/timetracks?date=#{date.strftime("%Y-%m-%d")}", title: title, data: { toggle: 'tooltip'}}= date.day
       - elsif @timetracks.keys.include? date
         %a.day.recorded{href: "/timetracks?date=#{date.strftime("%Y-%m-%d")}", title: title, data: { toggle: 'tooltip'}}
           = date.day
