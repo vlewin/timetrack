@@ -1,7 +1,7 @@
 $(document).ready(function() {
   $('body').tooltip({
     selector: '[data-toggle="tooltip"]',
-    placement: 'auto',
+    placement: 'bottom',
     container: 'body'
   });
 
