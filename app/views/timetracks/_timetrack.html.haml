@@ -8,51 +8,22 @@
       = link_to content_tag(:i, '', class: 'fa fa-angle-double-right'), :date => (@date.end_of_month+1).strftime("%Y-%m-%d")
 
   %div.center.inset
-    = form_for @timetrack, html: { id: 'form' } do |f|
-      = f.text_field :date, {:class => "hidden"}
-
-      .top
-        #live-clock
-          %a.clock.date-select{ :href=>"#", "data-date" => "#{Date.today.strftime("%Y-%m-%d")}"}
-            %ul
-              %li#hour= "%.2d" % Time.now.hour
-              %li#point :
-              %li#min= "%.2d" % Time.now.min
-              %li#point :
-              %li#sec= "%.2d" % Time.now.sec
-          = "#{@date.strftime("%A")}, #{@date.strftime("%e %B  ")} (#{@date.strftime("%V")})"
-
-      .middle
-        .row
-          .col-sm-6.col-md-6
-            .form-group
-              = f.time_select(:start)
-              %p started
-          .col-sm-6.col-md-6
-            = f.time_select(:finish)
-            %p finished
-
-        .form-group
-          %label duration:
-          = @timetrack.human_friendly
-        .form-group
-          = balance
-
-      .bottom
-        = f.submit (@timetrack.new_record?)? 'Create' : 'Update', class: 'btn btn-success btn-lg'
+    = render 'form'
 
   - @month.each_with_index do |date, i|
+    - timetrack = @timetracks[date]
+    - title = timetrack ? "#{timetrack.start} -  #{timetrack.finish} =  #{timetrack.human_friendly}" : nil
     - deg = (360/@month.size.to_f * i).round(1)
+
     %day{style: "transform: rotate(#{deg}deg) translate(320px) rotate(#{-deg}deg);"}
       - if date.weekend?
         .day.weekend= date.day
       - elsif date.holiday?
-        .day.holiday= date.day
+        .day.holiday{title: date.holidays.first[:name], data: { toggle: 'tooltip'}}= date.day
       - elsif date.today?
-        %a.day.today{href: "/timetracks?date=#{date.strftime("%Y-%m-%d")}"}
-          = date.day
+        %a.day.today{href: '#', title: title, data: { toggle: 'tooltip'}}= date.day
       - elsif @timetracks.keys.include? date
-        %a.day.recorded{href: "/timetracks?date=#{date.strftime("%Y-%m-%d")}"}
+        %a.day.recorded{href: "/timetracks?date=#{date.strftime("%Y-%m-%d")}", title: title, data: { toggle: 'tooltip'}}
           = date.day
       - else
         %a.day{href: "/timetracks?date=#{date.strftime("%Y-%m-%d")}"}

@@ -20,6 +20,7 @@
 
 .alert { padding:0!important; text-align:center; background-color:transparent!important; border:none!important; font-weight:bold; }
 .alert-success { background-color:transparent!important; }
+.tooltip { z-index: 1000!important;}
 
 body {
   text-rendering: optimizelegibility;

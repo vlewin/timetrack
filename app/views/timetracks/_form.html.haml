@@ -1,0 +1,40 @@
+= form_for @timetrack, html: { id: 'form' } do |f|
+  = f.text_field :date, {:class => "hidden"}
+
+  .top
+    #live-clock
+      %a.clock.date-select{ :href=>"#", "data-date" => "#{Date.today.strftime("%Y-%m-%d")}"}
+        %i.fa.fa-home
+        %ul
+          %li#hour= "%.2d" % Time.now.hour
+          %li#point :
+          %li#min= "%.2d" % Time.now.min
+          %li#point :
+          %li#sec= "%.2d" % Time.now.sec
+      %span= "#{@date.strftime("%A")}, #{@date.strftime("%e %B  ")} (#{@date.strftime("%V")})"
+
+  .middle
+    .row
+      .col-sm-6.col-md-6
+        .form-group
+          = f.time_select(:start)
+          %p started
+      .col-sm-6.col-md-6
+        = f.time_select(:finish)
+        %p finished
+
+    .form-group
+      %label duration:
+      = @timetrack.human_friendly
+    .form-group
+      = balance
+
+  .bottom
+    = f.button '', class: 'btn btn-success' do
+      %i.fa.fa-clock-o.icon-white
+      = (@timetrack.new_record?)? 'Create' : 'Update'
+
+    - unless @timetrack.new_record?
+      = link_to @timetrack, class: "btn btn-danger destroy", data: { confirm: 'Are you sure?'}, method: :delete do
+        %i.fa.fa-trash-o.icon-white
+        Delete

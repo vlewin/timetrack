@@ -1,4 +1,10 @@
 $(document).ready(function() {
+  $('body').tooltip({
+    selector: '[data-toggle="tooltip"]',
+    placement: 'auto',
+    container: 'body'
+  });
+
   $('body').on('click', 'a.date-select', function(e) {
     e.preventDefault();
     $(this).popover('hide')
