@@ -2,8 +2,9 @@
   %div
     %br
     %br
-    %h3
-      = link_to content_tag(:i, '', class: 'fa fa-angle-double-left'), :date => (@date.beginning_of_month-1).strftime("%Y-%m-%d")
+    %br
+    %h2
+      = link_to content_tag(:i, '', class: 'fa fa-angle-double-left fa-4'), :date => (@date.beginning_of_month-1).strftime("%Y-%m-%d")
       = @date.strftime("%B %Y")
       = link_to content_tag(:i, '', class: 'fa fa-angle-double-right'), :date => (@date.end_of_month+1).strftime("%Y-%m-%d")
 
