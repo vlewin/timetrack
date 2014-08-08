@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Timetracker::Application.config.secret_key_base = '767de92540501c9c0000c5957774d69cfebcd1558cae17bf41a99c5d8ab303127b0c3058890c0966488e0c0c3cf6d5395c8f6136a2551820a1ac05f9e962e9c0'
+# Timetracker::Application.config.secret_token = ENV['OPENSHIFT_SECRET_TOKEN'] || 'bfc8f593fe67edfce169d0b4785dcc75c420a077d534e3523c7a172dad7fc66ab5c9e3f4174664732d50aff209b06bb83317541f0806371f7e535b31d1f9d7e0'

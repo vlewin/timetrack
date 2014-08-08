@@ -13,7 +13,7 @@
 
   - @month.each_with_index do |date, i|
     - timetrack = @timetracks[date]
-    - title = timetrack ? "#{timetrack.start} -  #{timetrack.finish} =  #{timetrack.human_friendly}" : nil
+    - title = timetrack ? "#{timetrack.start} -  #{timetrack.finish} =  #{timetrack.duration_in_words}" : nil
     - deg = (360/@month.size.to_f * i).round(1)
 
     %day{style: "transform: rotate(#{deg}deg) translate(320px) rotate(#{-deg}deg);"}

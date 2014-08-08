@@ -5,20 +5,34 @@
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
-  %body
 
+  %body
     #main.container
-      - unless user_signed_in?
-        .center
+      .row
+        .col-sm-4.col-md-4.center
+        .col-sm-4.col-md-4.center
           %h1
             %i.fa.fa-clock-o
             TimeTrack
 
+        .col-sm-4.col-md-4.right
+          - if user_signed_in?
+            %i.fa.fa-clock-o
+            = Time.zone
+
+            %i.fa.fa-user
+            = current_user.username
+            = link_to('(logout)', destroy_user_session_path, :method => :delete)
+
+      - unless user_signed_in?
         .flash.center
-          -if notice
-            %span.alert.alert-success= notice
-          - if alert
-            %span.alert
+          - if notice
+            %span.alert.alert-success
+              %i.fa.fa-check-circle-o
+              = notice
+          - elsif alert
+            %span.alert.alert-danger
               %i.fa.fa-warning
               = alert
-      = yield
+
+    = yield

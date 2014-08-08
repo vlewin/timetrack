@@ -1,6 +1,5 @@
 class Timetrack < ActiveRecord::Base
   before_save :duration
-  after_find :human_friendly
 
   # VALIDATORS
   validates :date, :presence => true
@@ -35,22 +34,22 @@ class Timetrack < ActiveRecord::Base
     balance
   end
 
-  def initialize(*params)
-    super(*params)
-  end
-
-  def exists?
-    return (Timetrack.where(:date=>self.date, :user_id=>self.user_id).empty?)? false : true
-  end
-
   def duration
     self.duration =  (self.finish.nil?) ? 0 : (self.finish - self.start) - (PAUSE*60)
   end
 
-  def human_friendly
-    self.start = self.start.strftime("%H:%M") if self.start
-    self.finish = self.finish.strftime("%H:%M") if self.finish
-    self.duration = (self.duration == 0)? "N/A" : (self.duration/3600).round(2) if self.duration
+  # FIXME: Move to decorator
+  def duration_in_words
+    hh = (self.duration/3600).to_i
+    mm = (self.duration.to_i%3600)/60
+    "#{hh} h #{mm.to_s.rjust(2, '0')} min"
+  end
+
+  # FIXME: Move to decorator
+  def duration_in_hours
+    start = self.start.strftime("%H:%M") if self.start
+    finish = self.finish.strftime("%H:%M") if self.finish
+    duration = (!self.duration || self.duration == 0)? "N/A" : (self.duration/3600).round(2)
   end
 
 end

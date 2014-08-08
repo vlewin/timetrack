@@ -1,11 +1,11 @@
-.center
-  .devisebox
+.devisebox.inset.center
+  .sign_up
     %p
       %h2
         %i.icon-user
         Sign up or
         - if controller_name != 'sessions'
-          = link_to "Sign in", new_session_path(resource_name)
+          = link_to "Log in", new_session_path(resource_name)
 
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
       %div
@@ -23,6 +23,6 @@
           = f.password_field :password_confirmation, :class => "center", :placeholder => "password confirmation"
 
       %p
-        %div= f.submit "Sign up", :class => "btn btn-inverse"
+        %div= f.submit "Sign up", :class => "btn btn-success"
 
   %div= devise_error_messages!
