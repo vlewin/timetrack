@@ -1,9 +1,9 @@
-.center
-  .devisebox
+.devisebox.inset.center
+  .sign_in
     %p
       %h2
         %i.icon-user
-        Sign in or
+        Log in or
         - if devise_mapping.registerable? && controller_name != 'registrations'
           = link_to "Sign up", new_registration_path(resource_name)
 
@@ -16,4 +16,4 @@
           = f.password_field :password, :class => "center", :placeholder => "password"
 
       %p
-        %div= f.submit "Sign in", :class => "btn btn-inverse"
+        %div= f.submit "Log in", :class => "btn btn-success"

@@ -1,0 +1,170 @@
+.timetrack {
+  position: relative;
+  height: 640px;
+  padding: 40px; /*= half the width of an day div */
+  border-radius: 50%;
+  box-sizing: content-box;
+
+  &:after {
+    // position: absolute;
+    // top: 40px;
+    // left: 40px;
+
+    // width: 640px;
+    // height: 640px;
+
+    // border: dashed 1px grey;
+    // border-radius: 50%;
+
+    // z-index: -1;
+    // content: '';
+  }
+
+  month {
+    display: inline-block;
+    width: 240px;
+  }
+
+  div.circle {
+    width: 360px;
+    height: 360px;
+    margin: 35px auto;
+    border-radius: 50%;
+    border: 1px solid grey;
+    background-color: #fafafa;
+    position: relative;
+
+    #live-clock {
+      font-size: 16px;
+
+      a.clock {
+        font-size: 26px;
+        color: #454545;
+        font-weight: bold;
+        text-decoration:none;
+        line-height: 26px;
+      }
+
+      ul {
+        width:100%;
+        margin:0 auto;
+        padding:0;
+        list-style:none;
+        text-align:center;
+
+        li {
+          display:inline;
+          text-align:center;
+        }
+      }
+    }
+
+
+    form {
+      .form-group {
+        margin-bottom: 5px;
+      }
+    }
+
+    .top {
+      height: 100px;
+      font-size: 22px;
+      padding: 15px;
+    }
+
+    .middle {
+      width: 300px;
+      margin: auto;
+      height: 160px;
+      padding: 25px 5px;
+
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+
+      select {
+        font-size: 20px;
+      }
+
+      p, label {
+        font-size: 12px;
+        color: #888;
+      }
+
+    }
+
+    .bottom {
+      height: 100px;
+      padding: 20px;
+
+      button {
+
+      }
+    }
+
+  }
+
+  day {
+    font-size:20px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 56px;
+    height: 56px;
+    margin: -28px; /*= half the width */
+    border-radius: 50%;
+    vertical-align: middle;
+    background-color: #fafafa;
+    text-decoration: none;
+
+    .day {
+      outline: none;
+      border: 2px solid #555;
+      border-radius: 50%;
+
+      color: #555;
+
+      display: block;
+      padding: 12px 0;
+    }
+
+    .today {
+      border: 2px solid #08C;
+      color: #fff;
+      background: #08C;
+    }
+
+    .weekend {
+      color: #AAA;
+      border: 2px solid #AAA;
+    }
+
+    .holiday {
+      color:#900000;
+      border: 2px solid #900000;
+    }
+
+    .recorded {
+      border: 2px solid #08C;
+      color: #08C;
+    }
+  }
+
+  // Center mark
+  // day:after {
+  //   position: absolute;
+  //   top: 50%;
+  //   left: 50%;
+  //   width: 4px;
+  //   height: 4px;
+  //   border-radius: 50%;
+  //   box-shadow: 0 0 .5em .5em white;
+  //   margin: -2px;
+  //   background: red;
+  //   opacity: .3;
+  //   z-index: -1;
+  //   content: '';
+  // }
+}
+
+

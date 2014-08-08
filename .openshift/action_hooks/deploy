@@ -1,0 +1,31 @@
+#!/bin/bash
+# This deploy hook gets executed after dependencies are resolved and the
+# build hook has been run but before the application has been started back
+# up again.  This script gets executed directly, so it could be python, php,
+# ruby, etc.
+
+pushd ${OPENSHIFT_REPO_DIR} > /dev/null
+
+# cd $OPENSHIFT_REPO_DIR
+
+# echo '=> Migrate database'
+# bundle exec rake db:migrate RAILS_ENV=production
+
+# echo '=> Precombile assets'
+# bundle exec rake assets:clean RAILS_ENV=production
+# bundle exec rake assets:precompile RAILS_ENV=production
+
+
+# application dir
+cd $OPENSHIFT_REPO_DIR
+
+# bundle
+bundle install --without test development --deployment
+
+# db migration
+bundle exec rake db:migrate RAILS_ENV=production
+
+# assets precompile
+bundle exec rake assets:precompile RAILS_ENV=production
+
+popd > /dev/null

@@ -1,14 +1,46 @@
-= form_for @timetrack, :html=> {:id=> "timetrack-form", :class=>"form-inline"} do |f|
+= form_for @timetrack, html: { id: 'form' } do |f|
   = f.text_field :date, {:class => "hidden"}
-  = f.time_field :start, :placeholder => "hh:mm"
-  = f.time_field :finish, :placeholder => "hh:mm"
-  = f.text_field :duration, :class => "input-small", :placeholder => "hh:mm", :readonly=>true
 
-  %button.btn.btn-success{"data-new-record" => "#{@timetrack.new_record?}"}
-    %i.icon-ok
-    = (@timetrack.new_record?)? "Create" : "Update"
+  .top
+    #live-clock
+      %a.clock.date-select{ :href=>"#", "data-date" => "#{Date.today.strftime("%Y-%m-%d")}"}
+        %i.fa.fa-home
+        %ul
+          %li#hour= "%.2d" % Time.now.hour
+          %li#point :
+          %li#min= "%.2d" % Time.now.min
+          %li#point :
+          %li#sec= "%.2d" % Time.now.sec
+      %span= "#{@date.strftime("%A")}, #{@date.strftime("%e %B  ")} (#{@date.strftime("%V")})"
 
-  - unless  @timetrack.new_record?
-    = link_to @timetrack, :class => "btn btn-danger destroy", :data => {:confirm => 'Are you sure?'}, :method => :delete do
-      %i.icon-trash.icon-white
-      Delete
+  .middle
+    .new_record.hidden= @timetrack.new_record?
+    .row
+      .col-sm-6.col-md-6
+        .form-group
+          = f.time_select(:start)
+          %p started
+      .col-sm-6.col-md-6
+        = f.time_select(:finish)
+        %p finished
+
+    .form-group
+      %label duration:
+      %duration= @timetrack.duration_in_words
+      %label pause:
+      %pause 30 min
+
+    .form-group
+      = balance
+
+  .bottom
+    = f.button '', class: 'btn btn-success' do
+      %i.fa.fa-clock-o.icon-white
+      = (@timetrack.new_record?)? 'Create' : 'Update'
+
+    &nbsp;
+
+    - unless @timetrack.new_record?
+      = link_to @timetrack, class: "btn btn-danger destroy", data: { confirm: 'Are you sure?'}, method: :delete do
+        %i.fa.fa-trash-o.icon-white
+        Delete
