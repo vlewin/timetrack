@@ -18,31 +18,28 @@ $('body').tooltip({
   container: 'body'
 });
 
-// Live clock
+var timetrack = Timetrack();
+
 $(document).ready(function() {
-  setInterval( function() {
-    var seconds = new Date().getSeconds();
-    $("#sec").html(( seconds < 10 ? "0" : "" ) + seconds);
-  },1000);
+  // Live clock
+  function liveClock() {
+    setInterval( function() {
+      var seconds = new Date().getSeconds();
+      $("#sec").html(( seconds < 10 ? "0" : "" ) + seconds);
+    },1000);
 
-  setInterval( function() {
-    var minutes = new Date().getMinutes();
-    $("#min").html(( minutes < 10 ? "0" : "" ) + minutes);
-  },1000);
+    setInterval( function() {
+      var minutes = new Date().getMinutes();
+      $("#min").html(( minutes < 10 ? "0" : "" ) + minutes);
+    },1000);
 
-  setInterval( function() {
-    var hours = new Date().getHours();
-    $("#hour").html(( hours < 10 ? "0" : "" ) + hours);
-  }, 1000);
-
-  // Timetrack
-  if($('#form .new_record').text() == 'true') {
-    var now = timeNow();
-    setStartTime(now[0], now[1]);
-    setEndTime(now[0], now[1]);
-    setDuration();
+    setInterval( function() {
+      var hours = new Date().getHours();
+      $("#hour").html(( hours < 10 ? "0" : "" ) + hours);
+    }, 1000);
   }
 
+  // Timetrack
   $('body').on('click', 'a.date-select', function(e) {
     e.preventDefault();
     $(this).popover('hide')
@@ -60,80 +57,18 @@ $(document).ready(function() {
     return false;
   })
 
-  $('body').on('change', 'select', function(e) {
-    setDuration()
+  if($('#form .new_record').text() == 'true') {
+    timetrack.init();
+  }
+
+  $('body').on('change', 'select.timetrack_start', function(e) {
+    timetrack.setEnd();
+    timetrack.update();
   })
 
-  function timeNow() {
-    var hh = new Date().getHours();
-    var mm = new Date().getMinutes();
-
-    if (hh < 10) {
-      hh = '0'+hh;
-    }
-
-    mm = ((mm)- (mm % 5));
-
-    if (mm < 10) {
-      mm = '0'+mm;
-    }
-
-    if (mm == 60) {
-      mm = '00';
-      hh +=1;
-    }
-
-    return [hh,mm];
-  }
-
-  function setStartTime(hh, mm) {
-    console.log('setStartTime: ' + hh + ':' + mm)
-    $('#timetrack_start_4i').val(hh)
-    $('#timetrack_start_5i').val(mm)
-  }
-
-  function setEndTime(hh, mm) {
-    hh = parseInt(hh) + 8;
-    mm = parseInt(mm) + 30;
-
-    if (mm >= 60) {
-      mm = mm%60;
-      hh +=1;
-    }
-
-    if (mm < 10) {
-      mm = '0'+mm;
-    }
-
-    console.log('setEndTime: ' + hh + ':' + mm)
-
-    $('#timetrack_finish_4i').val(hh)
-    $('#timetrack_finish_5i').val(mm)
-  }
-
-  function setDuration() {
-    var end_hh = $('#timetrack_finish_4i').val().toInt()
-    var end_mm = $('#timetrack_finish_5i').val().toInt()
-    var end = (end_hh * 60) + end_mm
-
-    var start_hh = $('#timetrack_start_4i').val().toInt()
-    var start_mm = $('#timetrack_start_5i').val().toInt()
-    var start = (start_hh * 60) + start_mm
-
-    var pause = 30;
-    var diff = ((end - start) - pause) / 60;
-
-
-    var hh = Math.floor(diff)
-    var mm = Math.round((diff - Math.floor(diff)) * 60);
-
-    if (mm < 10) {
-      mm = '0'+mm;
-    }
-
-    var duration = hh + ' h ' + mm + ' min'
-
-    $('duration').text(duration)
-  }
-
+  $('body').on('change', 'select.timetrack_finish', function(e) {
+    timetrack.update();
+  })
 })
+
+

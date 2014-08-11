@@ -1,9 +1,9 @@
 = form_for @timetrack, html: { id: 'form' } do |f|
-  = f.text_field :date, {:class => "hidden"}
+  = f.text_field :date, {class: 'hidden'}
 
   .top
     #live-clock
-      %a.clock.date-select{ :href=>"#", "data-date" => "#{Date.today.strftime("%Y-%m-%d")}"}
+      %a.clock.date-select{ href: '#', 'data-date' => "#{Date.today.strftime('%Y-%m-%d')}"}
         %i.fa.fa-home
         %ul
           %li#hour= "%.2d" % Time.now.hour
@@ -17,11 +17,10 @@
     .new_record.hidden= @timetrack.new_record?
     .row
       .col-sm-6.col-md-6
-        .form-group
-          = f.time_select(:start)
-          %p started
+        = f.time_select(:start, {}, { class: 'timetrack_start'})
+        %p started
       .col-sm-6.col-md-6
-        = f.time_select(:finish)
+        = f.time_select(:finish, {}, { class: 'timetrack_finish'})
         %p finished
 
     .form-group
