@@ -56,7 +56,7 @@ var Timetrack = function() {
 
       mm = mm.round5();
 
-      return [hh,mm];
+      return [hh.toTime(), mm.toTime()];
     };
 
     // § 4 ArbZG. (http://www.gesetze-im-internet.de/arbzg/__4.html)
