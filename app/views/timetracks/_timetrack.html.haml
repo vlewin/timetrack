@@ -12,7 +12,7 @@
     = render 'form'
 
   - @month.each_with_index do |date, i|
-    - timetrack = @timetracks[date]
+    - timetrack = @timetracks.find{|t| t.date == date}
     - title = timetrack ? "#{timetrack.start} -  #{timetrack.finish} =  #{timetrack.duration_in_words}" : nil
     - deg = (360/@month.size.to_f * i).round(1)
 
@@ -23,10 +23,11 @@
         .day.holiday{title: date.holidays.first[:name], data: { toggle: 'tooltip'}}= date.day
       - elsif date.today?
         %a.day.today{href: "/timetracks?date=#{date.strftime("%Y-%m-%d")}", title: title, data: { toggle: 'tooltip'}}= date.day
-      - elsif @timetracks.keys.include? date
+      - elsif timetrack
         %a.day.recorded{href: "/timetracks?date=#{date.strftime("%Y-%m-%d")}", title: title, data: { toggle: 'tooltip'}}
           = date.day
       - else
         %a.day{href: "/timetracks?date=#{date.strftime("%Y-%m-%d")}"}
           = date.day
+
 
