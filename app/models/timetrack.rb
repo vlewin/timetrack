@@ -1,37 +1,24 @@
 class Timetrack < ActiveRecord::Base
   before_save :duration
 
-  # VALIDATORS
   validates :date, :presence => true
   validates :date, :uniqueness => { :scope => :user_id }
 
-  # attr_accessible :date, :start, :finish, :duration, :user_id
   belongs_to :user
 
   PAUSE = 30
 
-  def self.find_by_date(date, user)
-    self.where(:date => date, :user_id => user).first
-  end
-
   def self.find_by_month(date, user)
-    timestamps = Hash.new
-    self.where("date >= ? AND date <= ? AND user_id =?", date.beginning_of_month, date.end_of_month, user.id).select{|t| timestamps[t.date] = t}
-    timestamps
+    user.timetracks.where('date >= ? AND date <= ?', date.beginning_of_month, date.end_of_month)
   end
 
+  # FIXME: move to decorator
   def self.balance(user)
-    user_balanace = self.sum(:duration, :conditions => {:user_id => user})
-    time =  (user_balanace/3600) - (self.count(:conditions => {:user_id => user})*8)
-    hours = time.to_i;
-    minutes = (time - time.to_i)
-    minutes = (minutes * 60).to_i
+    balance =  (user.timetracks.sum(:duration)/3600) - (user.timetracks.count*8)
+    hours = balance.to_i
+    minutes = ((balance - hours)* 60).round
 
-    balance = Hash.new
-    balance[:negative] = minutes.negative?
-    balance[:value] = "#{hours.abs} hours #{minutes.abs} minutes"
-
-    balance
+    { negative: minutes.negative?, value: "#{hours.abs} hours #{minutes.abs} minutes" }
   end
 
   def duration
