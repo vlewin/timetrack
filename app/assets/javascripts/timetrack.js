@@ -98,7 +98,8 @@ var Timetrack = function() {
 
     // Time difference with pause
     timetrack.balance = function() {
-      return (this.difference() - this.pause()/60)
+      return this.difference()
+      // return (this.difference() - this.pause()/60)
     }
 
     // Time difference in words

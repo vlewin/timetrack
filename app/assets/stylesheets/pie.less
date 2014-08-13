@@ -1,0 +1,100 @@
+.pie-wrapper {
+  display: inline-block;
+  height: 360px;
+  margin: 10px;
+  position: relative;
+  width: 360px;
+
+  .shadow {
+    border: 10px solid #bdc3c7;
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+  }
+
+  .pie {
+    height: 360px;
+    position: absolute;
+    width: 360px;
+    clip: rect(auto, auto, auto, auto);
+
+    .half-circle {
+      border: 10px solid #3498db;
+      border-radius: 50%;
+      clip: rect(0, 180px, 360px, 0);
+      height: 360px;
+      position: absolute;
+      width: 360px;
+      z-index: 0;
+    }
+
+    .left-side {
+      -webkit-transform:  rotate(-90deg);
+      -moz-transform:     rotate(-90deg);
+      -ms-transform:      rotate(-90deg);
+      -o-transform:       rotate(-90deg);
+      transform:          rotate(-90deg);
+    }
+
+    .right-side {
+      display: none;
+    }
+  }
+
+  &.progress-0 {
+    .left-side, .right-side {
+      display: none;
+    }
+  }
+
+  &.progress-5 {
+    .half-circle {
+      clip: rect(0px, 18px, 360px, 0px);
+      border-color: #3498db;
+    }
+  }
+
+  &.progress-10 {
+    .half-circle {
+      clip: rect(0px, 54px, 360px, 0px);
+      border-color: #3498db;
+    }
+  }
+
+  &.progress-15 {
+    .half-circle {
+      clip: rect(0px, 90px, 360px, 0px);
+      border-color: #3498db;
+    }
+  }
+
+  &.progress-25 {
+    .half-circle {
+      clip: rect(0px, 90px, 360px, 0px);
+      border-color: #3498db;
+    }
+  }
+
+  &.progress-50 {
+    .half-circle {
+      clip: rect(0px, 180px, 360px, 0px);
+      border-color: #3498db;
+    }
+  }
+
+  &.progress-75 {
+    .half-circle {
+      clip: rect(0px, 270px, 360px, 0px);
+      border-color: #3498db;
+    }
+  }
+
+  &.progress-100 {
+    .half-circle {
+        clip: rect(0px, 360px, 360px, 0px);
+        border-color: #3498db;
+    }
+  }
+
+}
+
