@@ -30,4 +30,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def balance
+    self.timetracks.to_a.sum(&:balance).to_time
+  end
+
 end
