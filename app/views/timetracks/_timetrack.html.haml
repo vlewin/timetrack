@@ -8,15 +8,23 @@
       %month= @date.strftime("%B %Y")
       = link_to content_tag(:i, '', class: 'fa fa-angle-double-right'), :date => (@date.end_of_month+1).strftime("%Y-%m-%d")
 
-  %div.circle.inset
-    = render 'form'
+  %div.circle.inset.pie-wrapper{class: "progress-#{@timetrack.duration_in_percent}"}
+    .pie
+      .left-side.half-circle
+      .right-side.half-circle
+      = render 'form'
+
+    .shadow
+    %br
+    %br
+    %strong{class: current_user.balance.negative? ? 'negative' : ''}= current_user.balance
 
   - @month.each_with_index do |date, i|
     - timetrack = @timetracks.find{|t| t.date == date}
     - title = timetrack ? "#{timetrack.start} -  #{timetrack.finish} =  #{timetrack.duration_in_words}" : nil
     - deg = (360/@month.size.to_f * i).round(1)
 
-    %day{style: "transform: rotate(#{deg}deg) translate(320px) rotate(#{-deg}deg);"}
+    %day{style: "transform: rotate(#{deg}deg) translate(320px) rotate(#{-deg}deg); -webkit-transform: rotate(#{deg}deg) translate(320px) rotate(#{-deg}deg);"}
       - if date.weekend?
         .day.weekend= date.day
       - elsif date.holiday?
@@ -31,3 +39,4 @@
           = date.day
 
 
+/ != ap Timetrack.all.to_a

@@ -27,11 +27,11 @@
       %label duration:
       %duration= @timetrack.duration_in_words
       %label pause:
-      %pause 30 min
+      %pause= @timetrack.pause
 
     .form-group
       %balance
-        %strong= balance
+        %strong{class: @timetrack.balance.negative? ? 'negative' : ''}= @timetrack.balance.to_time
 
   .bottom
     = f.button '', class: 'btn btn-success' do
