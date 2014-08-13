@@ -1,15 +1,4 @@
 module ApplicationHelper
-  def balance
-    if Timetrack.balance(current_user)[:negative]
-      css_class = "negative"
-      value = "- #{Timetrack.balance(current_user)[:value]}"
-    else
-      css_class = ""
-      value = Timetrack.balance(current_user)[:value]
-    end
-
-    content_tag(:b, value, :class => css_class)
-  end
 end
 
 # form_helper.rb
@@ -38,14 +27,3 @@ module ActionView
   end
 end
 
-class Numeric
-  def negative?
-    self.to_s.match('-').present?
-  end
-end
-
-class Date
-  def weekend?
-    (self.strftime("%A") == "Sunday" || self.strftime("%A") ==  "Saturday")? true : false
-  end
-end
