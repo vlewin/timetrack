@@ -1,42 +1,57 @@
 class Timetrack < ActiveRecord::Base
-  before_save :duration
+  before_save :pause, :duration
 
-  validates :date, :presence => true
-  validates :date, :uniqueness => { :scope => :user_id }
+  validates :date, presence: true
+  validates :date, uniqueness: { scope: :user_id }
 
   belongs_to :user
 
-  PAUSE = 30
+  HOURS_OF_WORK = 8
 
   def self.find_by_month(date, user)
     user.timetracks.where('date >= ? AND date <= ?', date.beginning_of_month, date.end_of_month)
   end
 
-  # FIXME: move to decorator
-  def self.balance(user)
-    balance =  (user.timetracks.sum(:duration)/3600) - (user.timetracks.count*8)
-    hours = balance.to_i
-    minutes = ((balance - hours)* 60).round
+  def balance
+    if self.persisted?
+      ((duration - pause) - HOURS_OF_WORK.to_minutes)
+    else
+      0
+    end
+  end
 
-    { negative: minutes.negative?, value: "#{hours.abs} hours #{minutes.abs} minutes" }
+  # § 4 ArbZG. (http://www.gesetze-im-internet.de/arbzg/__4.html)
+  def pause
+    if(duration_in_hours <= 6)
+      0
+    elsif(duration_in_hours > 6 && duration_in_hours <= 9)
+      30
+    elsif(duration_in_hours > 9)
+      45
+    else
+      Rails.logger.error("Cann't calculate pause")
+      return 0;
+    end
   end
 
   def duration
-    self.duration =  (self.finish.nil?) ? 0 : (self.finish - self.start) - (PAUSE*60)
+    (finish.nil?) ? 0 : ((finish - start)/60).to_i
+  end
+
+  def duration_in_hours
+    duration/60.0
   end
 
   # FIXME: Move to decorator
   def duration_in_words
-    hh = (self.duration/3600).to_i
-    mm = (self.duration.to_i%3600)/60
-    "#{hh} h #{mm.to_s.rjust(2, '0')} min"
+    duration.to_time
   end
 
-  # FIXME: Move to decorator
-  def duration_in_hours
-    start = self.start.strftime("%H:%M") if self.start
-    finish = self.finish.strftime("%H:%M") if self.finish
-    duration = (!self.duration || self.duration == 0)? "N/A" : (self.duration/3600).round(2)
+  def duration_in_percent
+    percent = (duration*100)/510
+    (percent - percent%5).to_i
   end
 
 end
+
+
