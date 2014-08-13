@@ -17,7 +17,8 @@ ActiveRecord::Schema.define(version: 20120524155921) do
     t.date    "date"
     t.time    "start"
     t.time    "finish"
-    t.float   "duration"
+    t.integer "pause"
+    t.integer "duration"
     t.integer "user_id"
   end
 
