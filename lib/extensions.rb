@@ -10,10 +10,11 @@ class Fixnum
   end
 
   def to_time
-    hh = (self/60.0).to_i
+    sign = self.negative? ? '-' : ''
+    hh = (self/60.0).abs.to_i
     mm = (self.abs%60).to_s.rjust(2, '0')
 
-    "#{hh} h #{mm} min"
+    "#{sign}#{hh} h #{mm} min"
   end
 
   def to_minutes
@@ -23,10 +24,11 @@ end
 
 class Float
   def to_time
-    hh = (self/60.0).to_i
+    sign = self.negative? ? '-' : ''
+    hh = (self/60.0).abs.to_i
     mm = (self.abs%60).to_s.rjust(2, '0')
 
-    "#{hh} h #{mm} min"
+    "#{sign}#{hh} h #{mm} min"
   end
 end
 
