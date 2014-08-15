@@ -48,8 +48,7 @@ class Timetrack < ActiveRecord::Base
   end
 
   def duration_in_percent
-    percent = (duration*100)/510
-    (percent - percent%5).to_i
+    percent = ((duration)*100)/510
   end
 
 end
