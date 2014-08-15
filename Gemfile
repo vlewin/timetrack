@@ -20,8 +20,12 @@ gem 'font-awesome-less'
 
 group :development, :test do
   gem 'sqlite3'
-  # gem 'byebug'
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'fabrication'
+  gem 'faker'
+
   gem 'awesome_print'
+  gem 'byebug'
 end
 
 group :production do

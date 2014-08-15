@@ -31,15 +31,24 @@ GEM
     awesome_print (1.2.0)
     bcrypt (3.1.7)
     builder (3.2.2)
+    byebug (3.2.0)
+      columnize (~> 0.8)
+      debugger-linecache (~> 1.2)
+    columnize (0.8.9)
     commonjs (0.2.7)
+    debugger-linecache (1.2.0)
     devise (3.2.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.2.1)
+    fabrication (2.11.3)
+    faker (1.4.2)
+      i18n (~> 0.5)
     font-awesome-less (4.1.0)
       less (~> 2.4.0)
     haml (4.0.5)
@@ -95,6 +104,22 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.0.4)
     ref (1.0.5)
+    rspec-core (3.0.3)
+      rspec-support (~> 3.0.0)
+    rspec-expectations (3.0.3)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.0.0)
+    rspec-mocks (3.0.3)
+      rspec-support (~> 3.0.0)
+    rspec-rails (3.0.2)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.0.0)
+      rspec-expectations (~> 3.0.0)
+      rspec-mocks (~> 3.0.0)
+      rspec-support (~> 3.0.0)
+    rspec-support (3.0.3)
     sprockets (2.12.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -127,7 +152,10 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  byebug
   devise
+  fabrication
+  faker
   font-awesome-less
   haml-rails
   holidays
@@ -139,6 +167,7 @@ DEPENDENCIES
   puma
   rails (~> 4.1.2)
   rake (~> 10.0.4)
+  rspec-rails (~> 3.0.0)
   sqlite3
   therubyracer
   uglifier
