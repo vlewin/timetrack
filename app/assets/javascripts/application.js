@@ -12,15 +12,15 @@
 //= require twitter/bootstrap/popover
 //= require_tree .
 
-$('body').tooltip({
-  selector: '[data-toggle="tooltip"]',
-  placement: 'bottom',
-  container: 'body'
-});
-
 var timetrack = Timetrack();
 
 $(document).ready(function() {
+  $('body').tooltip({
+    selector: '[data-toggle="tooltip"]',
+    placement: 'bottom',
+    container: 'body'
+  });
+
   // Live clock
   function liveClock() {
     setInterval( function() {
