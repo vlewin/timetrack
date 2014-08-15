@@ -1,8 +1,10 @@
-require "rails_helper"
+require 'rails_helper'
 
 describe TimetracksController, type: :controller do
+  let(:user) {Fabricate(:user)}
+
   before do
-    sign_in User.last
+    sign_in user
   end
 
   describe 'GET #index' do
@@ -14,14 +16,22 @@ describe TimetracksController, type: :controller do
 
     it 'renders the index template' do
       get :index
-      expect(response).to render_template("index")
+      expect(response).to render_template('index')
     end
 
-    it 'loads all of the posts into @posts' do
-      post1, post2 = Post.create!, Post.create!
+    it 'sets @date to Date.today' do
       get :index
+      expect(assigns(:date)).to eq Date.today
+    end
 
-      expect(assigns(:posts)).to match_array([post1, post2])
+    it 'loads all dates for current month into @month' do
+      get :index
+      expect(assigns(:month)).to eq (Date.today.beginning_of_month..Date.today.end_of_month).to_a
+    end
+
+    it 'loads all timetracks into @timetracks' do
+      get :index
+      expect(assigns(:timetracks)).to match_array(user.timetracks)
     end
   end
 end
