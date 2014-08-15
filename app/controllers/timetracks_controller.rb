@@ -16,7 +16,7 @@ class TimetracksController < ApplicationController
   def create
     @timetrack = current_user.timetracks.new(timetrack_params)
     respond_to do |format|
-      if @timetrack.save!
+      if @timetrack.save
         format.html { redirect_to timetracks_path({date: @timetrack.date}) }
       else
         format.html { redirect_to timetracks_path({date: @timetrack.date}), error: 'Something went wrong.' }
