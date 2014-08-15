@@ -14,12 +14,12 @@
 ActiveRecord::Schema.define(version: 20120524155921) do
 
   create_table "timetracks", force: true do |t|
-    t.date    "date"
-    t.time    "start"
-    t.time    "finish"
-    t.integer "pause"
-    t.integer "duration"
-    t.integer "user_id"
+    t.date     "date"
+    t.datetime "start"
+    t.datetime "finish"
+    t.integer  "pause"
+    t.integer  "duration"
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|
