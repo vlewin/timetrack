@@ -8,16 +8,20 @@
       %month= @date.strftime("%B %Y")
       = link_to content_tag(:i, '', class: 'fa fa-angle-double-right'), :date => (@date.end_of_month+1).strftime("%Y-%m-%d")
 
-  %div.circle.inset.pie-wrapper{class: "progress-#{@timetrack.duration_in_percent}"}
+  %div.circle.inset.pie-wrapper
+    - coverage = 360*@timetrack.duration_in_percent/100
+
     .pie
-      .left-side.half-circle
-      .right-side.half-circle
+      .half-circle.default{class: (@timetrack.duration_in_percent < 100) ? 'negative' : 'positiv', style: "clip: rect(auto, #{coverage}px, auto, auto);"}
+      .left-side
+      .right-side
       = render 'form'
 
-    .shadow
+    .shadow.inset
     %br
-    %br
-    %strong{class: current_user.balance.negative? ? 'negative' : ''}= current_user.balance
+    %strong{class: current_user.balance.negative? ? 'negative' : ''}= current_user.balance(:long)
+    %p
+      %label overall balance
 
   - @month.each_with_index do |date, i|
     - timetrack = @timetracks.find{|t| t.date == date}
