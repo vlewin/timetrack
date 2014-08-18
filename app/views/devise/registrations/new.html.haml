@@ -25,4 +25,5 @@
       %p
         %div= f.submit "Sign up", :class => "btn btn-success"
 
-  %div= devise_error_messages!
+
+= render 'layouts/errors', object: resource
