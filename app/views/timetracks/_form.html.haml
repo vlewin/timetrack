@@ -31,7 +31,8 @@
 
     .form-group
       %balance
-        %strong{class: @timetrack.balance.negative? ? 'negative' : ''}
+        / %strong{class: @timetrack.balance.negative? ? 'negative' : ''}
+        %strong
           = @timetrack.balance.to_time(:long)
           = "(#{@timetrack.duration_in_percent})%"
 

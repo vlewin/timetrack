@@ -36,7 +36,8 @@
       - elsif date.today?
         %a.day.today{href: "/timetracks?date=#{date.strftime("%Y-%m-%d")}", title: title, data: { toggle: 'tooltip'}}= date.day
       - elsif timetrack
-        %a.day.recorded{href: "/timetracks?date=#{date.strftime("%Y-%m-%d")}", title: title, data: { toggle: 'tooltip'}}
+        - balance = (timetrack.duration_in_percent < 100) ? 'negative' : 'positiv'
+        %a.day.recorded{class: balance, href: "/timetracks?date=#{date.strftime("%Y-%m-%d")}", title: title, data: { toggle: 'tooltip'}}
           = date.day
       - else
         %a.day{href: "/timetracks?date=#{date.strftime("%Y-%m-%d")}"}
