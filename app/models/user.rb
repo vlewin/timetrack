@@ -17,19 +17,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  alias :devise_valid_password? :valid_password?
-
-  def valid_password?(password)
-    begin
-      devise_valid_password?(password)
-    rescue BCrypt::Errors::InvalidHash
-      return false unless Digest::SHA1.hexdigest(password) == encrypted_password
-      logger.info "User #{email} is using the old password hashing method, updating attribute."
-      self.password = password
-      true
-    end
-  end
-
   def balance(abbr= :short)
     self.timetracks.to_a.sum(&:balance).to_time(abbr)
   end
