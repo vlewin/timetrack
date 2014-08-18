@@ -15,37 +15,23 @@ class TimetracksController < ApplicationController
 
   def create
     @timetrack = current_user.timetracks.new(timetrack_params)
-    respond_to do |format|
-      if @timetrack.save
-        format.html { redirect_to timetracks_path({date: @timetrack.date}) }
-      else
-        format.html { redirect_to timetracks_path({date: @timetrack.date}), error: 'Something went wrong.' }
-      end
-    end
+
+    flash[:error] = 'Something went wrong.' unless @timetrack.save
+    redirect_to timetracks_path(date: @timetrack.date)
   end
 
   def update
     @timetrack = current_user.timetracks.find(params[:id])
 
-    respond_to do |format|
-      if @timetrack.update_attributes(timetrack_params)
-        format.html { redirect_to timetracks_path({date: @timetrack.date}) }
-      else
-        format.html { redirect_to timetracks_path({date: @timetrack.date}), error: 'Something went wrong.'}
-      end
-    end
+    flash[:error] = 'Something went wrong.' unless @timetrack.update_attributes(timetrack_params)
+    redirect_to timetracks_path(date: @timetrack.date)
   end
 
   def destroy
     @timetrack = current_user.timetracks.find(params[:id])
 
-    respond_to do |format|
-      if @timetrack.delete
-        format.html { redirect_to timetracks_path({date: @timetrack.date}) }
-      else
-        format.html { redirect_to timetracks_path({date: @timetrack.date}), error: 'Something went wrong.'}
-      end
-    end
+    flash[:error] = 'Something went wrong.' unless @timetrack.delete
+    redirect_to timetracks_path(date: @timetrack.date)
   end
 
   def timetrack_params
