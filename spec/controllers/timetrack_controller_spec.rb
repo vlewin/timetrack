@@ -47,7 +47,9 @@ describe TimetracksController, type: :controller do
       expect(response).to redirect_to(timetracks_path(date: new_timetrack.date))
     end
 
-    it 'redirects to the index page with an error if save fails' do
+    it 'sets flash error meesage if save fails' do
+      expect_any_instance_of(timetrack.class).to receive(:save).and_return false
+      expect { post :create, { timetrack: new_timetrack.attributes } }.to change { flash[:error] }
     end
   end
 
@@ -61,7 +63,25 @@ describe TimetracksController, type: :controller do
       expect(response).to redirect_to(timetracks_path(date: timetrack.date))
     end
 
-    it 'redirects to the index page with an error if update fails' do
+    it 'sets flash error meesage if update fails' do
+      expect_any_instance_of(timetrack.class).to receive(:update_attributes).and_return false
+      expect { put :update, id: timetrack, timetrack: { finish: nil } }.to change { flash[:error] }
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    it 'destroys the timetrack and redirects to the index page' do
+      timetracks_count = user.timetracks.count
+
+      post :destroy, id: timetrack
+
+      expect(user.timetracks.count).to eq(timetracks_count-1)
+      expect(response).to redirect_to(timetracks_path(date: timetrack.date))
+    end
+
+    it 'sets flash error meesage if destroy fails' do
+      expect_any_instance_of(timetrack.class).to receive(:delete).and_return false
+      expect { post :destroy, id: timetrack }.to change { flash[:error] }
     end
   end
 
