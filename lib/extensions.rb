@@ -11,10 +11,10 @@ class Fixnum
 
   def to_time(format= :short)
     sign = self.negative? ? '-' : ''
-    hh = (self/60.0).abs.to_i
-    mm = (self.abs%60).to_s.rjust(2, '0')
+    hr = (self/60.0).abs.to_i
+    min = (self.abs%60).to_s.rjust(2, '0')
 
-    "#{sign}#{hh} #{format == :short ? 'h' : 'hours'} #{mm} #{format == :short ? 'mm' : 'minutes'}"
+    "#{sign}#{hr} #{format == :short ? 'hr' : 'hours'} #{min} #{format == :short ? 'min' : 'minutes'}"
   end
 
   def to_minutes

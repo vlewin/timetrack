@@ -59,6 +59,8 @@ $(document).ready(function() {
 
   if($('#form .new_record').text() == 'true') {
     timetrack.init();
+  } else {
+    timetrack.updateSelectOptions();
   }
 
   $('body').on('change', 'select.timetrack_start', function(e) {

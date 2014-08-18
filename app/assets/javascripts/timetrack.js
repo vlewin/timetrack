@@ -16,17 +16,17 @@ var Timetrack = function() {
     }
 
     timetrack.now = function() {
-      var hh = new Date().getHours();
-      var mm = new Date().getMinutes();
+      var hr = new Date().getHours();
+      var min = new Date().getMinutes();
 
-      if (mm == 60) {
-        mm = '00';
-        hh +=1;
+      if (min == 60) {
+        min = '00';
+        hr +=1;
       } else {
-        mm = mm.round5();
+        min = min.round5();
       }
 
-      return [hh,mm];
+      return [hr,min];
     }
 
     timetrack.start = function() {
@@ -35,28 +35,28 @@ var Timetrack = function() {
     };
 
     timetrack.end = function() {
-      var start_hh = $('#timetrack_start_4i').val();
-      var start_mm = $('#timetrack_start_5i').val();
+      var start_hr = $('#timetrack_start_4i').val();
+      var start_min = $('#timetrack_start_5i').val();
 
-      var hh_max = $('#timetrack_finish_4i').find('option').last().val();
-      var mm_max = $('#timetrack_finish_5i').find('option').last().val();
+      var hr_max = $('#timetrack_finish_4i').find('option').last().val();
+      var min_max = $('#timetrack_finish_5i').find('option').last().val();
 
-      hh = parseInt(start_hh) + 8;
-      mm = parseInt(start_mm) + 30;
+      hr = parseInt(start_hr) + 8;
+      min = parseInt(start_min) + 30;
 
-      if(hh >= hh_max) {
-        hh = hh_max.toInt();
-        mm = mm_max.toInt();
+      if(hr >= hr_max) {
+        hr = hr_max.toInt();
+        min = min_max.toInt();
       }
 
-      if (mm >= 60) {
-        mm = mm%60;
-        hh +=1;
+      if (min >= 60) {
+        min = min%60;
+        hr +=1;
       }
 
-      mm = mm.round5();
+      min = min.round5();
 
-      return [hh.toTime(), mm.toTime()];
+      return [hr.toTime(), min.toTime()];
     };
 
     // § 4 ArbZG. (http://www.gesetze-im-internet.de/arbzg/__4.html)
@@ -80,18 +80,18 @@ var Timetrack = function() {
 
     // Time difference without pause
     timetrack.difference = function() {
-      var end_hh = $('#timetrack_finish_4i').val().toInt()
-      var end_mm = $('#timetrack_finish_5i').val().toInt()
-      var end = (end_hh * 60) + end_mm
+      var end_hr = $('#timetrack_finish_4i').val().toInt()
+      var end_min = $('#timetrack_finish_5i').val().toInt()
+      var end = (end_hr * 60) + end_min
 
-      var start_hh = $('#timetrack_start_4i').val().toInt()
-      var start_mm = $('#timetrack_start_5i').val().toInt()
-      var start = (start_hh * 60) + start_mm
+      var start_hr = $('#timetrack_start_4i').val().toInt()
+      var start_min = $('#timetrack_start_5i').val().toInt()
+      var start = (start_hr * 60) + start_min
 
       var diff = (end - start) / 60;
 
-      var hh = Math.round(diff)
-      var mm = Math.round((diff - Math.floor(diff)) * 60).toTime();
+      var hr = Math.round(diff)
+      var min = Math.round((diff - Math.floor(diff)) * 60).toTime();
 
       return diff;
     };
@@ -99,40 +99,45 @@ var Timetrack = function() {
     // Time difference with pause
     timetrack.balance = function() {
       return this.difference()
-      // return (this.difference() - this.pause()/60)
     }
 
     // Time difference in words
     timetrack.duration = function() {
       balance = this.balance()
 
-      var hh = Math.floor(balance)
-      var mm = (balance - hh) * 60
+      var hr = Math.floor(balance)
+      var min = (balance - hr) * 60
 
-      if(mm >= 60) {
-        hh += 1;
-        mm = mm%60;
+      if(min >= 60) {
+        hr += 1;
+        min = min%60;
       } else {
-        mm = Math.round(mm)
+        min = Math.round(min)
       }
 
-      return hh + ' h ' + mm.toTime() + ' min'
+      return hr + ' hr ' + min.toTime() + ' min'
     }
 
 
     // jQuery methods
     timetrack.updateSelectOptions = function() {
-      var $start_hh = $('#timetrack_start_4i');
-      var $start_mm = $('#timetrack_start_5i');
+      var $start_hr = $('#timetrack_start_4i');
+      var $start_min = $('#timetrack_start_5i');
 
-      var $end_hh = $('#timetrack_finish_4i');
-      var $end_mm = $('#timetrack_finish_5i');
+      var $end_hr = $('#timetrack_finish_4i');
+      var $end_min = $('#timetrack_finish_5i');
 
       var end = this.end();
 
-      $end_hh.find('option').each(function() {
+
+      console.log('end ' + end)
+
+      $end_hr.find('option').each(function() {
         var value = $(this).val().toInt();
-        var start = $start_hh.val().toInt();
+        var start = $start_hr.val().toInt();
+
+        // console.log(value)
+        // console.log(start)
 
         if(value < start) {
           $(this).prop('disabled', true);
@@ -141,10 +146,10 @@ var Timetrack = function() {
         }
       });
 
-      if($start_hh.val().toInt() == $end_hh.val().toInt()) {
-        $end_mm.find('option').each(function() {
+      if($start_hr.val().toInt() == $end_hr.val().toInt()) {
+        $end_min.find('option').each(function() {
           var value = $(this).val().toInt();
-          var start = $start_mm.val().toInt();
+          var start = $start_min.val().toInt();
 
           if(value < start) {
             $(this).prop('disabled', true);
@@ -153,7 +158,7 @@ var Timetrack = function() {
           }
         });
       } else {
-        $end_mm.find('option').each(function() {
+        $end_min.find('option').each(function() {
             $(this).prop('disabled', false);
         });
       }

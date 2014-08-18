@@ -22,17 +22,17 @@ describe 'extensions.rb' do
     end
 
     describe '#to_time' do
-      it 'converts minutes to time string e.g. 60.to_time => "1 h 00 mm"' do
-        expect(positive_number.to_time).to eq  '1 h 00 mm'
-        expect(negative_number.to_time).to eq '-1 h 00 mm'
+      it 'converts minutes to time string e.g. 60.to_time => "1 hr 00 min"' do
+        expect(positive_number.to_time).to eq  '1 hr 00 min'
+        expect(negative_number.to_time).to eq '-1 hr 00 min'
       end
 
       it 'dafaults to :short format' do
-        expect(positive_number.to_time).to eq '1 h 00 mm'
+        expect(positive_number.to_time).to eq '1 hr 00 min'
       end
 
       it 'respects format parameter' do
-        expect(positive_number.to_time(:short)).to eq '1 h 00 mm'
+        expect(positive_number.to_time(:short)).to eq '1 hr 00 min'
         expect(positive_number.to_time(:long)).to eq '1 hours 00 minutes'
       end
     end

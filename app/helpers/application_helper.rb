@@ -1,7 +1,6 @@
 module ApplicationHelper
 end
 
-# form_helper.rb
 module ActionView
   module Helpers
     module FormHelper
@@ -16,10 +15,10 @@ module ActionView
 
         options.merge!(default_options)
 
-        if method == :finish
-          # options[:start_hour] = object.start.hour
-          # options[:start_minute] = object.start.min
-        end
+        # if method == :finish
+        #   options[:start_hour] = object.start.hour
+        #   options[:start_minute] = object.start.min
+        # end
 
         Tags::TimeSelect.new(object_name, method, self, options, html_options).render
       end
