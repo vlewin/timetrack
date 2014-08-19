@@ -21,7 +21,7 @@
     %br
     %strong{class: current_user.balance.negative? ? 'negative' : ''}= current_user.balance(:long)
     %p
-      %label overall balance
+      %label.small overall balance
 
   - @month.each_with_index do |date, i|
     - timetrack = @timetracks.find{|t| t.date == date}
