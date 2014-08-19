@@ -1,18 +1,16 @@
-sqlite: &sqlite
+development:
   adapter: sqlite3
   database: db/<%= Rails.env %>.sqlite3
-
-defaults: &defaults
   pool: 5
   timeout: 5000
   encoding: utf8
-  <<: *<%= ENV['RAILS_DB'] || "sqlite" %>
-
-development:
-  <<: *defaults
 
 test: &test
-  <<: *defaults
+  adapter: sqlite3
+  database: db/<%= Rails.env %>.sqlite3
+  pool: 5
+  timeout: 5000
+  encoding: utf8
 
 production:
   adapter: postgresql
