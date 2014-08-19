@@ -1,0 +1,47 @@
+.timetrack.center
+  %div
+    %br
+    %br
+    %br
+    %h2
+      = link_to content_tag(:i, '', class: 'fa fa-angle-double-left fa-4'), :date => (@date.beginning_of_month-1).strftime("%Y-%m-%d")
+      %month= @date.strftime("%B %Y")
+      = link_to content_tag(:i, '', class: 'fa fa-angle-double-right'), :date => (@date.end_of_month+1).strftime("%Y-%m-%d")
+
+  %div.circle.inset.pie-wrapper
+    - coverage = 360*@timetrack.duration_in_percent/100
+
+    .pie
+      .half-circle.default{class: (@timetrack.duration_in_percent < 100) ? 'negative' : 'positiv', style: "clip: rect(auto, #{coverage}px, auto, auto);"}
+      .left-side
+      .right-side
+      = render 'form'
+
+    .shadow.inset
+    %br
+    %strong{class: current_user.balance.negative? ? 'negative' : ''}= current_user.balance(:long)
+    %p
+      %label overall balance
+
+  - @month.each_with_index do |date, i|
+    - timetrack = @timetracks.find{|t| t.date == date}
+    - title = timetrack ? "#{timetrack.start} -  #{timetrack.finish} =  #{timetrack.duration_in_words}" : nil
+    - deg = (360/@month.size.to_f * i).round(1)
+
+    %day{style: "transform: rotate(#{deg}deg) translate(320px) rotate(#{-deg}deg); -webkit-transform: rotate(#{deg}deg) translate(320px) rotate(#{-deg}deg);"}
+      - if date.weekend?
+        .day.weekend= date.day
+      - elsif date.holiday?
+        .day.holiday{title: date.holidays.first[:name], data: { toggle: 'tooltip'}}= date.day
+      - elsif date.today?
+        %a.day.today{href: "/timetracks?date=#{date.strftime("%Y-%m-%d")}", title: title, data: { toggle: 'tooltip'}}= date.day
+      - elsif timetrack
+        - balance = (timetrack.duration_in_percent < 100) ? 'negative' : 'positiv'
+        %a.day.recorded{class: balance, href: "/timetracks?date=#{date.strftime("%Y-%m-%d")}", title: title, data: { toggle: 'tooltip'}}
+          = date.day
+      - else
+        %a.day{href: "/timetracks?date=#{date.strftime("%Y-%m-%d")}"}
+          = date.day
+
+
+/ != ap Timetrack.all.to_a

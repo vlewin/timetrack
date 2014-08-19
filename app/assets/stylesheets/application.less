@@ -1,0 +1,75 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require twitter/bootstrap
+ *= require bootstrap_overrides
+ *= require font-awesome
+ *= require_tree .
+*/
+
+.small {font-size: 11px; color:#aaa; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.left { text-align:left;}
+.center { text-align:center;}
+.right { text-align:right;}
+.negative {color: #d43f3a; }
+.uppercase { text-transform:uppercase; }
+.text-bottom { vertical-align:text-bottom!important; }
+.middle { vertical-align:middle; }
+
+.alert { padding:0!important; text-align:center; background-color:transparent!important; border:none!important; font-weight:bold; }
+.alert-success { background-color:transparent!important; }
+.alert-danger { background-color:transparent!important; color: #d43f3a;}
+
+body {
+  text-rendering: optimizelegibility;
+  background: image-url('griddle.png');
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+  color: #454545;
+  padding-top:20px;
+}
+
+.flash {
+  min-height: 24px;
+}
+
+.devisebox {
+    width: 360px;
+    height: 360px;
+    margin: 50px auto;
+    padding: 50px 20px;
+    border-radius: 50%;
+    border: 1px solid grey;
+	  background: none repeat scroll 0 0 #D9D9D9;
+
+    .sign_in {
+      h2 {
+        margin-bottom: 40px;
+      }
+    }
+
+    .sign_up {
+      h2 {
+        margin-bottom: 20px;
+      }
+    }
+ }
+
+.inset {
+  -moz-box-shadow: inset 0 2px 5px rgba(0,0,0,.4);
+  -webkit-box-shadow: inset 0 2px 5px rgba(0,0,0,.4);
+  box-shadow: inset 0 2px 5px rgba(0,0,0,.24);
+}
+
+#main {
+  .row {
+    line-height: 24px;
+
+    h1 {
+      font-size: 24px;
+      line-height: 24px;
+      margin: 0 0 30px 0;
+    }
+  }
+}

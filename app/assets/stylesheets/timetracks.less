@@ -1,0 +1,174 @@
+.timetrack {
+  position: relative;
+  height: 640px;
+  padding: 40px; /*= half the width of an day div */
+  border-radius: 50%;
+  box-sizing: content-box;
+
+  month {
+    display: inline-block;
+    width: 240px;
+  }
+
+  div.circle {
+    margin: 30px auto;
+    border-radius: 50%;
+    background-color: #fafafa;
+    position: relative;
+
+    #live-clock {
+      font-size: 16px;
+
+      a.clock {
+        font-size: 26px;
+        color: #454545;
+        font-weight: bold;
+        text-decoration:none;
+        line-height: 26px;
+      }
+
+      ul {
+        width:100%;
+        margin:0 auto;
+        padding:0;
+        list-style:none;
+        text-align:center;
+
+        li {
+          display:inline;
+          text-align:center;
+        }
+      }
+    }
+
+    form {
+      .form-group {
+        margin-bottom: 5px;
+      }
+    }
+
+    .top, .middle, .bottom  {
+      z-index: 1;
+      position: relative;
+    }
+
+    .top {
+      height: 120px;
+      font-size: 22px;
+      padding: 30px 15px;
+      position: relative;
+    }
+
+    .middle {
+      width: 270px;
+      margin: auto;
+      height: 140px;
+      padding: 15px 0;
+
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+
+      select {
+        font-size: 20px;
+      }
+
+      p, label {
+        font-size: 12px;
+        color: #888;
+      }
+
+    }
+
+    .bottom {
+      height: 120px;
+      padding: 12px;
+
+      .btn {
+        border-radius: 5%;
+      }
+    }
+
+  }
+
+  day {
+    font-size:20px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 56px;
+    height: 56px;
+    margin: -28px; /*= half the width */
+    border-radius: 50%;
+    vertical-align: middle;
+    background-color: #fafafa;
+    text-decoration: none;
+
+    .day {
+      outline: none;
+      border: 2px solid #555;
+      border-radius: 50%;
+
+      color: #555;
+
+      display: block;
+      padding: 11px 0;
+    }
+
+    .today {
+      border: 2px solid #3498DB;
+      color: #3498DB;
+      background: #FFFFFF;
+    }
+
+    .weekend {
+      color: #AAA;
+      border: 2px solid #AAA;
+      background: rgba(170,170,170,0.2);
+    }
+
+    .holiday {
+      color:#d9534f;
+      border: 2px solid #d43f3a;
+      background: rgba(212,63,58,0.2);
+      background: rgba(212,63,58,0.2);
+    }
+
+    .recorded {
+      border: 2px solid #08C;
+      color: #08C;
+    }
+
+    .positiv {
+      color: #222;
+      border: 2px solid #5cb85c;
+      // background: rgba(93,184,92,0.2);
+      text-decoration: line-through;
+    }
+
+    .negative {
+      color: #222;
+      border: 2px solid #d43f3a;
+      // background: rgba(212,63,58,0.2);
+      text-decoration: line-through;
+    }
+  }
+
+  // Center mark
+  // day:after {
+  //   position: absolute;
+  //   top: 50%;
+  //   left: 50%;
+  //   width: 4px;
+  //   height: 4px;
+  //   border-radius: 50%;
+  //   box-shadow: 0 0 .5em .5em white;
+  //   margin: -2px;
+  //   background: red;
+  //   opacity: .3;
+  //   z-index: -1;
+  //   content: '';
+  // }
+}
+
+
