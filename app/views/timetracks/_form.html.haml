@@ -6,7 +6,7 @@
       %a.clock.date-select{ href: '#', 'data-date' => "#{Date.today.strftime('%Y-%m-%d')}"}
         %i.fa.fa-home
         %ul
-          %li#hour= "%.2d" % Time.now.hour
+          %li#hr= "%.2d" % Time.now.hour
           %li#point :
           %li#min= "%.2d" % Time.now.min
           %li#point :

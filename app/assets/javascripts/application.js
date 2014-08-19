@@ -14,30 +14,34 @@
 
 var timetrack = Timetrack();
 
+// Live clock
+function liveClock() {
+  setInterval( function() {
+    var hours = new Date().getHours();
+    $("#hr").html(( hours < 10 ? "0" : "" ) + hours);
+  }, 1000);
+
+  setInterval( function() {
+    var minutes = new Date().getMinutes();
+    $("#min").html(( minutes < 10 ? "0" : "" ) + minutes);
+  },1000);
+
+  setInterval( function() {
+    var seconds = new Date().getSeconds();
+    $("#sec").html(( seconds < 10 ? "0" : "" ) + seconds);
+  },1000);
+}
+
+
 $(document).ready(function() {
+  liveClock();
+
   $('body').tooltip({
     selector: '[data-toggle="tooltip"]',
     placement: 'bottom',
     container: 'body'
   });
 
-  // Live clock
-  function liveClock() {
-    setInterval( function() {
-      var seconds = new Date().getSeconds();
-      $("#sec").html(( seconds < 10 ? "0" : "" ) + seconds);
-    },1000);
-
-    setInterval( function() {
-      var minutes = new Date().getMinutes();
-      $("#min").html(( minutes < 10 ? "0" : "" ) + minutes);
-    },1000);
-
-    setInterval( function() {
-      var hours = new Date().getHours();
-      $("#hour").html(( hours < 10 ? "0" : "" ) + hours);
-    }, 1000);
-  }
 
   // Timetrack
   $('body').on('click', 'a.date-select', function(e) {

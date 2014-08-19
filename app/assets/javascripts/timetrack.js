@@ -129,9 +129,6 @@ var Timetrack = function() {
 
       var end = this.end();
 
-
-      console.log('end ' + end)
-
       $end_hr.find('option').each(function() {
         var value = $(this).val().toInt();
         var start = $start_hr.val().toInt();
