@@ -10,23 +10,13 @@
 # http://github.com/RailsApps/rails-composer/issues
 #----------------------------------------------------------------------------
 
-# bundler state
 /.bundle
 /vendor/bundle/
 /vendor/ruby/
-
-# minimal Rails specific artifacts
 /db/*.sqlite3
 /db/*.sqlite3-journal
 /log/*
-
 /tmp/*
-/tmp/**/*
-
-# FIXME: ignore Gemfile.lock bacause of debugger issue on Mavericks
-# Gemfile.lock
-
-# various artifacts
 **.war
 *.rbc
 *.sassc
@@ -57,26 +47,12 @@
 rerun.txt
 pickle-email-*.html
 .zeus.sock
-
-# scm revert files
 **.orig
-
-# Mac finder artifacts
 .DS_Store
-
-# Netbeans project directory
 /nbproject/
-
-# RubyMine project files
 .idea
-
-# Textmate project files
 /*.tmproj
-
-# vim artifacts
 **.swp
-
-# Environment files that may contain sensitive data
 .env
 .powenv
 
