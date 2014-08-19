@@ -31,7 +31,16 @@ GEM
     awesome_print (1.2.0)
     bcrypt (3.1.7)
     builder (3.2.2)
+<<<<<<< HEAD
     commonjs (0.2.7)
+=======
+    byebug (3.2.0)
+      columnize (~> 0.8)
+      debugger-linecache (~> 1.2)
+    columnize (0.8.9)
+    commonjs (0.2.7)
+    debugger-linecache (1.2.0)
+>>>>>>> e4c176c04738cb18fe885b632c6d4714dd322c7d
     devise (3.2.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -147,6 +156,10 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+<<<<<<< HEAD
+=======
+  byebug
+>>>>>>> e4c176c04738cb18fe885b632c6d4714dd322c7d
   devise
   fabrication
   faker

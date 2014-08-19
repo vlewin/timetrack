@@ -23,8 +23,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'fabrication'
   gem 'faker'
+
   gem 'awesome_print'
-  # gem 'byebug' if RUBY_VERSION =~ /2.0/
 end
 
 group :production do
