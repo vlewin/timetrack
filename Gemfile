@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.1.2'
 gem 'rake', '~> 10.0.4'
-gem 'puma'
+gem 'unicorn'
 gem 'json'
 
 gem 'holidays'
