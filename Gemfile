@@ -25,6 +25,7 @@ group :development, :test do
   gem 'faker'
 
   gem 'awesome_print'
+  gem 'byebug' if RUBY_VERSION =~ /2.0/
 end
 
 group :production do
