@@ -10,13 +10,19 @@
 # http://github.com/RailsApps/rails-composer/issues
 #----------------------------------------------------------------------------
 
+
+db/*.sqlite3
+db/*.db
+log/*
+!log/.gitkeep
+tmp/*
+!tmp/.gitkeep
+!public/assets/.gitkeep
+
+
 /.bundle
 /vendor/bundle/
 /vendor/ruby/
-/db/*.sqlite3
-/db/*.sqlite3-journal
-/log/*
-/tmp/*
 **.war
 *.rbc
 *.sassc
@@ -28,16 +34,13 @@
 /coverage.data
 /coverage/
 /db/*.javadb/
-/db/*.sqlite3
 /doc/api/
 /doc/app/
 /doc/features.html
 /doc/specs.html
-/public/assets/
-/public/cache
-/public/stylesheets/compiled
-/public/system/*
-/public/uploads
+public/assets/*
+public/cache/*
+public/stylesheets/*
 /spec/tmp/*
 /cache
 /capybara*
