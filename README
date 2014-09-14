@@ -2,8 +2,11 @@ Web based time tracking application
 This project is a playground for development, testing and deployment
 
 # DEMO
-http://time-mrstealth.rhcloud.com
-http://timetrack.eu01.aws.af.cm/  
+
+[I'm an inline-style link](https://www.google.com)
+
+[timetrack OpenShift](http://time-mrstealth.rhcloud.com)
+[timetrack AppFog](http://timetrack.eu01.aws.af.cm)
 
 # INSTALL SECTION
 git clone git://github.com/vlewin/timetrack.git
