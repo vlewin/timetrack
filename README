@@ -2,6 +2,8 @@ Web based time tracking application
 This project is a playground for development, testing and deployment
 
 # DEMO
+Upgrading to Rails 4.2 on OpenShift
+http://www.gerardcondon.com/blog/2015/06/15/upgrading-to-rails-4-dot-2-on-openshift/
 
 
 [timetrack OpenShift](http://time-mrstealth.rhcloud.com)
@@ -14,5 +16,3 @@ git clone git://github.com/vlewin/timetrack.git
 bundle install
 rake db:migrate
 rails s
-
-
