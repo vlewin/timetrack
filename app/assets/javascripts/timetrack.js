@@ -67,10 +67,10 @@ var Timetrack = function() {
       if(difference < 6) {
         return 0;
       // 6 - 9 hours => 30 minutes
-      } else if(difference > 6 && difference < 9) {
+    } else if(difference > 6 && difference <= 9) {
         return 30;
       // > 9 hours => 45 minutes
-      } else if(difference >= 9) {
+      } else if(difference > 9) {
         return 45;
       } else {
         console.error("Cann't calculate pause")
@@ -185,4 +185,3 @@ var Timetrack = function() {
 
     return timetrack;
 };
-
