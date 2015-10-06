@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails'
-gem 'rake'
+gem 'rake', '~> 10.4.2'
 gem 'unicorn'
 gem 'json'
 

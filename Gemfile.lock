@@ -197,7 +197,7 @@ DEPENDENCIES
   pg
   puma
   rails
-  rake
+  rake (~> 10.4.2)
   rspec-rails
   spring
   sqlite3
