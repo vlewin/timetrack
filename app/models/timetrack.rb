@@ -22,24 +22,24 @@ class Timetrack < ActiveRecord::Base
 
   # § 4 ArbZG. (http://www.gesetze-im-internet.de/arbzg/__4.html)
   def pause
-    if(duration_in_hours <= 6)
+    if (duration_in_hours <= 6)
       0
-    elsif(duration_in_hours > 6 && duration_in_hours <= 9)
+    elsif (duration_in_hours > 6 && duration_in_hours <= 9)
       30
-    elsif(duration_in_hours > 9)
+    elsif (duration_in_hours > 9)
       45
     else
       Rails.logger.error("Cann't calculate pause")
-      return 0;
+      return 0
     end
   end
 
   def duration
-    (finish.nil?) ? 0 : ((finish - start)/60).to_i
+    (finish.nil?) ? 0 : ((finish - start) / 60).to_i
   end
 
   def duration_in_hours
-    duration/60.0
+    duration / 60.0
   end
 
   # FIXME: Move to decorator
@@ -48,9 +48,6 @@ class Timetrack < ActiveRecord::Base
   end
 
   def duration_in_percent
-    percent = ((duration)*100)/510
+    ((duration) * 100) / 510
   end
-
 end
-
-

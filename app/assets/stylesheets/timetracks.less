@@ -2,6 +2,7 @@
   position: relative;
   height: 640px;
   padding: 40px; /*= half the width of an day div */
+  padding: 4%;
   border-radius: 50%;
   box-sizing: content-box;
 
@@ -81,10 +82,24 @@
 
     .bottom {
       height: 120px;
-      padding: 12px;
+      padding: 16px;
 
       .btn {
-        border-radius: 5%;
+        width: 80px;
+        height: 40px;
+        border-radius: 20px;
+
+        &.btn-left {
+          border-radius: 20px 0 0 20px;
+        }
+
+        &.btn-right {
+          border-radius: 0 20px 20px 0;
+        }
+
+        &.btn-middle {
+          width: 160px;
+        }
       }
     }
 
@@ -129,9 +144,9 @@
 
     .holiday {
       color:#d9534f;
+      color: #fff;
       border: 2px solid #d43f3a;
-      background: rgba(212,63,58,0.2);
-      background: rgba(212,63,58,0.2);
+      background: #d43f3a;
     }
 
     .recorded {
@@ -142,33 +157,31 @@
     .positiv {
       color: #222;
       border: 2px solid #5cb85c;
-      // background: rgba(93,184,92,0.2);
+      background: rgba(180, 220, 140, 0.5) none repeat scroll 0 0;
       text-decoration: line-through;
     }
 
     .negative {
       color: #222;
       border: 2px solid #d43f3a;
-      // background: rgba(212,63,58,0.2);
+      background: rgba(220, 160, 140, 0.5) none repeat scroll 0 0;
       text-decoration: line-through;
     }
   }
 
   // Center mark
-  // day:after {
-  //   position: absolute;
-  //   top: 50%;
-  //   left: 50%;
-  //   width: 4px;
-  //   height: 4px;
-  //   border-radius: 50%;
-  //   box-shadow: 0 0 .5em .5em white;
-  //   margin: -2px;
-  //   background: red;
-  //   opacity: .3;
-  //   z-index: -1;
-  //   content: '';
-  // }
+  day:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 60px 60px white;
+    margin: -2px;
+    // background: red;
+    opacity: .3;
+    z-index: -1;
+    content: '';
+  }
 }
-
-

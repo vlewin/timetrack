@@ -42,7 +42,6 @@ $(document).ready(function() {
     container: 'body'
   });
 
-
   // Timetrack
   $('body').on('click', 'a.date-select', function(e) {
     e.preventDefault();

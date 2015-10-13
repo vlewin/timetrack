@@ -118,7 +118,6 @@ var Timetrack = function() {
       return hr + ' hr ' + min.toTime() + ' min'
     }
 
-
     // jQuery methods
     timetrack.updateSelectOptions = function() {
       var $start_hr = $('#timetrack_start_4i');
@@ -132,9 +131,6 @@ var Timetrack = function() {
       $end_hr.find('option').each(function() {
         var value = $(this).val().toInt();
         var start = $start_hr.val().toInt();
-
-        // console.log(value)
-        // console.log(start)
 
         if(value < start) {
           $(this).prop('disabled', true);

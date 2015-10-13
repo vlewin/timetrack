@@ -31,19 +31,16 @@
 
     .form-group
       %balance
-        / %strong{class: @timetrack.balance.negative? ? 'negative' : ''}
         %strong
           = @timetrack.balance.to_time(:long)
           = "(#{@timetrack.duration_in_percent})%"
 
   .bottom
-    = f.button '', class: 'btn btn-success inset' do
-      %i.fa.fa-clock-o.icon-white
-      = (@timetrack.new_record?)? 'Create' : 'Update'
-
-    &nbsp;
-
-    - unless @timetrack.new_record?
-      = link_to @timetrack, class: "btn btn-danger inset destroy", data: { confirm: 'Are you sure?'}, method: :delete do
-        %i.fa.fa-trash-o.icon-white
-        Delete
+    .btn-group
+      - if @timetrack.new_record?
+        = f.button 'Create', class: 'btn btn-success btn-middle inset'
+      - else
+        = f.button 'Update', class: 'btn btn-success btn-left inset'
+        &nbsp;
+        = button_to '', class: 'btn btn-danger btn-right inset', data: { confirm: 'Are you sure?'}, method: :delete  do
+          Delete
