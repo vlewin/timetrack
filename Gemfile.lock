@@ -40,6 +40,9 @@ GEM
     awesome_print (1.6.1)
     bcrypt (3.1.10)
     builder (3.2.2)
+    byebug (5.0.0)
+      columnize (= 0.9.0)
+    columnize (0.9.0)
     commonjs (0.2.7)
     devise (3.5.2)
       bcrypt (~> 3.0)
@@ -100,7 +103,6 @@ GEM
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
     pg (0.18.3)
-    puma (2.14.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -184,6 +186,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  byebug
   devise
   fabrication
   faker
@@ -195,7 +198,6 @@ DEPENDENCIES
   less-rails
   less-rails-bootstrap
   pg
-  puma
   rails
   rake (~> 10.4.2)
   rspec-rails

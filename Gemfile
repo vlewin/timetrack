@@ -24,6 +24,7 @@ group :development, :test do
   gem 'fabrication'
   gem 'faker'
   gem 'spring'
+  gem 'byebug'
   gem 'awesome_print'
 end
 
