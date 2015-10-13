@@ -14,10 +14,11 @@ pushd ${OPENSHIFT_REPO_DIR} > /dev/null
 # bundle exec rake assets:precompile RAILS_ENV=production
 
 cd $OPENSHIFT_REPO_DIR
-bundle install --without test development --deployment
+echo '=> Bundle gems'
+bundle install --without test development --deployment --path vendor/
 echo '=> Migrate database'
 bundle exec rake db:migrate RAILS_ENV=production
-echo '=> Precombile assets'
+echo '=> Precompile assets'
 bundle exec rake assets:precompile RAILS_ENV=production
 
 popd > /dev/null
