@@ -42,5 +42,5 @@
       - else
         = f.button 'Update', class: 'btn btn-success btn-left inset'
         &nbsp;
-        = button_to '', class: 'btn btn-danger btn-right inset', data: { confirm: 'Are you sure?'}, method: :delete  do
+        = link_to @timetrack, class: 'btn btn-danger btn-right inset', data: { confirm: 'Are you sure?'}, method: :delete  do
           Delete
