@@ -18,8 +18,8 @@ log/*
 tmp/*
 !tmp/.gitkeep
 !public/assets/.gitkeep
-
-
+*.tags
+*.tags1
 /.bundle
 /vendor/bundle/
 /vendor/ruby/
