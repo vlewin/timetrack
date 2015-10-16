@@ -19,6 +19,7 @@ gem 'less-rails-bootstrap'
 gem 'font-awesome-less'
 
 group :development, :test do
+  gem 'rubocop'
   gem 'sqlite3'
   gem 'rspec-rails'
   gem 'fabrication'

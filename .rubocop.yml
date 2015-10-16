@@ -199,7 +199,7 @@ Lint/EndAlignment:
 
 # Checks for *rescue* blocks with no body
 Lint/HandleExceptions:
-  Enabled: true
+  Enabled: false
 
 # Checks for string conversion in string interpolation which is redundant
 Lint/StringConversionInInterpolation:
@@ -211,7 +211,7 @@ Style/SpaceInsideHashLiteralBraces:
 
 # Enforces spaces between block contents and braces; has --auto-correct
 Style/SpaceInsideBlockBraces:
-  Enabled: true
+  Enabled: false
   SpaceBeforeBlockParameters: false
 
 # Enforces spaces separating the block from the previous keyword; has --auto-correct

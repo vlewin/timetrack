@@ -9,21 +9,21 @@ class Fixnum
     self < 0
   end
 
-  def to_time(format= :short)
+  def to_time(format = :short)
     sign = self.negative? ? '-' : ''
-    hr = (self/60.0).abs.to_i
-    min = (self.abs%60).to_s.rjust(2, '0')
+    hr = (self / 60.0).abs.to_i
+    min = (abs % 60).to_s.rjust(2, '0')
 
     "#{sign}#{hr} #{format == :short ? 'hr' : 'hours'} #{min} #{format == :short ? 'min' : 'minutes'}"
   end
 
   def to_minutes
-    self*60
+    self * 60
   end
 end
 
 class Date
   def weekend?
-    (self.strftime("%A") == "Sunday" || self.strftime("%A") ==  "Saturday")? true : false
+    (strftime('%A') == 'Sunday' || strftime('%A') == 'Saturday') ? true : false
   end
 end

@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 describe Timetrack, type: :model do
   subject { described_class }
@@ -71,4 +71,3 @@ describe Timetrack, type: :model do
     end
   end
 end
-

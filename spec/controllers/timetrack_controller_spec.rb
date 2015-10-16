@@ -28,7 +28,7 @@ describe TimetracksController, type: :controller do
 
     it 'loads all dates for current month into @month' do
       get :index
-      expect(assigns(:month)).to eq (Date.today.beginning_of_month..Date.today.end_of_month).to_a
+      expect(assigns(:month)).to eq(Date.today.beginning_of_month..Date.today.end_of_month).to_a
     end
 
     it 'loads all timetracks into @timetracks' do
@@ -43,7 +43,7 @@ describe TimetracksController, type: :controller do
 
       post :create, { timetrack: new_timetrack.attributes }
 
-      expect(user.timetracks.count).to eq(timetracks_count+1)
+      expect(user.timetracks.count).to eq(timetracks_count + 1)
       expect(response).to redirect_to(timetracks_path(date: new_timetrack.date))
     end
 
@@ -75,7 +75,7 @@ describe TimetracksController, type: :controller do
 
       post :destroy, id: timetrack
 
-      expect(user.timetracks.count).to eq(timetracks_count-1)
+      expect(user.timetracks.count).to eq(timetracks_count - 1)
       expect(response).to redirect_to(timetracks_path(date: timetrack.date))
     end
 
@@ -84,5 +84,4 @@ describe TimetracksController, type: :controller do
       expect { post :destroy, id: timetrack }.to change { flash[:error] }
     end
   end
-
 end

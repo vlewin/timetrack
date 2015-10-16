@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 describe 'extensions.rb' do
   let(:positive_number) { 60 }
@@ -23,7 +23,7 @@ describe 'extensions.rb' do
 
     describe '#to_time' do
       it 'converts minutes to time string e.g. 60.to_time => "1 hr 00 min"' do
-        expect(positive_number.to_time).to eq  '1 hr 00 min'
+        expect(positive_number.to_time).to eq '1 hr 00 min'
         expect(negative_number.to_time).to eq '-1 hr 00 min'
       end
 

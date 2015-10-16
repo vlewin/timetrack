@@ -1,7 +1,7 @@
 class OpenStruct
   # Allow awesome_print to work (with patch to AwesomePrint::Inspector defined below)
   if defined?(AwesomePrint)
-    def each_pair &block
+    def each_pair(&block)
       @table.each_pair(&block)
     end
   end
@@ -18,7 +18,7 @@ if defined?(AwesomePrint::Inspector)
         alias_method :printable_original, :printable
         def printable(object)
           case object
-          when OpenStruct  then :struct
+          when OpenStruct then :struct
           else printable_original(object)
           end
         end
