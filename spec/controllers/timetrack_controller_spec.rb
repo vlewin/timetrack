@@ -28,7 +28,7 @@ describe TimetracksController, type: :controller do
 
     it 'loads all dates for current month into @month' do
       get :index
-      expect(assigns(:month)).to eq(Date.today.beginning_of_month..Date.today.end_of_month).to_a
+      expect(assigns(:month)).to eq((Date.today.beginning_of_month..Date.today.end_of_month).to_a)
     end
 
     it 'loads all timetracks into @timetracks' do
