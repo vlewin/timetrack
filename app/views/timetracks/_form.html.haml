@@ -38,9 +38,15 @@
   .bottom
     .btn-group
       - if @timetrack.new_record?
-        = f.button 'Create', class: 'btn btn-success btn-middle inset'
-      - else
-        = f.button 'Update', class: 'btn btn-success btn-left inset'
+        = f.button 'Create', class: 'btn btn-success btn-left outset'
         &nbsp;
-        = link_to @timetrack, class: 'btn btn-danger btn-right inset', data: { confirm: 'Are you sure?'}, method: :delete  do
-          Delete
+        = link_to '#', class: 'btn btn-danger btn-right outset', title: 'Day off', data: { toggle: 'tooltip'} do
+          %i.fa.fa-ban
+
+
+
+      - else
+        = f.button 'Update', class: 'btn btn-success btn-left outset'
+        &nbsp;
+        = link_to @timetrack, class: 'btn btn-danger btn-right outset', data: { confirm: 'Are you sure?'}, method: :delete  do
+          %i.fa.fa-times-circle
