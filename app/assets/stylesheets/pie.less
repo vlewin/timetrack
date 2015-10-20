@@ -1,18 +1,8 @@
 .pie-wrapper {
   display: inline-block;
   height: 360px;
-  position: relative;
+  width: 366px;
   margin: 10px;
-
-  .shadow {
-    border: 16px solid #efefef;
-    border-radius: 50%;
-    height: 100%;
-    width: 100%;
-
-    height: 366px;
-    width: 366px;
-  }
 
   .pie {
     height: 366px;
@@ -21,7 +11,16 @@
 
     clip: rect(auto, auto, auto, auto);
 
-    .half-circle {
+    .shadow {
+      border: 16px solid #efefef;
+      border-radius: 50%;
+      height: 366px;
+      width: 366px;
+      z-index: 1;
+      position: absolute;
+    }
+
+    .balance-circle {
       margin: 3px;
       border-radius: 50%;
 
@@ -46,24 +45,5 @@
         border: 10px solid #d9534f;
       }
     }
-
-    .left-side {
-      -webkit-transform:  rotate(-90deg);
-      -moz-transform:     rotate(-90deg);
-      -ms-transform:      rotate(-90deg);
-      -o-transform:       rotate(-90deg);
-      transform:          rotate(-90deg);
-    }
-
-    .right-side {
-      display: none;
-    }
-  }
-
-  &.progress-0 {
-    .left-side, .right-side {
-      display: none;
-    }
   }
 }
-

@@ -39,7 +39,12 @@ $(document).ready(function() {
   $('body').tooltip({
     selector: '[data-toggle="tooltip"]',
     placement: 'bottom',
-    container: 'body'
+    container: 'body',
+    delay: { show: 500 }
+  });
+
+  $('.tooltip').mouseleave(function(){
+    $(this).tooltip('hide');
   });
 
   // Timetrack
@@ -73,5 +78,19 @@ $(document).ready(function() {
 
   $('body').on('change', 'select.timetrack_finish', function(e) {
     timetrack.update();
+  })
+
+  $('.btn-slider').click(function() {
+    $('.slider').toggleClass('closed');
+    $('.tooltip').tooltip('hide');
+  })
+
+  $('.absence-item').click(function(){
+    var $self = $(this);
+    $('.absence-item').removeClass('active');
+    $self.addClass('active');
+
+    $('.text').text($self.data('key'));
+    $('#absence_reason').attr('value', $self.data('key'));
   })
 })

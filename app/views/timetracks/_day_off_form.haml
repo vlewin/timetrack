@@ -1,0 +1,18 @@
+= form_for @absence, html: { id: 'form' } do |f|
+  = f.text_field :date, {class: 'hidden'}
+  = f.text_field :reason, {class: 'hidden'}
+
+  .top
+    = render 'live_clock'
+  .middle
+    .center
+      - Absence.reasons.keys.each do |key|
+        %span.absence-item{ class: (key == @absence.reason) ? 'active' : '', data: { key: key }}= key.first.capitalize
+
+      .text= @absence.reason
+
+  .bottom
+    .btn-group
+      = f.button @absence.persisted? ? 'Update' : 'Create', class: 'btn btn-success btn-left outset'
+      = link_to '#', class: 'btn btn-default btn-info btn-right btn-slider outset', title: 'Close', data: { toggle: 'tooltip'} do
+        %i.fa.fa-times-circle

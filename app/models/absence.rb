@@ -1,5 +1,5 @@
 class Absence < ActiveRecord::Base
-  enum reason: [ :vacation, :holiday, :sickness ]
+  enum reason: [ :vacation, :holiday, :sickness, :other ]
 
   validates :date, presence: true
   validates :user, presence: true

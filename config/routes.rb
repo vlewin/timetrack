@@ -1,6 +1,8 @@
 Timetracker::Application.routes.draw do
-  resources :timetracks
   root 'timetracks#index'
+
+  resources :timetracks
+  resources :absences
 
   devise_for :users
   devise_scope :user do

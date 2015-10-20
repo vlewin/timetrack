@@ -9,6 +9,8 @@ class TimetracksController < ApplicationController
     @month = (@date.beginning_of_month..@date.end_of_month).to_a
     @timetracks = Timetrack.find_by_month(@date, current_user)
     @timetrack = current_user.timetracks.find_by_date(@date) || current_user.timetracks.new(date: @date, start: Time.now)
+    @absences = Absence.all
+    @absence = Absence.find_or_initialize_by(date: @date)
 
     respond_with @timetracks
   end

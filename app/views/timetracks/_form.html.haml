@@ -2,16 +2,7 @@
   = f.text_field :date, {class: 'hidden'}
 
   .top
-    #live-clock
-      %a.clock.date-select{ href: '#', 'data-date' => "#{Date.today.strftime('%Y-%m-%d')}"}
-        %i.fa.fa-home
-        %ul
-          %li#hr= "%.2d" % Time.now.hour
-          %li#point :
-          %li#min= "%.2d" % Time.now.min
-          %li#point :
-          %li#sec= "%.2d" % Time.now.sec
-      %span= "#{@date.strftime("%A")}, #{@date.strftime("%e %B  ")} (#{@date.strftime("%V")})"
+    = render 'live_clock'
 
   .middle
     .new_record.hidden= @timetrack.new_record?
@@ -40,11 +31,8 @@
       - if @timetrack.new_record?
         = f.button 'Create', class: 'btn btn-success btn-left outset'
         &nbsp;
-        = link_to '#', class: 'btn btn-danger btn-right outset', title: 'Day off', data: { toggle: 'tooltip'} do
+        = link_to '#', class: 'btn btn-danger btn-right btn-slider outset', title: 'Day off', data: { toggle: 'tooltip'} do
           %i.fa.fa-ban
-
-
-
       - else
         = f.button 'Update', class: 'btn btn-success btn-left outset'
         &nbsp;

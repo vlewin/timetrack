@@ -1,0 +1,10 @@
+#live-clock
+  %a.clock.date-select{ href: '#', 'data-date' => "#{Date.today.strftime('%Y-%m-%d')}"}
+    %i.fa.fa-home
+    %ul
+      %li#hr= "%.2d" % Time.now.hour
+      %li#point :
+      %li#min= "%.2d" % Time.now.min
+      %li#point :
+      %li#sec= "%.2d" % Time.now.sec
+  %span= "#{@date.strftime("%A")}, #{@date.strftime("%e %B  ")} (#{@date.strftime("%V")})"

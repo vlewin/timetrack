@@ -1,17 +1,21 @@
 .timetrack {
   position: relative;
   height: 640px;
-  padding: 40px; /*= half the width of an day div */
+  padding: 40px;
   padding: 4%;
   border-radius: 50%;
   box-sizing: content-box;
 
-  month {
-    display: inline-block;
-    width: 240px;
+  .month-navigation {
+    margin-top: 85px;
+
+    .month {
+      display: inline-block;
+      width: 240px;
+    }
   }
 
-  div.circle {
+  .circle {
     margin: 30px auto;
     border-radius: 50%;
     background-color: #fafafa;
@@ -54,10 +58,12 @@
     }
 
     .top {
+      // margin-top: 2px;
       height: 120px;
       font-size: 22px;
       padding: 30px 15px;
       position: relative;
+      z-index: 0;
     }
 
     .middle {
@@ -81,7 +87,6 @@
     }
 
     .bottom {
-      height: 120px;
       padding: 16px;
 
       .btn {
@@ -99,6 +104,18 @@
       }
     }
 
+  }
+
+  .slider {
+  	overflow-y: hidden;
+  	max-height: 360px;
+  	transition-property: all;
+  	transition-duration: .5s;
+  	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+
+  .slider.closed {
+  	max-height: 0;
   }
 
   day {
