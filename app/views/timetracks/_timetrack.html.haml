@@ -4,7 +4,7 @@
     - timetrack = @timetracks.find{|t| t.date == date}
     - absence = @absences.find{|a| a.date == date}
     - title = timetrack ? "#{timetrack.start} -  #{timetrack.finish} =  #{timetrack.duration_in_words}" : nil
-    - deg = (360/@month.size.to_f * i).round(1)
+    - deg = (360/@month.size.to_f * i).round(1) - 90
 
     %day{style: "transform: rotate(#{deg}deg) translate(320px) rotate(#{-deg}deg); -webkit-transform: rotate(#{deg}deg) translate(320px) rotate(#{-deg}deg);"}
       - if date.weekend?
@@ -14,7 +14,8 @@
       - elsif date.today?
         %a.day.today{href: "/timetracks?date=#{date.strftime("%Y-%m-%d")}", title: title, data: { toggle: 'tooltip'}}= date.day
       - elsif absence
-        .day.holiday{title: absence.reason, data: { toggle: 'tooltip'}}= date.day
+        %a.day.holiday{href: "/timetracks?date=#{date.strftime("%Y-%m-%d")}", title: absence.reason, data: { toggle: 'tooltip'}}
+          = date.day
       - elsif timetrack
         - balance = (timetrack.duration_in_percent < 100) ? 'negative' : 'positiv'
         %a.day.recorded{class: balance, href: "/timetracks?date=#{date.strftime("%Y-%m-%d")}", title: title, data: { toggle: 'tooltip'}}

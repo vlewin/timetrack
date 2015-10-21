@@ -7,8 +7,15 @@ class AbsencesController < ApplicationController
   end
 
   def update
+    # FIXME: Add a current_user scope
     absence = Absence.find(params[:id])
     absence.update_attributes(absence_params.merge(user_id: current_user.id))
+    redirect_to timetracks_path(date: absence.date)
+  end
+
+  def destroy
+    absence = Absence.find(params[:id])
+    absence.destroy
     redirect_to timetracks_path(date: absence.date)
   end
 

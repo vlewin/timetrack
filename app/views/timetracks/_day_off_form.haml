@@ -13,6 +13,11 @@
 
   .bottom
     .btn-group
-      = f.button @absence.persisted? ? 'Update' : 'Create', class: 'btn btn-success btn-left outset'
-      = link_to '#', class: 'btn btn-default btn-info btn-right btn-slider outset', title: 'Close', data: { toggle: 'tooltip'} do
-        %i.fa.fa-times-circle
+      - if @absence.persisted?
+        = f.button 'Update', class: 'btn btn-success btn-left outset'
+        = link_to @absence, class: 'btn btn-danger btn-right outset', data: { confirm: 'Are you sure?'}, method: :delete  do
+          %i.fa.fa-trash-o
+      - else
+        = f.button 'Create', class: 'btn btn-success btn-left outset'
+        = link_to '#', class: 'btn btn-default btn-info btn-right btn-slider outset', title: 'Close', data: { toggle: 'tooltip'} do
+          %i.fa.fa-times-circle

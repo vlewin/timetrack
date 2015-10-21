@@ -1,5 +1,5 @@
 #live-clock
-  %a.clock.date-select{ href: '#', 'data-date' => "#{Date.today.strftime('%Y-%m-%d')}"}
+  %a.clock.date-select{ href: "/timetracks?date=#{Date.today.strftime("%Y-%m-%d")}", 'data-date' => "#{Date.today.strftime('%Y-%m-%d')}"}
     %i.fa.fa-home
     %ul
       %li#hr= "%.2d" % Time.now.hour
