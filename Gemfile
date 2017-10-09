@@ -8,6 +8,7 @@ gem 'json'
 gem 'holidays'
 gem 'devise'
 
+gem 'puma'
 gem 'uglifier'
 gem 'therubyracer'
 
